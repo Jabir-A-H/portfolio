@@ -11,7 +11,9 @@
     "verify:routes": "node scripts/verify-routes.mjs",
     "verify:brand": "node scripts/verify-no-hardcoded-brand.mjs",
     "verify:branding": "node scripts/verify-no-hardcoded-brand.mjs",
-    "verify:all": "npm run typecheck && npm run lint && npm run build && npm run verify:routes && npm run verify:brand"
+    "verify:all": "npm run typecheck && npm run lint && npm run build && npm run verify:routes && npm run verify:brand",
+    "docs:check": "node scripts/trim-docs.mjs",
+    "docs:trim": "node scripts/trim-docs.mjs --trim"
   },
   "dependencies": {
     "clsx": "^2.1.1",
