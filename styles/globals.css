@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Base canvas */
+    --background: 210 40% 98%;          /* #F8FAFC slate-50 */
+    --foreground: 222 47% 11%;          /* #0F172A slate-900 */
+    --text: 222 47% 11%;                /* Alias for --foreground */
+
+    /* Elevated Surface */
+    --surface: 0 0% 100%;               /* #FFFFFF pure white */
+    --surface-foreground: 222 47% 11%;   /* #0F172A */
+
+    /* Neutral Dark Navy Primary */
+    --primary: 222 47% 11%;             /* #0F172A */
+    --primary-foreground: 210 40% 98%;   /* #F8FAFC */
+    --primary-hover: 217 33% 17%;        /* #1E293B */
+
+    /* Electric Blue Accent */
+    --accent: 221 83% 53%;              /* #2563EB */
+    --accent-foreground: 0 0% 100%;      /* #FFFFFF */
+    --accent-hover: 224 76% 48%;         /* #1D4ED8 */
+
+    /* Muted & Borders */
+    --muted: 210 40% 96%;               /* #F1F5F9 slate-100 */
+    --muted-foreground: 215 16% 47%;    /* #64748B slate-500 */
+    --border: 214 32% 91%;              /* #E2E8F0 slate-200 */
+    --input: 214 32% 91%;               /* #E2E8F0 */
+    --ring: 221 83% 53%;                /* #2563EB */
+
+    /* Layout metrics */
+    --radius: 0.5rem;                   /* 8px */
+  }
+
+  .dark {
+    /* Base canvas */
+    --background: 224 71% 4%;           /* #0A0F1D deep dark navy */
+    --foreground: 210 40% 98%;          /* #F8FAFC crisp off-white */
+    --text: 210 40% 98%;                /* Alias for --foreground */
+
+    /* Elevated Surface */
+    --surface: 222 44% 13%;             /* #131C31 elevated dark navy surface */
+    --surface-foreground: 210 40% 98%;  /* #F8FAFC */
+
+    /* Primary in Dark Mode */
+    --primary: 199 89% 48%;             /* #0EA5E9 bright sky */
+    --primary-foreground: 224 71% 4%;   /* #0A0F1D */
+    --primary-hover: 199 95% 74%;       /* #7DD3FC */
+
+    /* Electric Cyan Accent */
+    --accent: 199 89% 48%;              /* #0EA5E9 electric cyan */
+    --accent-foreground: 224 71% 4%;    /* #0A0F1D */
+    --accent-hover: 199 95% 74%;        /* #7DD3FC */
+
+    /* Muted & Borders */
+    --muted: 217 33% 17%;               /* #1E293B slate-800 */
+    --muted-foreground: 215 20% 65%;    /* #94A3B8 slate-400 */
+    --border: 217 33% 17%;              /* #1E293B */
+    --input: 217 33% 17%;               /* #1E293B */
+    --ring: 199 89% 48%;                /* #0EA5E9 */
+  }
+
+  /* Universal Box-Sizing & Zero Overflow */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    min-height: 100vh;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Prevent text blowout at small viewports */
+  h1, h2, h3, h4, h5, h6, p, span, a {
+    overflow-wrap: break-word;
+  }
+
+  /* Responsive media defaults */
+  img, svg, video, canvas {
+    max-width: 100%;
+    height: auto;
+  }
+}

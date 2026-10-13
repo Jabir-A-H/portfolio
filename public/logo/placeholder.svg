@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="240" height="60" fill="none">
+  <rect width="48" height="48" x="6" y="6" rx="12" fill="#0F172A" />
+  <path d="M22 40L30 18L38 40M25 34H35" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+  <text x="66" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" fill="#0F172A" letter-spacing="-0.5">APEX</text>
+  <text x="126" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400" fill="#2563EB" letter-spacing="-0.5">DIGITAL</text>
+  <text x="66" y="46" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="600" fill="#64748B" letter-spacing="1.5">[PLACEHOLDER]</text>
+</svg>

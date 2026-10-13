@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://example.com/</loc></url>
+  <url><loc>https://example.com/services</loc></url>
+  <url><loc>https://example.com/services/web-design-development</loc></url>
+  <url><loc>https://example.com/services/software-design-development</loc></url>
+  <url><loc>https://example.com/services/website-software-maintenance</loc></url>
+  <url><loc>https://example.com/services/mobile-app-development</loc></url>
+  <url><loc>https://example.com/services/game-development</loc></url>
+  <url><loc>https://example.com/services/business-automation</loc></url>
+  <url><loc>https://example.com/services/api-system-integration</loc></url>
+  <url><loc>https://example.com/services/graphics-design</loc></url>
+  <url><loc>https://example.com/services/video-editing</loc></url>
+  <url><loc>https://example.com/portfolio</loc></url>
+  <url><loc>https://example.com/portfolio/fintech-app</loc></url>
+  <url><loc>https://example.com/about</loc></url>
+  <url><loc>https://example.com/team</loc></url>
+  <url><loc>https://example.com/process</loc></url>
+  <url><loc>https://example.com/contact</loc></url>
+  <url><loc>https://example.com/privacy</loc></url>
+  <url><loc>https://example.com/terms</loc></url>
+</urlset>
