@@ -7,10 +7,12 @@ export interface SectionProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 const spacingClasses: Record<NonNullable<SectionProps['spacing']>, string> = {
-  none: 'py-0',
+  // "The Gallerist" rhythm (ADR-006): vertical breathing room is fluid and
+  // deliberately asymmetric between sections — no uniform py-* stamping.
+  none: '',
   sm: 'py-8 sm:py-12',
-  md: 'py-12 sm:py-16 md:py-20 lg:py-24',
-  lg: 'py-16 sm:py-24 md:py-32',
+  md: 'py-section',
+  lg: 'py-section-lg',
 };
 
 export function Section({

@@ -59,11 +59,48 @@ The Next.js App Router statically exports 29 total HTML/XML pages into `out/`:
 
 ## 4. Design System Tokens & Anti-FOUC Theming
 
+**Visual identity:** "High-End Architect" — see [`ADR-006`](file:///d:/WebDev/portfolio/docs/ADR/006-visual-identity-pivot.md) and [`GLOSSARY.md`](file:///d:/WebDev/portfolio/GLOSSARY.md). This is a De-AI contract: asymmetric composition, compositional silence, and zero SaaS-generic styling.
+
 ### HSL CSS Variable Tokens
 Defined in [`styles/globals.css`](file:///d:/WebDev/portfolio/styles/globals.css) and mapped to utility classes in [`tailwind.config.ts`](file:///d:/WebDev/portfolio/tailwind.config.ts):
 - `--background`, `--surface`, `--foreground`, `--muted`, `--muted-foreground`
 - `--primary`, `--primary-foreground`, `--accent`, `--accent-foreground`
 - `--border`, `--ring`
+
+| Token | Light ("Warm Gallery") | Dark ("Cold Studio") |
+|---|---|---|
+| `--background` | `40 30% 98%` — warm paper `#FDFCFB` | `240 10% 5%` — cold ink `#0D0E12` |
+| `--surface` | `40 30% 96%` — soft cream | `240 10% 10%` — deep slate |
+| `--primary` | `0 0% 10%` — deep ink | `0 0% 90%` — bone white |
+| `--accent` | `18 100% 50%` — International Orange `#FF4F00` | same (single signature) |
+| `--radius` | `0.125rem` (2px micro-radius) | same |
+
+### Typography (Technical Hybrid)
+Self-hosted via `next/font/google` in [`app/layout.tsx`](file:///d:/WebDev/portfolio/app/layout.tsx); exposed as CSS variables consumed by `tailwind.config.ts`.
+
+| Role | Family | Variable | Utility |
+|---|---|---|---|
+| Display / Architect | Cormorant Garamond (400–600, italic) | `--font-serif` | `font-display`, `font-serif` |
+| Metadata / Engineer | Space Mono (400, 700) | `--font-mono` | `font-mono`, `text-label` |
+| Body / Ghost | Inter (variable) | `--font-sans` | `font-sans` (body default) |
+
+- Fluid display scale: `text-display-xl` / `-lg` / `-md` (clamp-based).
+- Technical label scale: `text-label` + `tracking-label` (0.18em, uppercase).
+- `h1–h3` default to the serif voice in the base layer; `font-synthesis: none` prevents faux-bold artefacts because Cormorant Garamond caps at 600.
+
+### Geometry, Depth & Motion Tokens
+- **Corners:** micro-radius (2px). No `rounded-xl`/`rounded-full` on new surfaces.
+- **Borders:** space divides, not hairlines; borderless is the default for new surfaces.
+- **Depth:** hard offset shadows (`shadow-hard-sm|hard|hard-lg|hard-accent`) plus parallax — never blurred glow shadows.
+- **Easing:** `ease-architect` (`cubic-bezier(0.16,1,0.3,1)`), `ease-gallery` (`cubic-bezier(0.65,0,0.35,1)`); durations `duration-400|700|1000`.
+- **Rhythm:** `py-section`, `py-section-lg`, `px-gutter` drive fluid compositional spacing in [`Section.tsx`](file:///d:/WebDev/portfolio/components/layout/Section.tsx) and [`Container.tsx`](file:///d:/WebDev/portfolio/components/layout/Container.tsx).
+
+### Motion Layer — "The Gallery" (framer-motion)
+Implemented in [`components/motion/`](file:///d:/WebDev/portfolio/components/motion/):
+- **MotionProvider** — client boundary wrapping all motion; centralizes `prefers-reduced-motion` via `useReducedMotion()`, defaults to spring physics (stiffness 120, damping 18, mass 0.8), falls back to tween when reduced motion is active.
+- **ScrollReveal / RevealItem** — viewport-triggered entrance animations with staggered children. Variants: `fade-up`, `fade-in`, `slide-left`, `slide-right`, `scale-up`. Configurable `stagger`, `delay`, `once`, and `margin`. Used on Hero to sequence badge → headline → subheadline → CTAs → metadata.
+- **Parallax / ParallaxLayer** — scroll-linked depth using `useScroll` + `useTransform`. `Parallax` for single-element vertical/horizontal drift; `ParallaxLayer` for multi-layer depth stacks (speed 0 = fixed, 1 = normal, >1 = accelerated).
+- All motion respects `prefers-reduced-motion` at the provider level — zero extra work per component.
 
 ### Theming & Anti-FOUC Mechanism
 1. **Inline Script**: An anti-FOUC script executes synchronously in `<head>` before body hydration in [`app/layout.tsx`](file:///d:/WebDev/portfolio/app/layout.tsx), inspecting `localStorage.getItem('theme')` and `window.matchMedia('(prefers-color-scheme: dark)')` to toggle `.dark` on `document.documentElement`.

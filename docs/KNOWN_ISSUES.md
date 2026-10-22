@@ -9,6 +9,9 @@
 | ID | Severity | Component | Summary | Workaround / Status |
 |---|---|---|---|---|
 | `KI-001` | Low | Contact Form | `NEXT_PUBLIC_FORM_ENDPOINT` is unconfigured locally | Form operates in simulated preview mode with instant feedback. Set in `.env.local` for live submissions. |
+| `KI-002` | Medium | Typography | Legacy headings across all pages still use `font-extrabold`/`font-black` (800/900). Cormorant Garamond caps at 600, so these render at 600 with `font-synthesis: none` — visually fine, but the intent is unclear | Migrate to `font-display text-display-*` during the Phase 1.5 layout sweep (see `docs/ROADMAP.md`). |
+| `KI-003` | Medium | Geometry | `rounded-xl`, `rounded-2xl`, `rounded-full`, and blurred `shadow-sm/md/lg/xl` still ship in `ui/Card.tsx`, `ui/Badge.tsx`, `ui/Button.tsx`, `sections/Hero.tsx` and page templates — leftover from the pre-pivot SaaS look | Pending Phase 1.5 "Geometry conformance sweep". New surfaces must not introduce these. |
+| `KI-004` | Low | Hero / Layout | `Hero.tsx` was centered with a blurred accent aura, contradicting the "Bold Break" offset-axis rule | **Resolved**: Hero refactored to offset-axis layout with staggered ScrollReveal; aura removed. |
 
 ---
 

@@ -4,62 +4,62 @@
 
 @layer base {
   :root {
-    /* Base canvas */
-    --background: 210 40% 98%;          /* #F8FAFC slate-50 */
-    --foreground: 222 47% 11%;          /* #0F172A slate-900 */
-    --text: 222 47% 11%;                /* Alias for --foreground */
+    /* Base canvas: Warm Gallery (#FDFCFB) */
+    --background: 40 30% 98%;          
+    --foreground: 20 10% 15%;          
+    --text: 20 10% 15%;                
 
-    /* Elevated Surface */
-    --surface: 0 0% 100%;               /* #FFFFFF pure white */
-    --surface-foreground: 222 47% 11%;   /* #0F172A */
+    /* Elevated Surface: Soft Cream (#F9F7F2) */
+    --surface: 40 30% 96%;               
+    --surface-foreground: 20 10% 15%;   
 
-    /* Neutral Dark Navy Primary */
-    --primary: 222 47% 11%;             /* #0F172A */
-    --primary-foreground: 210 40% 98%;   /* #F8FAFC */
-    --primary-hover: 217 33% 17%;        /* #1E293B */
+    /* Primary: Deep Ink / Charcoal (#1A1A1A) */
+    --primary: 0 0% 10%;             
+    --primary-foreground: 40 30% 98%;   
+    --primary-hover: 0 0% 20%;        
 
-    /* Electric Blue Accent */
-    --accent: 221 83% 53%;              /* #2563EB */
-    --accent-foreground: 0 0% 100%;      /* #FFFFFF */
-    --accent-hover: 224 76% 48%;         /* #1D4ED8 */
+    /* Accent: International Orange (#FF4F00) */
+    --accent: 18 100% 50%;              
+    --accent-foreground: 0 0% 100%;      
+    --accent-hover: 18 100% 40%;         
 
     /* Muted & Borders */
-    --muted: 210 40% 96%;               /* #F1F5F9 slate-100 */
-    --muted-foreground: 215 16% 47%;    /* #64748B slate-500 */
-    --border: 214 32% 91%;              /* #E2E8F0 slate-200 */
-    --input: 214 32% 91%;               /* #E2E8F0 */
-    --ring: 221 83% 53%;                /* #2563EB */
+    --muted: 40 20% 92%;               
+    --muted-foreground: 20 5% 45%;    
+    --border: 40 10% 90%;              
+    --input: 40 10% 90%;               
+    --ring: 18 100% 50%;                
 
-    /* Layout metrics */
-    --radius: 0.5rem;                   /* 8px */
+    /* Layout metrics: Micro-Radius (Refined Brutalism) */
+    --radius: 0.125rem;                   /* 2px */
   }
 
   .dark {
-    /* Base canvas */
-    --background: 224 71% 4%;           /* #0A0F1D deep dark navy */
-    --foreground: 210 40% 98%;          /* #F8FAFC crisp off-white */
-    --text: 210 40% 98%;                /* Alias for --foreground */
+    /* Base canvas: Cold Studio (#0D0E12) */
+    --background: 240 10% 5%;           
+    --foreground: 40 20% 90%;          
+    --text: 40 20% 90%;                
 
-    /* Elevated Surface */
-    --surface: 222 44% 13%;             /* #131C31 elevated dark navy surface */
-    --surface-foreground: 210 40% 98%;  /* #F8FAFC */
+    /* Elevated Surface: Deep Slate (#16181D) */
+    --surface: 240 10% 10%;             
+    --surface-foreground: 40 20% 90%;  
 
-    /* Primary in Dark Mode */
-    --primary: 199 89% 48%;             /* #0EA5E9 bright sky */
-    --primary-foreground: 224 71% 4%;   /* #0A0F1D */
-    --primary-hover: 199 95% 74%;       /* #7DD3FC */
+    /* Primary: Bone White (#E5E5E5) */
+    --primary: 0 0% 90%;             
+    --primary-foreground: 240 10% 5%;   
+    --primary-hover: 0 0% 100%;       
 
-    /* Electric Cyan Accent */
-    --accent: 199 89% 48%;              /* #0EA5E9 electric cyan */
-    --accent-foreground: 224 71% 4%;    /* #0A0F1D */
-    --accent-hover: 199 95% 74%;        /* #7DD3FC */
+    /* Accent: International Orange (#FF4F00) */
+    --accent: 18 100% 50%;              
+    --accent-foreground: 0 0% 10%;    
+    --accent-hover: 18 100% 60%;        
 
     /* Muted & Borders */
-    --muted: 217 33% 17%;               /* #1E293B slate-800 */
-    --muted-foreground: 215 20% 65%;    /* #94A3B8 slate-400 */
-    --border: 217 33% 17%;              /* #1E293B */
-    --input: 217 33% 17%;               /* #1E293B */
-    --ring: 199 89% 48%;                /* #0EA5E9 */
+    --muted: 240 10% 15%;               
+    --muted-foreground: 240 5% 60%;    
+    --border: 240 10% 15%;              
+    --input: 240 10% 15%;               
+    --ring: 18 100% 50%;                
   }
 
   /* Universal Box-Sizing & Zero Overflow */
@@ -83,10 +83,28 @@
     min-height: 100vh;
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /*
+   * Architectural heading voice (ADR-006): the serif speaks for the studio.
+   * `font-synthesis: none` prevents faux-bold smearing when a utility requests
+   * a weight the serif does not ship (Cormorant Garamond caps at 600).
+   */
+  h1, h2, h3 {
+    font-family: var(--font-serif), ui-serif, Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    font-synthesis: none;
+  }
+
+  /* Technical metadata voice: anything quoted as machine output is mono. */
+  code, kbd, samp, pre {
+    font-family: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
   }
 
   /* Prevent text blowout at small viewports */

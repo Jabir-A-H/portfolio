@@ -1,131 +1,89 @@
-# Agency Marketing Portfolio: AI Agent & Developer Rules
+# Agency Marketing Portfolio: AI Agent & Developer Principles
 
-This document defines mandatory operational rules and protocols for all AI agents and developers contributing to the **Agency Marketing Portfolio** codebase (`portfolio`).
+This document defines the guiding principles for all AI agents and developers contributing to the **Agency Marketing Portfolio** codebase (`portfolio`). Principles are not rigid rules—they are decision-making compasses. When a situation falls outside documented patterns, apply the principle that best serves the mission.
 
 ## 🎯 Mission
 Build and maintain a high-performance, statically exportable, responsive multi-page marketing agency website with centralized content models, strict zero brand lock-in, and uncompromising visual and architectural polish.
 
 ---
 
-## 📌 RULE 1: Mandatory Post-Session Documentation Protocol
+## 📌 Principle 1: Documentation as a Living Contract
 
-> **CRITICAL DIRECTIVE:** You MUST ALWAYS update, reconcile, and optimize the documentation in `docs/` after every coding, debugging, refactoring, or design session before concluding work.
+**Intent:** Documentation is the source of truth for the next agent (or human) who picks up this work. If it isn't current, it's worse than absent—it misleads.
 
-### Antigravity Systemic Docs Directive
-When implementation and architecture changes are decided or executed, execute this systemic documentation step:
-> *"now add all these info that we decided on and actually implemented into the docs properly for a complete docs suite. use any skills as needed."*
-Run this systemically for docs sync, ADR alignment, roadmap updates, and known-issues cleanup.
-
-At the end of any session or significant milestone:
-
-1. **Update `docs/TECHNICAL_MANUAL.md`**:
-   - Reconcile architectural state, route tree, data models (`content/*.ts`), design tokens, and UI layout specifications.
-   - Keep route inventories, components, form handlers, and static export mechanics synchronized with live code.
-
-2. **Update `docs/ROADMAP.md`**:
-   - Check off completed milestones and deliverables (`[x]`).
-   - Add newly discovered tasks, edge cases, branding milestones, or client feedback to their respective phases.
-   - Keep milestone progress percentages and status indicators accurate.
-
-3. **Update `docs/KNOWN_ISSUES.md`**:
-   - Move resolved bugs to **Resolved Historical Issues** with discovery date, resolution date, root cause, and exact fix summary.
-   - Document active/deferred edge cases with issue IDs (`KI-xxx`) and reproducible symptoms.
-
-4. **Record Architecture Decisions (`docs/ADR/*`)*:
-   - For any significant architectural decision, state pattern shift, static export configuration, or routing pattern overhaul, record a new formal ADR following sequential numbering (`ADR 006+`).
-   - Keep existing ADR statuses accurate (`Accepted and Implemented`, `Superseded`, etc.).
-
-5. **Trimming & Anti-Bloat Feature (Context Hygiene Policy)**:
-   - **High-Density, Zero-Fluff**: Keep all documentation concise, structured, and factual. Avoid verbose narrative filler that bloats context windows for downstream AI agents.
-   - **No Full Code Dumps**: Never dump entire source files into markdown documentation. Use clickable github markdown links (`file:///...`) pointing directly to files or line ranges.
-   - **Archival Trigger**: When resolved issues in `docs/KNOWN_ISSUES.md` exceed 10 entries or older than 2 milestones, archive them into `docs/archive/RESOLVED_ISSUES_ARCHIVE.md` to prevent document bloat.
-   - **Zero Dead-Weight Policy**: Immediately delete replaced scratch scripts, orphaned components, unused assets, and unimported dependencies (`package.json`).
+**Practice:**
+- Update `docs/TECHNICAL_MANUAL.md`, `docs/ROADMAP.md`, `docs/KNOWN_ISSUES.md`, and relevant ADRs *before* concluding any session where architecture, tokens, routes, or content models changed.
+- Use the Antigravity Systemic Docs Directive: *"now add all these info that we decided on and actually implemented into the docs properly for a complete docs suite."*
+- Keep docs high-density and zero-fluff. Link to code with `file:///` paths rather than dumping source.
+- Archive resolved issues (`docs/KNOWN_ISSUES.md` > 10 entries or 2 milestones old) to `docs/archive/RESOLVED_ISSUES_ARCHIVE.md`.
+- Delete dead weight immediately: orphaned components, unused assets, unimported dependencies.
 
 ---
 
-## 🏛️ RULE 2: Source-of-Truth Order & Architectural Standards
+## 🏛️ Principle 2: Single Source of Truth & Architectural Integrity
 
-### Source-of-Truth Hierarchy (Mandatory)
+**Intent:** Ambiguity creates drift. One canonical definition per concept prevents silent divergence.
+
+**Hierarchy of Trust** (highest to lowest):
 1. `docs/TECHNICAL_MANUAL.md`
 2. `docs/ADR/*`
 3. `docs/ROADMAP.md`
 4. `docs/KNOWN_ISSUES.md`
-5. Live code when docs and implementation drift
+5. Live code (when docs lag)
 
-If documentation and code conflict, do not guess. Flag the drift and align docs to implemented reality through explicit updates.
-
-### Core Architectural Invariants
-- **Single Source of Truth (`content/site.ts`)**:
-  - ZERO hardcoded brand or contact strings in UI components (`app/` and `components/`).
-  - Company name, legal entity, tagline, email, phone, WhatsApp number, street address, and navigation links MUST be imported from `@/content/site`.
-  - Enforced programmatically by `node scripts/verify-no-hardcoded-brand.mjs`.
-- **Static Export Conformance**:
-  - Next.js must remain configured for static HTML export (`output: 'export'`, `trailingSlash: true`, `images: { unoptimized: true }`).
-  - All dynamic routes (`/services/[slug]` and `/portfolio/[slug]`) must declare `export const dynamicParams = false;` and provide pre-rendered parameters via `generateStaticParams()`.
-- **Responsive Geometry & Zero Horizontal Scroll**:
-  - Layouts must be verified mobile-first across 360px, 768px, 1024px, and 1440px viewports.
-  - Root layout and body must enforce `overflow-x: hidden`, `width: 100%`, `max-width: 100vw`, and `box-sizing: border-box`.
-- **Design Tokens & Theme Toggle**:
-  - Styling is governed by HSL CSS variables in `styles/globals.css` mapped through `tailwind.config.ts`.
-  - Theme switching is class-based (`.dark`), backed by an inline anti-FOUC script in `<head>` and persisted in `localStorage`.
-- **Client Component Isolation**:
-  - Keep `'use client'` strictly confined to interactive leaf components (`ContactForm.tsx`, `PortfolioFilterGrid.tsx`, `ThemeToggle.tsx`).
-  - Keep route layouts and section wrappers as pure Server Components for optimal static rendering performance.
+**Invariants:**
+- **Content Centralization**: Zero hardcoded brand/contact strings in `app/` or `components/`. Everything flows from `content/site.ts` (enforced by `scripts/verify-no-hardcoded-brand.mjs`).
+- **Static Export**: Next.js configured for `output: 'export'`, `trailingSlash: true`, `images: { unoptimized: true }`. Dynamic routes declare `dynamicParams = false` and provide `generateStaticParams()`.
+- **Responsive Geometry**: Verified at 360px, 768px, 1024px, 1440px. `overflow-x: hidden`, `width: 100%`, `max-width: 100vw`, `box-sizing: border-box` on root.
+- **Design Tokens**: HSL CSS variables in `styles/globals.css` → mapped in `tailwind.config.ts`. Theme switching via `.dark` class + inline anti-FOUC script + `localStorage`.
+- **Client Isolation**: `'use client'` only on interactive leaf components (`ContactForm`, `PortfolioFilterGrid`, `ThemeToggle`, motion providers). Route layouts and section wrappers stay pure Server Components.
+- **Visual Identity (De-AI)**: "High-End Architect" persona—asymmetric balance, intentional negative space, bold breaks from centered grids. Interactivity follows "The Gallery" model: immersive, cinematic, cursor-aware. Zero tolerance for SaaS-generic patterns. See `GLOSSARY.md` and `docs/ADR/006-visual-identity-pivot.md`.
 
 ---
 
-## 🛡️ RULE 3: Pre-Flight Verification & Quality Gates
+## 🛡️ Principle 3: Verification Before Velocity
 
-Before completing any task or ending a work session, execute and verify the full verification pipeline:
+**Intent:** A green pipeline is the only proof that the system still works. Skip nothing; automate everything.
 
-1. **TypeScript Type Check**:
-   ```bash
-   npm run typecheck
-   ```
-   Must pass with 0 errors (`tsc --noEmit`).
+**Pipeline (run in order, stop on first failure):**
+1. `npm run typecheck` — 0 TypeScript errors
+2. `npm run lint` — 0 ESLint warnings/errors
+3. `npm run build` — clean exit, 29 static routes in `out/`
+4. `node scripts/verify-routes.mjs` — 27 route files exist
+5. `node scripts/verify-no-hardcoded-brand.mjs` — 0 brand leaks
+6. `node tests/e2e/runner.mjs` — 66/66 tests pass (Tiers 1–4)
+7. `npm run verify:all` — unified gate
 
-2. **Linting Check**:
-   ```bash
-   npm run lint
-   ```
-   Must pass with 0 warnings and 0 errors (`eslint app components content`).
-
-3. **Production Static Export Build**:
-   ```bash
-   npm run build
-   ```
-   Must compile cleanly with exit code `0` and pre-render all 29 static HTML and metadata routes into `out/`.
-
-4. **Automated Verification Gates**:
-   ```bash
-   node scripts/verify-routes.mjs
-   node scripts/verify-no-hardcoded-brand.mjs
-   ```
-   Must verify 27 route files exist and 0 hardcoded brand literals exist.
-
-5. **Master Opaque-Box E2E Test Suite**:
-   ```bash
-   node tests/e2e/runner.mjs
-   ```
-   Must pass all 66 tests (100% pass rate across Tiers 1–4).
-
-6. **Unified Quality Gate**:
-   ```bash
-   npm run verify:all
-   ```
+**Philosophy:** If a change breaks the pipeline, the change is incomplete. Fix the break or revert the change. No "I'll fix it later" commits.
 
 ---
 
-## 🔒 RULE 4: Execution Discipline & Safety (Mandatory)
+## 🔒 Principle 4: Safe Execution & User Trust
 
-1. **Never run `git commit`** (or stage changes in preparation for one) on your own initiative unless the user explicitly requests a commit. Finish the assigned goal and stop with changes uncommitted for user review.
-2. **Never run destructive git commands** (`git checkout <file>`, `git restore`, `git stash`, `git reset --hard`) without explicit user permission.
-3. **Preserve Documentation Integrity**: Do not delete existing comments or documentation unless explicitly requested or replacing obsolete content under the Trimming Policy.
+**Intent:** The user owns the repository state. Agents propose; users decide.
+
+- **Never `git commit` or stage** without explicit user request. Deliver complete work; let the user review and commit.
+- **Never destructive git operations** (`checkout`, `restore`, `stash`, `reset --hard`) without explicit permission.
+- **Preserve documentation integrity**—don't delete comments or docs unless replacing obsolete content per the Trimming Policy.
+- **Escalate uncertainty**. If a task requires judgment not covered by principles, ask. Don't assume.
 
 ---
 
-## 💬 RULE 5: Communication Style & Context Hygiene
+## 💬 Principle 5: Communication That Respects Context
 
-- Be concise, direct, and implementation-specific.
-- Always provide clickable github markdown links (`file:///...`) for modified files and symbols.
-- After creating or updating documentation artifacts, do NOT regurgitate full artifact text in chat; provide a concise summary and link directly to the docs.
+**Intent:** Downstream agents and humans read your output. Make it navigable.
+
+- Be concise, direct, implementation-specific.
+- Link modified files/symbols with `file:///...` paths.
+- After updating docs, summarize—don't regurgitate. Point to the file.
+
+---
+
+## 🧭 Decision Heuristics (for uncharted territory)
+
+When no principle directly applies:
+1. **Favor the static export** — if it increases bundle or requires a server, question it.
+2. **Favor the content model** — if it hardcodes what belongs in `content/`, refactor.
+3. **Favor the visual identity** — if it looks like a template, it's wrong.
+4. **Favor the pipeline** — if it breaks a gate, it's not done.
+5. **Favor the user's time** — if you're uncertain, ask a focused question with a recommendation.

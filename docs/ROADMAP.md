@@ -19,11 +19,23 @@
 ---
 
 ## Phase 1: Brand Identity & Visual Assets
+- [x] Lock visual identity to the "High-End Architect" persona — light/dark tokens, International Orange signature, micro-radius geometry ([`ADR-006`](file:///d:/WebDev/portfolio/docs/ADR/006-visual-identity-pivot.md))
+- [x] Install the Technical Hybrid typography trio (Cormorant Garamond + Space Mono + Inter) via `next/font`, with fluid display scale and technical label scale
+- [x] Establish fluid compositional rhythm tokens (`py-section`, `py-section-lg`, `px-gutter`) in Section/Container primitives
 - [ ] Finalize official agency brand name, legal entity name, and tagline in [`content/site.ts`](file:///d:/WebDev/portfolio/content/site.ts)
 - [ ] Drop SVG vector logos into [`public/logo/`](file:///d:/WebDev/portfolio/public/logo) (dark & light variants)
-- [ ] Replace placeholder color tokens in [`styles/globals.css`](file:///d:/WebDev/portfolio/styles/globals.css) with official brand palette
 - [ ] Add real founder portraits into `public/images/team/` and link in [`content/team.ts`](file:///d:/WebDev/portfolio/content/team.ts)
 - [ ] Generate real Open Graph preview images (`og-image.png`) and custom favicon set
+
+---
+
+## Phase 1.5: De-AI Visual Refactor (In Progress)
+- [x] **Bold Break layout**: refactor `Hero` to the offset axis — serif statement anchored left, supporting copy in the void; removed centered-glow aura
+- [ ] **Geometry conformance sweep**: purge `rounded-xl`/`rounded-2xl`/`rounded-full`/blurred `shadow-sm|md|lg|xl` from [`components/ui/Card.tsx`](file:///d:/WebDev/portfolio/components/ui/Card.tsx), [`components/ui/Badge.tsx`](file:///d:/WebDev/portfolio/components/ui/Badge.tsx), [`components/ui/Button.tsx`](file:///d:/WebDev/portfolio/components/ui/Button.tsx) and page templates in favour of micro-radius + hard-offset shadows
+- [x] **The Gallery motion**: add a motion layer (framer-motion) for cinematic reveals, staggered assembly, and parallax depth — `MotionProvider`, `ScrollReveal`, `RevealItem`, `Parallax`, `ParallaxLayer` in [`components/motion/`](file:///d:/WebDev/portfolio/components/motion/)
+- [ ] **Authorial details**: technical metadata labels (`text-label` mono captions, coordinates, section indices) and an availability status indicator in the Navbar
+- [ ] **Typography rollout**: migrate headings from `font-extrabold` to `font-display text-display-*` across all routes (tracked as `KI-002`)
+- [ ] Verify 360/768/1024/1440px viewports after each layout refactor (zero horizontal scroll)
 
 ---
 
