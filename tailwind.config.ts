@@ -17,15 +17,20 @@ const config: Config = {
       '2xl': '1440px',
     },
     /*
-     * A page is a sheet of paper, not a stack of widgets. The only corners in
-     * the system are square, and the only depth is the hairline between things.
+     * Refined Brutalism: micro-radius only, hard offset shadows only. The
+     * default scales are removed so the system cannot regress to pills or
+     * blurred SaaS shadows.
      */
     borderRadius: {
-      DEFAULT: '0rem',
+      DEFAULT: 'var(--radius)',
       none: '0rem',
       full: '9999px',
     },
     boxShadow: {
+      'hard-sm': '2px 2px 0 0 hsl(var(--foreground))',
+      hard: '4px 4px 0 0 hsl(var(--foreground))',
+      'hard-lg': '8px 8px 0 0 hsl(var(--foreground))',
+      'hard-accent': '4px 4px 0 0 hsl(var(--accent))',
       none: 'none',
     },
     extend: {
@@ -85,9 +90,9 @@ const config: Config = {
         1000: '1000ms',
       },
       spacing: {
-        gutter: 'clamp(1.25rem, 4vw, 4rem)',
-        section: 'clamp(4.5rem, 9vw, 7.5rem)',
-        'section-lg': 'clamp(6rem, 12vw, 10rem)',
+        gutter: 'clamp(1.25rem, 5vw, 4rem)',
+        section: 'clamp(5rem, 12vh, 9rem)',
+        'section-lg': 'clamp(7rem, 18vh, 14rem)',
       },
       maxWidth: {
         sheet: '100rem',

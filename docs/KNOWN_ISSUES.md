@@ -10,13 +10,14 @@
 |---|---|---|---|---|
 | `KI-001` | Low | Contact Form | `NEXT_PUBLIC_FORM_ENDPOINT` is unconfigured locally | Form operates in simulated preview mode with instant feedback. Set in `.env.local` for live submissions. |
 | `KI-002` | Resolved | Typography | All headings migrated to `font-display text-display-*` via Phase 1.5 geometry sweep (see `docs/ROADMAP.md`). |
-| `KI-003` | Resolved | Geometry | All components use zero radius, zero shadows, and hairline rules per ADR-007. |
+| `KI-003` | Resolved | Geometry | All components use 2px micro-radius, hard offset shadows, and borderless-by-space composition per ADR-006. |
 | `KI-004` | Resolved | Hero / Layout | `Hero.tsx` was centered with a blurred accent aura, contradicting the "Bold Break" offset-axis rule | Rebuilt as an offset editorial spread with no aura; see ADR-007. |
 | `KI-005` | High | Imagery | No project covers, founder portraits, or studio photography exist; the site is intentionally typographic until they do | Add assets to `public/images/` and wire them into the work index and team page. Do not reintroduce fake gradient thumbnails. |
 | `KI-006` | Medium | Brand & Contact | Trading name ("Apex Digital"), legal entity, email (`hello@apexdigital.studio`), phone, and address are provisional | Replace in [`content/site.ts`](file:///d:/WebDev/portfolio/content/site.ts) before launch; the brand gate only forbids hardcoding them in components. |
 | `KI-007` | Low | Dead Files | `TrustBar`, `StatsStrip`, `TechStackStrip`, `Testimonials`, `ProcessPreview`, `ServicesOverview`, `FeaturedProjects`, `CTABanner` are no longer imported but remain on disk | Delete in a normal editor session; the agent sandbox denied file deletion. |
 | `KI-008` | Medium | Test Gate | `tests/e2e/viewport.test.ts` cannot run because `@playwright/test` is not installed; `tsconfig` excludes `tests` | Install Playwright and re-add a `test:viewport` script, or rely on the manual screenshot review. |
 | `KI-009` | Medium | Content Claims | Agency stats (5+, 120+, 80+, 15+) and project metrics are illustrative and unverified | Verify or remove before launch. Case-study metrics are shown on the home page and portfolio index. |
+| `KI-010` | Low | Motion | The cinematic reveal is wired into the home sections, but the parallax layer is not yet used | Add a subtle `Parallax` layer to the studio band or a hero depth element. Motion must remain optional and respect reduced-motion. |
 
 ---
 
@@ -30,3 +31,4 @@
 | `RES-004` | 2026-10-13 | Anti-FOUC | Dark mode flicker on initial page load before hydration | Added inline synchronous theme script in `<head>` inspecting `localStorage` and `prefers-color-scheme`. |
 | `RES-005` | 2026-10-13 | Dynamic Routes | Static export failing when query parameters were evaluated at build time | Declared `export const dynamicParams = false;` across all dynamic routes with `generateStaticParams()`. |
 | `RES-006` | 2026-10-22 | Home / Interior Pages | The site still read as an AI-generated agency template: nine stacked sections, centered badge headers, card grids, icon tiles, fake thumbnails, visible placeholder copy | Recomposed as an editorial document under ADR-007: five home movements, work index rows, flat UI primitives, shared PageHeader/ContactBlock, cleaned copy. All 66 E2E assertions, route verification, brand scan, typecheck, lint, and build pass. |
+| `RES-007` | 2026-10-22 | Design DNA | ADR-007's first implementation overrode ADR-006: vermilion instead of International Orange, zero radius, no hard shadows, collapsed Gallerist spacing, and a rejected availability note | Restored the ADR-006 palette, 2px radius, hard-shadow scale, extreme spacing on the home page, and removed the availability note. Composition from ADR-007 remains. |

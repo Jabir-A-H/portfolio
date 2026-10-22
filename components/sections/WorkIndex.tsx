@@ -4,6 +4,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { getFeaturedProjects } from '@/content/projects';
 import { Container } from '@/components/layout/Container';
 import { Section } from '@/components/layout/Section';
+import { Reveal } from '@/components/motion';
 
 const shortCategory: Record<string, string> = {
   'Web & Software': 'Web',
@@ -16,22 +17,25 @@ export function WorkIndex() {
   const featured = getFeaturedProjects();
 
   return (
-    <Section spacing="none" id="work" className="pt-20 sm:pt-24" aria-labelledby="work-heading">
+    <Section spacing="none" id="work" className="pt-32 sm:pt-44" aria-labelledby="work-heading">
       <Container size="xl">
-        <div className="grid grid-cols-12 items-end gap-x-6 gap-y-4 pb-8 sm:pb-10">
-          <h2
-            id="work-heading"
-            className="col-span-12 font-display text-display-md text-foreground sm:col-span-6"
-          >
-            Selected work
-          </h2>
-          <p className="col-span-12 max-w-[38ch] text-sm leading-relaxed text-muted-foreground sm:col-span-4 sm:col-start-9 sm:justify-self-end sm:text-right">
-            Three recent projects. The rest of the archive includes fintech, games, and brand
-            systems.
-          </p>
-        </div>
+        <Reveal>
+          <div className="grid grid-cols-12 items-end gap-x-6 gap-y-4 pb-12 sm:pb-16">
+            <h2
+              id="work-heading"
+              className="col-span-12 font-display text-display-md text-foreground sm:col-span-6"
+            >
+              Selected work
+            </h2>
+            <p className="col-span-12 max-w-[38ch] text-sm leading-relaxed text-muted-foreground sm:col-span-4 sm:col-start-9 sm:justify-self-end sm:text-right">
+              Three recent projects. The rest of the archive includes fintech, games, and brand
+              systems.
+            </p>
+          </div>
+        </Reveal>
 
-        <div className="border-t border-border">
+        <Reveal delay={0.08}>
+          <div>
           {featured.map((project, index) => {
             const headlineResult = project.results?.[0];
             const label = shortCategory[project.category] ?? project.category;
@@ -40,7 +44,7 @@ export function WorkIndex() {
               <Link
                 key={project.id}
                 href={`/portfolio/${project.slug}`}
-                className="group block border-b border-border py-6 transition-colors hover:border-foreground/60 sm:py-9"
+                className="group block py-10 transition-colors sm:py-14"
               >
                 <div className="grid grid-cols-12 items-start gap-x-4 gap-y-2">
                   <div className="col-span-12 mb-1 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground sm:hidden">
@@ -81,7 +85,8 @@ export function WorkIndex() {
               </Link>
             );
           })}
-        </div>
+          </div>
+        </Reveal>
 
         <div className="mt-6 flex justify-end">
           <Link

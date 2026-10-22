@@ -1,7 +1,7 @@
 # ADR-006: Visual Identity Pivot to "High-End Architect"
 
 ## Status
-Accepted. Amended by [ADR-007](007-editorial-reset.md): the tokens and typographic identity remain, but the page composition, UI primitives, and content presentation were reset.
+Accepted. This ADR remains the authority for palette, typography, geometry, rhythm, and motion. [ADR-007](007-editorial-reset.md) changes page composition only. A same-day attempt to override these tokens was reverted; see ADR-007's amendment log.
 
 ## Date
 2026-10-22

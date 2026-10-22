@@ -4,17 +4,19 @@ import { ArrowUpRight } from 'lucide-react';
 import { siteConfig } from '@/content/site';
 import { Container } from '@/components/layout/Container';
 import { Section } from '@/components/layout/Section';
+import { Reveal } from '@/components/motion';
 
 export function StudioStatement() {
   return (
     <Section
       spacing="none"
       id="studio"
-      className="bg-foreground py-20 text-background sm:py-28"
+      className="bg-foreground py-32 text-background sm:py-44"
       aria-labelledby="studio-heading"
     >
       <Container size="xl">
-        <div className="grid grid-cols-12 gap-x-6 gap-y-8">
+        <Reveal>
+          <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <p className="col-span-12 font-mono text-[10px] uppercase tracking-[0.16em] text-background/55 lg:col-span-2">
             The studio
           </p>
@@ -43,7 +45,8 @@ export function StudioStatement() {
               <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </Link>
           </div>
-        </div>
+          </div>
+        </Reveal>
       </Container>
     </Section>
   );

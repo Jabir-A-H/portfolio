@@ -50,8 +50,6 @@ export interface SiteConfig {
     subheadline: string;
     /** Disciplines listed along the base of the hero. */
     disciplines: string[];
-    /** Small availability note, set in the margin. */
-    note: string;
     primaryCta: { title: string; href: string };
     secondaryCta: { title: string; href: string };
   };
@@ -140,7 +138,6 @@ export const siteConfig: SiteConfig = {
     subheadline:
       'A small studio for teams who care how things are made. We design, engineer, and maintain the products your business runs on.',
     disciplines: ['Web platforms', 'Mobile products', 'Automation', 'Brand and motion'],
-    note: 'Open for Q1 2027',
     primaryCta: {
       title: 'Start a project',
       href: '/contact',

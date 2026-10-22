@@ -19,7 +19,7 @@
 ---
 
 ## Phase 1: Brand Identity & Visual Assets
-- [x] Lock visual identity to the "High-End Architect" persona — light/dark tokens, vermilion signature, zero-radius geometry ([`ADR-006`](file:///d:/WebDev/portfolio/docs/ADR/006-visual-identity-pivot.md)), recomposed as an editorial document under [`ADR-007`](file:///d:/WebDev/portfolio/docs/ADR/007-editorial-reset.md)
+- [x] Lock visual identity to the "High-End Architect" persona — Warm Gallery / Cold Studio, International Orange, 2px micro-radius, hard offset shadows, The Gallerist spacing ([`ADR-006`](file:///d:/WebDev/portfolio/docs/ADR/006-visual-identity-pivot.md)), recomposed as an editorial document under [`ADR-007`](file:///d:/WebDev/portfolio/docs/ADR/007-editorial-reset.md)
 - [x] Install the Technical Hybrid typography trio (Cormorant Garamond + Space Mono + Inter) via `next/font`, with fluid display scale and technical label scale
 - [x] Establish fluid compositional rhythm tokens (`py-section`, `py-section-lg`, `px-gutter`) in Section/Container primitives
 - [ ] Finalize official agency brand name, legal entity name, and tagline in [`content/site.ts`](file:///d:/WebDev/portfolio/content/site.ts)
@@ -32,7 +32,7 @@
 ## Phase 1.5: De-AI Visual Refactor (Completed via ADR-007)
 - [x] **Editorial recomposition**: home page reduced from nine stacked marketing sections to five movements (Hero, Work index, Capabilities, Studio statement, Contact) — see [`ADR-007`](file:///d:/WebDev/portfolio/docs/ADR/007-editorial-reset.md)
 - [x] **Remove the template grammar**: no centered badge + headline + subtitle formula, no card grids, no icon tiles, no checkmark lists, no gradients, no boxed CTAs
-- [x] **Geometry reset**: zero radius, zero shadows, hairline rules; `tailwind.config.ts` no longer generates radius or shadow scales
+- [x] **Geometry conformance**: 2px micro-radius, hard offset shadows, borderless-by-space, parallax depth; default radius/shadow scales removed from `tailwind.config.ts`
 - [x] **UI primitives reset**: flat Card, typographic Badge, flat Button, rule Fields (Input/Select/Textarea)
 - [x] **Interior page consistency**: shared `PageHeader` on About, Services, Portfolio, Process, Team, Contact, and both detail templates; shared `ContactBlock` at page ends
 - [x] **Work index**: projects presented as rows with sector, year, and one metric; fake thumbnails removed; portfolio filter converted from pills to text tabs

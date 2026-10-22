@@ -70,7 +70,7 @@ Focuses on happy-path pre-rendering, route availability, section sequence, servi
 - `T1.9_home_capabilities`: Home page renders the capabilities index with four disciplines and service links
 - `T1.10_home_studio_statement`: Home page renders the inverted studio statement and an about link
 - `T1.11_home_project_metrics`: Home page work index surfaces three project outcome metrics with labels
-- `T1.12_home_discipline_rule`: Home page renders the four studio disciplines in the hero baseline rule
+- `T1.12_home_discipline_rule`: Home page renders the four studio disciplines in the hero baseline line
 - `T1.13_home_editorial_typography`: Home page uses the display-serif and mono-label type system
 - `T1.14_home_contact_block`: Home page closes with the contact statement, mailto link, and contact action
 - `T1.15_home_testimonials_suppressed`: Home page suppresses testimonials until real client reviews exist

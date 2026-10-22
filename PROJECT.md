@@ -5,7 +5,7 @@
 
 ## 1. What this is
 
-A multi-page marketing site for an independent digital studio. It is a pure static export: no server runtime, no database, no auth. The visual direction is editorial, not dashboard-like: type-led hierarchy, hairline rules, asymmetric composition, and a single vermilion accent.
+A multi-page marketing site for an independent digital studio. It is a pure static export: no server runtime, no database, no auth. The visual direction is editorial, not dashboard-like: type-led hierarchy, deliberate negative space, asymmetric composition, 2px micro-radius, hard offset shadows, and a single International Orange accent.
 
 The content is provisionally branded. "Apex Digital", `hello@apexdigital.studio`, and the project metrics are placeholders until the real studio details are supplied.
 
@@ -17,19 +17,19 @@ The content is provisionally branded. "Apex Digital", `hello@apexdigital.studio`
 - **Brand isolation:** no brand or contact literals in `app/` or `components/`; everything imports from `content/site.ts`. Enforced by `scripts/verify-no-hardcoded-brand.mjs`.
 - **Theming:** HSL variables in `styles/globals.css`, mapped in `tailwind.config.ts`, `.dark` class toggled by an inline anti-FOUC script and `ThemeToggle`.
 - **Forms:** client-side validation, honeypot, `fetch` to `NEXT_PUBLIC_FORM_ENDPOINT`, simulated success when unset.
-- **Motion:** framer-motion entrance primitives; the editorial pages remain legible without JavaScript animation.
+- **Motion:** `Reveal` wraps the home sections for a single cinematic entrance; `ScrollReveal`/`Parallax` remain available. Motion respects reduced-motion and is never required to read the page.
 
 ## 3. Design system
 
 ### Tokens
 | Role | Light | Dark |
 |---|---|---|
-| Canvas | `hsl(40 35% 94%)` warm paper | `hsl(40 6% 7%)` cold ink |
-| Surface | `hsl(38 31% 90%)` | `hsl(32 8% 10%)` |
-| Text | `hsl(30 14% 10%)` ink | `hsl(38 26% 87%)` bone |
-| Accent | `hsl(15 88% 47%)` vermilion | `hsl(15 88% 53%)` |
-| Border | `hsl(35 17% 78%)` | `hsl(33 8% 22%)` |
-| Radius | `0` | `0` |
+| Canvas | `hsl(40 30% 98%)` Warm Gallery | `hsl(240 10% 5%)` Cold Studio |
+| Surface | `hsl(40 30% 96%)` | `hsl(240 10% 10%)` |
+| Text | `hsl(20 10% 15%)` ink | `hsl(40 20% 90%)` bone |
+| Accent | `hsl(18 100% 50%)` International Orange | same |
+| Border | `hsl(40 10% 90%)` | `hsl(240 10% 15%)` |
+| Radius | `0.125rem` | `0.125rem` |
 
 ### Type
 - Cormorant Garamond 300–600: hero, page titles, section titles, names, project titles.
@@ -39,14 +39,14 @@ The content is provisionally branded. "Apex Digital", `hello@apexdigital.studio`
 - Hero emphasis is authored as `*outlast*` in `content/site.ts` and rendered as `<em>`.
 
 ### Geometry
-- Tailwind radius scale exposes only `DEFAULT`, `none`, `full`; shadow scale exposes only `none`.
-- Composition relies on `border-t` / `border-b` hairlines, 12-column grids, and fluid `px-gutter` / `py-section` spacing.
-- Cards are flat compartments: top rule and padding only.
+- 2px micro-radius, hard offset shadows (`shadow-hard-sm` / `hard` / `hard-lg` / `hard-accent`), borderless by default. No blurred shadows.
+- Rhythm: The Gallerist. `py-section` is `clamp(5rem, 12vh, 9rem)`; `py-section-lg` is `clamp(7rem, 18vh, 14rem)`. The home page adds explicit larger paddings to keep the voids deliberate.
+- Composition relies on 12-column grids, fluid `px-gutter`, and spacing first. Interior indexes may use a structural hairline where scanning requires it; the home page is borderless.
 
 ## 4. Page composition
 
 ### Home (`app/page.tsx`)
-1. `Hero` — studio strip, display statement, lede, two actions, discipline rule.
+1. `Hero` — studio strip, display statement, lede, two actions, discipline line.
 2. `WorkIndex` — three featured projects as index rows (ordinal, category, title, sector, metric).
 3. `Capabilities` — four service groups as index rows with descriptions and counts.
 4. `StudioStatement` — inverted band, statement, two paragraphs, about link.
@@ -126,7 +126,7 @@ interface ProjectItem {
 | Portfolio | `PortfolioFilterGrid` (client) |
 | Forms | `ContactForm` (client), `Input`, `Select`, `Textarea` |
 | UI | `Button`, `Badge`, `Card` and its subcomponents |
-| Motion | `MotionProvider`, `ScrollReveal`, `RevealItem`, `Parallax`, `ParallaxLayer` |
+| Motion | `MotionProvider`, `Reveal`, `ScrollReveal`, `RevealItem`, `Parallax`, `ParallaxLayer` |
 
 `TrustBar`, `StatsStrip`, `TechStackStrip`, `Testimonials`, `ProcessPreview`, `ServicesOverview`, `FeaturedProjects`, and `CTABanner` are no longer imported. They remain on disk only because the agent sandbox denied deletions; remove them in a normal editor session.
 

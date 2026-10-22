@@ -1,6 +1,6 @@
 # Apex Digital — studio portfolio
 
-A statically exported marketing site for an independent digital studio. The design is an editorial document rather than a component catalogue: one type-led composition, hairline rules, and five movements on the home page. See [ADR-007](docs/ADR/007-editorial-reset.md) for the reasoning.
+A statically exported marketing site for an independent digital studio. The design is an editorial document rather than a component catalogue: one type-led composition, deliberate negative space, and five movements on the home page. See [ADR-007](docs/ADR/007-editorial-reset.md) for the composition and [ADR-006](docs/ADR/006-visual-identity-pivot.md) for the design DNA.
 
 > The brand name, contact addresses, and project metrics are provisional. See [KNOWN_ISSUES](docs/KNOWN_ISSUES.md) before treating any content as production truth.
 
@@ -8,7 +8,7 @@ A statically exported marketing site for an independent digital studio. The desi
 
 - Next.js 15 App Router, static export (`output: 'export'`, `trailingSlash: true`, `images: { unoptimized: true }`)
 - TypeScript strict mode
-- Tailwind CSS 3.4 with a deliberately reduced scale: zero radius, zero shadows, one accent
+- Tailwind CSS 3.4 with a deliberately reduced scale: 2px micro-radius, hard offset shadows, one accent
 - `next/font/google`: Cormorant Garamond (display), Space Mono (metadata), Inter (body)
 - Framer Motion for optional entrance motion
 - No backend. The contact form posts to `NEXT_PUBLIC_FORM_ENDPOINT` or runs in preview mode.
@@ -34,11 +34,11 @@ A statically exported marketing site for an independent digital studio. The desi
 
 ## Design system
 
-- **Canvas:** warm paper in light mode, cold ink in dark mode. Vermilion is the only accent and is used for marks, hover states, and metric figures.
+- **Canvas:** Warm Gallery in light mode, Cold Studio in dark mode. International Orange is the only accent and is used for marks, hover states, and metric figures.
 - **Type:** `text-display-xl` for the hero, `text-display-lg` for page titles, `text-display-md` for section titles. Mono metadata never renders below 10px.
-- **Geometry:** no radius, no shadows. Depth comes from hairlines and scale.
-- **Composition:** `PageHeader` opens interior pages; `WorkIndex` / `PortfolioFilterGrid` render projects as rows; `ContactBlock` closes every page.
-- **Forms:** transparent fields with a single bottom rule; the rule turns vermilion on focus.
+- **Geometry:** 2px micro-radius, hard offset shadows, borderless by default. Space and the hard shadow create depth; no blurred glows.
+- **Composition:** `PageHeader` opens interior pages; `WorkIndex` / `PortfolioFilterGrid` render projects as rows; `ContactBlock` closes every page. Home sections use The Gallerist spacing.
+- **Forms:** transparent fields with a single bottom rule; the rule turns International Orange on focus.
 
 Full details in [docs/TECHNICAL_MANUAL.md](docs/TECHNICAL_MANUAL.md), [GLOSSARY.md](GLOSSARY.md), and [ADR-007](docs/ADR/007-editorial-reset.md).
 

@@ -10,11 +10,11 @@ export function ContactBlock() {
     <Section
       spacing="none"
       id="contact-block"
-      className="pb-16 pt-24 sm:pb-20 sm:pt-32"
+      className="pb-24 pt-32 sm:pb-36 sm:pt-44"
       aria-labelledby="contact-heading"
     >
       <Container size="xl">
-        <div className="grid grid-cols-12 gap-x-6 gap-y-8 border-t border-border pt-8">
+        <div className="grid grid-cols-12 gap-x-6 gap-y-8">
           <p className="col-span-12 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground lg:col-span-2">
             Next
           </p>

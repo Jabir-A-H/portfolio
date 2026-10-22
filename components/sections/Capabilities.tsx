@@ -4,29 +4,33 @@ import { ArrowUpRight } from 'lucide-react';
 import { serviceGroups, services } from '@/content/services';
 import { Container } from '@/components/layout/Container';
 import { Section } from '@/components/layout/Section';
+import { Reveal } from '@/components/motion';
 
 export function Capabilities() {
   return (
     <Section
       spacing="none"
       id="capabilities"
-      className="pb-16 pt-20 sm:pb-20 sm:pt-24"
+      className="pb-24 pt-32 sm:pb-36 sm:pt-44"
       aria-labelledby="capabilities-heading"
     >
       <Container size="xl">
-        <div className="grid grid-cols-12 items-end gap-x-6 gap-y-4 pb-8 sm:pb-10">
-          <h2
-            id="capabilities-heading"
-            className="col-span-12 font-display text-display-md text-foreground sm:col-span-6"
-          >
-            What we do
-          </h2>
-          <p className="col-span-12 max-w-[38ch] text-sm leading-relaxed text-muted-foreground sm:col-span-4 sm:col-start-9 sm:justify-self-end sm:text-right">
-            Four disciplines, one team. Most projects use two or three of them.
-          </p>
-        </div>
+        <Reveal>
+          <div className="grid grid-cols-12 items-end gap-x-6 gap-y-4 pb-12 sm:pb-16">
+            <h2
+              id="capabilities-heading"
+              className="col-span-12 font-display text-display-md text-foreground sm:col-span-6"
+            >
+              What we do
+            </h2>
+            <p className="col-span-12 max-w-[38ch] text-sm leading-relaxed text-muted-foreground sm:col-span-4 sm:col-start-9 sm:justify-self-end sm:text-right">
+              Four disciplines, one team. Most projects use two or three of them.
+            </p>
+          </div>
+        </Reveal>
 
-        <div className="border-t border-border">
+        <Reveal delay={0.08}>
+          <div>
           {serviceGroups.map((group, index) => {
             const groupServices = services.filter((service) => service.groupId === group.id);
 
@@ -34,7 +38,7 @@ export function Capabilities() {
               <Link
                 key={group.id}
                 href={`/services#${group.id}`}
-                className="group block border-b border-border py-7 transition-colors hover:border-foreground/60 sm:py-8"
+                className="group block py-10 transition-colors sm:py-12"
               >
                 <div className="grid grid-cols-12 items-start gap-x-4 gap-y-3">
                   <span className="col-span-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
@@ -60,7 +64,8 @@ export function Capabilities() {
               </Link>
             );
           })}
-        </div>
+          </div>
+        </Reveal>
 
         <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
           <p className="max-w-[46ch] text-[13px] leading-relaxed text-muted-foreground">

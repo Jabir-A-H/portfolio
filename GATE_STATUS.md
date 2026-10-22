@@ -73,3 +73,24 @@ Notes:
 - The Tier 1 home-page and placeholder tests were reconciled to the ADR-007 composition in the same session; `TEST_READY.md` now matches the runner.
 
 Gate Result: **PASS** (automated suite and manual visual review)
+
+---
+
+## Gate — ADR-006 DNA restoration (2026-10-22)
+| Check | Scope | Result |
+|---|---|---|
+| Token audit | Palette, International Orange, 2px radius, hard shadows, Gallerist spacing | PASS, restored to ADR-006 |
+| `npm run typecheck` | TypeScript strict | PASS |
+| `npm run lint` | ESLint | PASS |
+| Clean `.next` + `npm run build` | Static export | PASS, 29 routes |
+| `node scripts/verify-routes.mjs` | 27 route files | PASS |
+| `node scripts/verify-no-hardcoded-brand.mjs` | Brand isolation | PASS, 47 files |
+| `node tests/e2e/runner.mjs` | 4-tier suite | PASS, 66/66 |
+| Manual screenshot review | Home at 1440/390 and dark; portfolio, services, about, process, team, contact, detail, legal, 404 | PASS, no overflow |
+
+Notes:
+- `Reveal` adds framer-motion to the home route: home first-load JS is 158 kB; interior routes remain 108 kB because `ContactBlock` is not wrapped in motion.
+- Parallax is still not wired; tracked as `KI-010`.
+- `tests/e2e/viewport.test.ts` remains excluded from the gate until Playwright is installed.
+
+Gate Result: **PASS**

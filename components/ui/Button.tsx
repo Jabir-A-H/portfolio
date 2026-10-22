@@ -14,11 +14,13 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 const variantClasses: Record<NonNullable<ButtonProps['variant']>, string> = {
-  primary: 'bg-primary text-primary-foreground hover:bg-primary-hover',
-  accent: 'bg-accent text-accent-foreground hover:bg-accent-hover',
+  primary:
+    'bg-primary text-primary-foreground shadow-hard-sm hover:shadow-hard active:translate-x-[2px] active:translate-y-[2px] active:shadow-none hover:bg-primary-hover',
+  accent:
+    'bg-accent text-accent-foreground shadow-hard-sm hover:shadow-hard-accent active:translate-x-[2px] active:translate-y-[2px] active:shadow-none hover:bg-accent-hover',
   secondary: 'bg-muted text-foreground hover:bg-border',
   outline:
-    'border border-foreground/35 text-foreground hover:border-foreground hover:bg-foreground hover:text-background',
+    'border border-foreground/35 text-foreground hover:border-foreground hover:bg-foreground hover:text-background active:translate-x-[2px] active:translate-y-[2px]',
   ghost: 'text-foreground hover:text-accent',
 };
 
@@ -43,7 +45,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const baseClasses =
-    'inline-flex select-none items-center justify-center whitespace-nowrap font-medium tracking-[0.01em] transition-colors disabled:pointer-events-none disabled:opacity-40';
+    'inline-flex select-none items-center justify-center whitespace-nowrap rounded-[2px] font-medium tracking-[0.01em] transition-all disabled:pointer-events-none disabled:opacity-40';
 
   const combinedClasses = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
 

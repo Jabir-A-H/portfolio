@@ -225,7 +225,7 @@ export const tier1Tests = [
 
   {
     id: 'T1.12_home_discipline_rule',
-    description: 'Home page renders the four studio disciplines in the hero baseline rule',
+    description: 'Home page renders the four studio disciplines in the hero baseline line',
     run: (baseDir = OUT_DIR) => {
       const html = loadRouteContent('/', baseDir);
       const lower = html.toLowerCase();

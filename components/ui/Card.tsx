@@ -5,15 +5,16 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const variantClasses: Record<NonNullable<CardProps['variant']>, string> = {
-  default: 'border-t border-border',
-  bordered: 'border-t border-border',
-  elevated: 'border-t border-border',
-  interactive: 'border-t border-border transition-colors hover:border-accent',
+  default: 'bg-surface text-surface-foreground shadow-hard',
+  bordered: 'bg-surface text-surface-foreground shadow-hard',
+  elevated: 'bg-surface text-surface-foreground shadow-hard-lg',
+  interactive:
+    'bg-surface text-surface-foreground shadow-hard transition-shadow duration-300 hover:shadow-hard-lg',
 };
 
 /**
- * A card is a compartment on a printed sheet: a hairline at the top and air
- * around the contents. No fill, no frame, no shadow.
+ * Refined Brutalist card: no frame, micro-radius, depth from a hard offset
+ * shadow. Space and the shadow divide, not a border.
  */
 export function Card({
   variant = 'default',
@@ -22,7 +23,10 @@ export function Card({
   ...props
 }: CardProps) {
   return (
-    <div className={`overflow-hidden ${variantClasses[variant]} ${className}`} {...props}>
+    <div
+      className={`!border-0 overflow-hidden rounded-[2px] ${variantClasses[variant]} ${className}`}
+      {...props}
+    >
       {children}
     </div>
   );

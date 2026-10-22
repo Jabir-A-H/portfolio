@@ -59,7 +59,7 @@ The Next.js App Router statically exports 29 total HTML/XML pages into `out/`:
 
 ## 4. Design System Tokens & Anti-FOUC Theming
 
-**Visual identity:** "High-End Architect", recomposed as an editorial document under [`ADR-007`](file:///d:/WebDev/portfolio/docs/ADR/007-editorial-reset.md). ADR-006 supplies the palette and type pairing; ADR-007 supplies the composition rules (hairlines, work index, page header, rule fields, zero decoration). See also [`GLOSSARY.md`](file:///d:/WebDev/portfolio/GLOSSARY.md).
+**Visual identity:** "High-End Architect". [ADR-006](file:///d:/WebDev/portfolio/docs/ADR/006-visual-identity-pivot.md) is the authority for palette, type, geometry, rhythm, and motion. [ADR-007](file:///d:/WebDev/portfolio/docs/ADR/007-editorial-reset.md) changes composition only: the five-movement home page, work index, shared page header, rule fields, and content cleanup. See also [`GLOSSARY.md`](file:///d:/WebDev/portfolio/GLOSSARY.md).
 
 ### HSL CSS Variable Tokens
 Defined in [`styles/globals.css`](file:///d:/WebDev/portfolio/styles/globals.css) and mapped to utility classes in [`tailwind.config.ts`](file:///d:/WebDev/portfolio/tailwind.config.ts):
@@ -67,17 +67,17 @@ Defined in [`styles/globals.css`](file:///d:/WebDev/portfolio/styles/globals.css
 - `--primary`, `--primary-foreground`, `--accent`, `--accent-foreground`
 - `--border`, `--ring`
 
-| Token | Light ("Warm Paper") | Dark ("Cold Ink") |
+| Token | Light ("Warm Gallery") | Dark ("Cold Studio") |
 |---|---|---|
-| `--background` | `40 35% 94%` — warm paper | `40 6% 7%` — cold ink |
-| `--surface` | `38 31% 90%` — deeper paper | `32 8% 10%` — lifted ink |
-| `--foreground` | `30 14% 10%` — ink | `38 26% 87%` — bone |
+| `--background` | `40 30% 98%` — paper | `240 10% 5%` — cold ink |
+| `--surface` | `40 30% 96%` — cream | `240 10% 10%` — deep slate |
+| `--foreground` | `20 10% 15%` — ink | `40 20% 90%` — bone |
 | `--primary` | ink | bone |
-| `--accent` | `15 88% 47%` — vermilion | `15 88% 53%` — vermilion |
-| `--border` | `35 17% 78%` — warm hairline | `33 8% 22%` — cool hairline |
-| `--radius` | `0` | `0` |
+| `--accent` | `18 100% 50%` — International Orange | same |
+| `--border` | `40 10% 90%` — warm rule | `240 10% 15%` — cool rule |
+| `--radius` | `0.125rem` | `0.125rem` |
 
-`tailwind.config.ts` deliberately removes the default radius and shadow scales (`borderRadius` exposes only `DEFAULT`, `none`, `full`; `boxShadow` exposes only `none`). New UI should not reintroduce `rounded-*` or `shadow-*` utilities.
+`tailwind.config.ts` removes the default radius and shadow scales. `borderRadius` exposes `DEFAULT` (2px), `none`, and `full`; `boxShadow` exposes only the hard offsets (`hard-sm`, `hard`, `hard-lg`, `hard-accent`) plus `none`. Do not reintroduce `rounded-lg` / `shadow-xl` / blurred shadows.
 
 ### Typography (Technical Hybrid)
 Self-hosted via `next/font/google` in [`app/layout.tsx`](file:///d:/WebDev/portfolio/app/layout.tsx); exposed as CSS variables consumed by `tailwind.config.ts`.
@@ -96,15 +96,15 @@ Self-hosted via `next/font/google` in [`app/layout.tsx`](file:///d:/WebDev/portf
 ### Composition Primitives
 - **`components/layout/PageHeader.tsx`** — interior page opening: mono label, `display-lg` serif title, right-margin lede, optional metadata. Every top-level page and both detail templates use it.
 - **`components/layout/Section.tsx`** — spacing wrapper (`none | sm | md | lg`). `index` and `label` props are accepted only as `data-*` metadata; they are not rendered.
-- **`components/layout/Container.tsx`** — `max-w-sheet` (100rem) with fluid `px-gutter`.
-- **`components/ui/Card.tsx`** — flat card: top hairline only. No fill, frame, radius, or shadow in the primitive; callers may still apply a background.
-- **`components/ui/Badge.tsx`** — label, not pill: mono capitals, optional vermilion square, no fill or border.
-- **`components/ui/Button.tsx`** — flat rectangles with colour-only hover; no shadows or transforms.
-- **`components/ui/Input.tsx` / `Select.tsx` / `Textarea.tsx`** — rule fields: transparent, bottom border, mono label, vermilion focus rule.
+- **`components/layout/Container.tsx`** — `max-w-screen-2xl` with fluid `px-gutter`.
+- **`components/ui/Card.tsx`** — borderless card: `bg-surface`, 2px radius, `shadow-hard`; interactive variants deepen to `shadow-hard-lg`.
+- **`components/ui/Badge.tsx`** — label, not pill: mono capitals, optional International Orange square, no fill or border.
+- **`components/ui/Button.tsx`** — 2px radius, hard shadow, pressed state (`active:translate(2px, 2px)` + shadow collapse). Variants keep the ADR-006 press physics.
+- **`components/ui/Input.tsx` / `Select.tsx` / `Textarea.tsx`** — rule fields: transparent, bottom border, mono label, International Orange focus rule.
 
 ### Home Page Structure
 Five movements, in order, in [`app/page.tsx`](file:///d:/WebDev/portfolio/app/page.tsx):
-1. `Hero` — studio strip, display statement, lede, two links, discipline rule.
+1. `Hero` — studio strip (no availability indicator), display statement, lede, two actions, discipline line.
 2. `WorkIndex` — three featured projects as rows with sector and headline metric.
 3. `Capabilities` — four service groups as rows with descriptions and counts.
 4. `StudioStatement` — inverted band with statement, two paragraphs, about link.
@@ -113,8 +113,9 @@ Five movements, in order, in [`app/page.tsx`](file:///d:/WebDev/portfolio/app/pa
 ### Motion Layer — "The Gallery" (framer-motion)
 Implemented in [`components/motion/`](file:///d:/WebDev/portfolio/components/motion/):
 - **MotionProvider** — client boundary wrapping all motion; centralizes `prefers-reduced-motion` via `useReducedMotion()`.
+- **Reveal** — a single in-view entrance used by the five home movements. 700–800ms, `ease-architect`, respects reduced-motion.
 - **ScrollReveal / RevealItem** — viewport-triggered entrance animations with staggered children. Variants: `fade-up`, `fade-in`, `slide-left`, `slide-right`, `scale-up`.
-- **Parallax / ParallaxLayer** — scroll-linked depth using `useScroll` + `useTransform`.
+- **Parallax / ParallaxLayer** — scroll-linked depth using `useScroll` + `useTransform`. Available but not yet wired into the home page (`KI-010`).
 - The editorial pages are legible without animation; motion is optional and must not be required to reveal content.
 
 ### Theming & Anti-FOUC Mechanism
