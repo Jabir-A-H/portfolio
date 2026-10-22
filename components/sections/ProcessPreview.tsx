@@ -18,7 +18,7 @@ export function ProcessPreview() {
   };
 
   return (
-    <Section spacing="lg" id="process-preview" className="bg-background">
+    <Section index={6} label="PROCESS" spacing="lg" id="process-preview" className="bg-background">
       <Container size="xl">
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <Badge variant="accent" size="sm" className="mb-3">

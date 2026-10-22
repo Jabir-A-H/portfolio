@@ -1,13 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import {
-  Send,
-  CheckCircle2,
-  AlertCircle,
-  MessageSquare,
-  RotateCcw,
-} from 'lucide-react';
+import { CheckCircle2, AlertCircle } from 'lucide-react';
 import { siteConfig } from '@/content/site';
 import { services } from '@/content/services';
 import { Button } from '@/components/ui/Button';
@@ -207,43 +201,29 @@ export function ContactForm() {
 
   if (status === 'success') {
     return (
-      <div
-        role="status"
-        aria-live="polite"
-        className="w-full rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-8 sm:p-10 text-center animate-fade-in"
-      >
-        <div className="w-14 h-14 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 mx-auto flex items-center justify-center mb-6">
-          <CheckCircle2 className="w-8 h-8" />
+      <div role="status" aria-live="polite" className="w-full">
+        <div className="flex items-start gap-3 border-t border-accent pt-5">
+          <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+          <div>
+            <h3 className="font-display text-2xl text-foreground">Enquiry received.</h3>
+            <p className="mt-2 max-w-[44ch] text-[14px] leading-relaxed text-muted-foreground">
+              Thank you. We will read the brief and reply within two working days.
+            </p>
+          </div>
         </div>
 
-        <h3 className="text-2xl font-bold tracking-tight text-foreground">
-          Inquiry Successfully Sent!
-        </h3>
-
-        <p className="mt-3 text-sm sm:text-base text-muted-foreground max-w-md mx-auto leading-relaxed">
-          Thank you for reaching out. We have received your project details and our engineering team will get back to you within 24 business hours.
-        </p>
-
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button
-            type="button"
-            variant="outline"
-            size="md"
-            onClick={handleReset}
-            leftIcon={<RotateCcw className="w-4 h-4" />}
-          >
-            Send Another Inquiry
+        <div className="mt-8 flex flex-wrap items-center gap-6">
+          <Button type="button" variant="outline" size="md" onClick={handleReset}>
+            Send another
           </Button>
-
-          <Button
+          <a
             href={whatsappHref}
             target="_blank"
-            variant="accent"
-            size="md"
-            leftIcon={<MessageSquare className="w-4 h-4" />}
+            rel="noopener noreferrer"
+            className="border-b border-foreground/30 pb-1 text-[13px] transition-colors hover:border-accent hover:text-accent"
           >
-            Chat on WhatsApp
-          </Button>
+            Or message us on WhatsApp
+          </a>
         </div>
       </div>
     );
@@ -278,15 +258,13 @@ export function ContactForm() {
       {status === 'error' && (
         <div
           role="alert"
-          className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 sm:p-5 flex items-start gap-3.5 text-left"
+          className="flex items-start gap-3 border-l-2 border-red-600 py-1 pl-4 text-left"
         >
-          <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400 shrink-0 mt-0.5" />
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-red-600" />
           <div className="flex-1 text-sm">
-            <h4 className="font-semibold text-red-950 dark:text-red-100">
-              Inquiry Submission Error
-            </h4>
-            <p className="mt-1 text-red-800 dark:text-red-200">
-              {errorMessage || 'There was a problem sending your message. Please verify your details or use WhatsApp/email below.'}
+            <h4 className="font-medium text-foreground">The enquiry did not send.</h4>
+            <p className="mt-1 text-[13px] leading-relaxed text-muted-foreground">
+              {errorMessage || 'Please check your details and try again, or email us directly.'}
             </p>
           </div>
         </div>
@@ -298,8 +276,8 @@ export function ContactForm() {
           id="name"
           name="name"
           type="text"
-          label="Full Name *"
-          placeholder="Jane Doe"
+          label="Name"
+          placeholder="Your name"
           value={formData.name}
           onChange={handleChange}
           required
@@ -311,8 +289,8 @@ export function ContactForm() {
           id="email"
           name="email"
           type="email"
-          label="Email Address *"
-          placeholder="jane@company.com"
+          label="Email"
+          placeholder="you@company.com"
           value={formData.email}
           onChange={handleChange}
           required
@@ -327,8 +305,8 @@ export function ContactForm() {
           id="company"
           name="company"
           type="text"
-          label="Company / Organization"
-          placeholder="Acme Enterprises (optional)"
+          label="Company"
+          placeholder="Optional"
           value={formData.company}
           onChange={handleChange}
           autoComplete="organization"
@@ -337,8 +315,8 @@ export function ContactForm() {
         <Select
           id="service"
           name="service"
-          label="Service Interested In *"
-          placeholder="Select Service"
+          label="Service"
+          placeholder="Select a service"
           options={serviceOptions}
           value={formData.service}
           onChange={handleChange}
@@ -352,8 +330,8 @@ export function ContactForm() {
         <Select
           id="budget"
           name="budget"
-          label="Estimated Budget Range *"
-          placeholder="Select Budget Range"
+          label="Budget"
+          placeholder="Select a range"
           options={BUDGET_OPTIONS}
           value={formData.budget}
           onChange={handleChange}
@@ -364,8 +342,8 @@ export function ContactForm() {
         <Select
           id="timeline"
           name="timeline"
-          label="Desired Timeline *"
-          placeholder="Select Project Timeline"
+          label="Timeline"
+          placeholder="Select a timeline"
           options={TIMELINE_OPTIONS}
           value={formData.timeline}
           onChange={handleChange}
@@ -378,8 +356,8 @@ export function ContactForm() {
       <Textarea
         id="message"
         name="message"
-        label="Project Details & Requirements *"
-        placeholder="Briefly describe your objectives, key technical requirements, existing platforms, or desired deliverables..."
+        label="Project"
+        placeholder="What are you building, and what is in the way?"
         rows={5}
         value={formData.message}
         onChange={handleChange}
@@ -387,27 +365,24 @@ export function ContactForm() {
         error={errors.message}
       />
 
-      {/* Action Footer: Submit Button + WhatsApp Direct Secondary Action */}
-      <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+      <div className="flex flex-col items-stretch justify-between gap-4 pt-2 sm:flex-row sm:items-center">
         <Button
           type="submit"
-          variant="accent"
+          variant="primary"
           size="lg"
           isLoading={status === 'submitting'}
-          rightIcon={<Send className="w-4 h-4" />}
           className="w-full sm:w-auto"
         >
-          {status === 'submitting' ? 'Transmitting Inquiry...' : 'Submit Project Inquiry'}
+          {status === 'submitting' ? 'Sending' : 'Send enquiry'}
         </Button>
 
         <a
           href={whatsappHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-border bg-surface text-sm font-medium text-foreground hover:bg-muted/80 hover:border-emerald-500/50 transition-all select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="inline-flex items-center justify-center border-b border-foreground/30 pb-1 text-[13px] text-foreground transition-colors hover:border-accent hover:text-accent"
         >
-          <MessageSquare className="w-4 h-4 text-emerald-500 shrink-0" />
-          <span>Chat on WhatsApp</span>
+          Or message us on WhatsApp
         </a>
       </div>
     </form>

@@ -5,7 +5,7 @@ import { Section } from '@/components/layout/Section';
 
 export function StatsStrip() {
   return (
-    <Section spacing="md" className="bg-surface border-y border-border">
+    <Section index={5} label="METRICS" spacing="md" className="bg-surface border-y border-border">
       <Container size="xl">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
           {siteConfig.stats.map((stat) => (

@@ -5,13 +5,16 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const variantClasses: Record<NonNullable<CardProps['variant']>, string> = {
-  default: 'bg-surface text-surface-foreground border border-border shadow-sm',
-  bordered: 'bg-surface text-surface-foreground border-2 border-border',
-  elevated: 'bg-surface text-surface-foreground border border-border shadow-md hover:shadow-lg',
-  interactive:
-    'bg-surface text-surface-foreground border border-border hover:border-accent hover:shadow-lg hover:-translate-y-0.5 cursor-pointer',
+  default: 'border-t border-border',
+  bordered: 'border-t border-border',
+  elevated: 'border-t border-border',
+  interactive: 'border-t border-border transition-colors hover:border-accent',
 };
 
+/**
+ * A card is a compartment on a printed sheet: a hairline at the top and air
+ * around the contents. No fill, no frame, no shadow.
+ */
 export function Card({
   variant = 'default',
   className = '',
@@ -19,10 +22,7 @@ export function Card({
   ...props
 }: CardProps) {
   return (
-    <div
-      className={`rounded-xl transition-all overflow-hidden ${variantClasses[variant]} ${className}`}
-      {...props}
-    >
+    <div className={`overflow-hidden ${variantClasses[variant]} ${className}`} {...props}>
       {children}
     </div>
   );
@@ -34,7 +34,7 @@ export function CardHeader({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={`p-6 pb-3 flex flex-col space-y-1.5 ${className}`} {...props}>
+    <div className={`flex flex-col gap-2 p-6 pb-3 ${className}`} {...props}>
       {children}
     </div>
   );
@@ -47,7 +47,7 @@ export function CardTitle({
 }: React.HTMLAttributes<HTMLHeadingElement>) {
   return (
     <h3
-      className={`text-xl font-semibold tracking-tight text-foreground ${className}`}
+      className={`font-display text-display-md text-foreground ${className}`}
       {...props}
     >
       {children}
@@ -62,7 +62,7 @@ export function CardDescription({
 }: React.HTMLAttributes<HTMLParagraphElement>) {
   return (
     <p
-      className={`text-sm text-muted-foreground leading-relaxed ${className}`}
+      className={`text-[15px] leading-relaxed text-muted-foreground ${className}`}
       {...props}
     >
       {children}
@@ -88,7 +88,7 @@ export function CardFooter({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={`p-6 pt-0 flex items-center ${className}`} {...props}>
+    <div className={`flex items-center p-6 pt-0 ${className}`} {...props}>
       {children}
     </div>
   );

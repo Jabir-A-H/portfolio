@@ -1,88 +1,72 @@
 import * as React from 'react';
-import { ArrowRight, Eye, CheckCircle2 } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
 import { siteConfig } from '@/content/site';
 import { Container } from '@/components/layout/Container';
 import { Section } from '@/components/layout/Section';
-import { Button } from '@/components/ui/Button';
-import { ScrollReveal, RevealItem } from '@/components/motion';
 
 export function Hero() {
   return (
-    <Section
-      spacing="lg"
-      className="relative overflow-hidden"
-      aria-labelledby="hero-headline"
-    >
-      {/* Background depth layer — subtle gradient wash, no blur aura */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-b from-accent/5 via-transparent to-transparent dark:from-accent/10 dark:via-transparent pointer-events-none -z-10"
-      />
+    <Section spacing="none" aria-labelledby="hero-headline">
+      <Container size="xl">
+        <div className="flex items-center justify-between gap-4 border-b border-border py-4 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+          <span className="sm:hidden">Digital studio</span>
+          <span className="hidden sm:block">Independent digital studio</span>
+          <span className="hidden md:block">Dhaka, Bangladesh</span>
+          <span className="flex items-center gap-2 whitespace-nowrap text-foreground">
+            <span className="h-1 w-1 shrink-0 bg-accent" aria-hidden="true" />
+            {siteConfig.hero.note}
+          </span>
+        </div>
+      </Container>
 
-      <Container size="xl" className="relative py-section-lg">
-        {/* Offset axis layout — content anchored left, void on right */}
-        <div className="max-w-3xl w-full">
-          <ScrollReveal stagger={120} variant="fade-up" className="space-y-6">
-            {/* Capability badge — micro label */}
-            <RevealItem
-              as="span"
-              variant="scale-up"
-              className="inline-flex items-center gap-2 px-3 py-1.5 text-label uppercase tracking-label bg-accent/10 text-accent border border-accent/20 rounded-[2px]"
+      <Container size="xl" className="pt-12 sm:pt-16 lg:pt-20">
+        <h1
+          id="hero-headline"
+          className="max-w-[16ch] text-balance font-display text-display-xl font-light text-foreground"
+        >
+          {siteConfig.hero.headline.split('*').map((part, index) =>
+            index % 2 === 1 ? (
+              <em key={index} className="italic">
+                {part}
+              </em>
+            ) : (
+              <React.Fragment key={index}>{part}</React.Fragment>
+            )
+          )}
+        </h1>
+
+        <div className="mt-12 grid grid-cols-12 gap-x-6 gap-y-10 sm:mt-16">
+          <p className="col-span-12 max-w-[40ch] text-[17px] leading-[1.65] text-muted-foreground sm:col-span-7 lg:col-span-4 lg:col-start-2">
+            {siteConfig.hero.subheadline}
+          </p>
+
+          <div className="col-span-12 flex flex-col items-start gap-6 sm:col-span-5 lg:col-span-4 lg:col-start-9">
+            <Link
+              href={siteConfig.hero.primaryCta.href}
+              className="group inline-flex items-center gap-3 bg-primary px-5 py-3 text-[13px] font-medium text-primary-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
             >
-              Digital Engineering & Creative Studio
-            </RevealItem>
-
-            {/* H1 Headline — display voice */}
-            <h1
-              id="hero-headline"
-              className="font-display text-display-lg text-foreground leading-[0.96] tracking-display max-w-2xl"
+              {siteConfig.hero.primaryCta.title}
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </Link>
+            <Link
+              href={siteConfig.hero.secondaryCta.href}
+              className="group inline-flex items-center gap-2 border-b border-foreground/30 pb-1 text-[13px] text-foreground transition-colors hover:border-accent hover:text-accent"
             >
-              {siteConfig.hero.headline}
-            </h1>
+              {siteConfig.hero.secondaryCta.title}
+              <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </Link>
+          </div>
+        </div>
+      </Container>
 
-            {/* Subheadline — ghost body */}
-            <p className="text-lg sm:text-xl text-muted-foreground leading-relaxed font-normal max-w-xl">
-              {siteConfig.hero.subheadline}
-            </p>
-
-            {/* Dual CTAs — hard shadow depth */}
-            <div className="flex flex-col sm:flex-row items-start gap-4 pt-2">
-              <Button
-                href={siteConfig.hero.primaryCta.href}
-                variant="accent"
-                size="lg"
-                rightIcon={<ArrowRight className="w-4 h-4" />}
-                className="shadow-hard hover:shadow-hard-lg transition-shadow duration-300"
-              >
-                {siteConfig.hero.primaryCta.title}
-              </Button>
-              <Button
-                href={siteConfig.hero.secondaryCta.href}
-                variant="outline"
-                size="lg"
-                rightIcon={<Eye className="w-4 h-4" />}
-                className="border-foreground/20 hover:border-foreground hover:bg-foreground/5 transition-all duration-300"
-              >
-                {siteConfig.hero.secondaryCta.title}
-              </Button>
-            </div>
-
-            {/* Architectural Highlights — mono metadata */}
-            <div className="pt-6 border-t border-border/50 grid grid-cols-1 sm:grid-cols-3 gap-4 text-label uppercase tracking-label text-muted-foreground">
-              <RevealItem variant="fade-up" delay={200} className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
-                <span>Static-First Edge Speed</span>
-              </RevealItem>
-              <RevealItem variant="fade-up" delay={320} className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
-                <span>Strict TypeScript Schemas</span>
-              </RevealItem>
-              <RevealItem variant="fade-up" delay={440} className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-accent shrink-0" />
-                <span>90+ Google Lighthouse</span>
-              </RevealItem>
-            </div>
-          </ScrollReveal>
+      <Container size="xl" className="mt-12 sm:mt-16 lg:mt-20">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-t border-border py-5">
+          <ul className="flex flex-wrap items-center gap-x-7 gap-y-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+            {siteConfig.hero.disciplines.map((discipline) => (
+              <li key={discipline}>{discipline}</li>
+            ))}
+          </ul>
         </div>
       </Container>
     </Section>

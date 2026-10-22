@@ -19,7 +19,7 @@
 ---
 
 ## Phase 1: Brand Identity & Visual Assets
-- [x] Lock visual identity to the "High-End Architect" persona — light/dark tokens, International Orange signature, micro-radius geometry ([`ADR-006`](file:///d:/WebDev/portfolio/docs/ADR/006-visual-identity-pivot.md))
+- [x] Lock visual identity to the "High-End Architect" persona — light/dark tokens, vermilion signature, zero-radius geometry ([`ADR-006`](file:///d:/WebDev/portfolio/docs/ADR/006-visual-identity-pivot.md)), recomposed as an editorial document under [`ADR-007`](file:///d:/WebDev/portfolio/docs/ADR/007-editorial-reset.md)
 - [x] Install the Technical Hybrid typography trio (Cormorant Garamond + Space Mono + Inter) via `next/font`, with fluid display scale and technical label scale
 - [x] Establish fluid compositional rhythm tokens (`py-section`, `py-section-lg`, `px-gutter`) in Section/Container primitives
 - [ ] Finalize official agency brand name, legal entity name, and tagline in [`content/site.ts`](file:///d:/WebDev/portfolio/content/site.ts)
@@ -29,13 +29,20 @@
 
 ---
 
-## Phase 1.5: De-AI Visual Refactor (In Progress)
-- [x] **Bold Break layout**: refactor `Hero` to the offset axis — serif statement anchored left, supporting copy in the void; removed centered-glow aura
-- [ ] **Geometry conformance sweep**: purge `rounded-xl`/`rounded-2xl`/`rounded-full`/blurred `shadow-sm|md|lg|xl` from [`components/ui/Card.tsx`](file:///d:/WebDev/portfolio/components/ui/Card.tsx), [`components/ui/Badge.tsx`](file:///d:/WebDev/portfolio/components/ui/Badge.tsx), [`components/ui/Button.tsx`](file:///d:/WebDev/portfolio/components/ui/Button.tsx) and page templates in favour of micro-radius + hard-offset shadows
-- [x] **The Gallery motion**: add a motion layer (framer-motion) for cinematic reveals, staggered assembly, and parallax depth — `MotionProvider`, `ScrollReveal`, `RevealItem`, `Parallax`, `ParallaxLayer` in [`components/motion/`](file:///d:/WebDev/portfolio/components/motion/)
-- [ ] **Authorial details**: technical metadata labels (`text-label` mono captions, coordinates, section indices) and an availability status indicator in the Navbar
-- [ ] **Typography rollout**: migrate headings from `font-extrabold` to `font-display text-display-*` across all routes (tracked as `KI-002`)
-- [ ] Verify 360/768/1024/1440px viewports after each layout refactor (zero horizontal scroll)
+## Phase 1.5: De-AI Visual Refactor (Completed via ADR-007)
+- [x] **Editorial recomposition**: home page reduced from nine stacked marketing sections to five movements (Hero, Work index, Capabilities, Studio statement, Contact) — see [`ADR-007`](file:///d:/WebDev/portfolio/docs/ADR/007-editorial-reset.md)
+- [x] **Remove the template grammar**: no centered badge + headline + subtitle formula, no card grids, no icon tiles, no checkmark lists, no gradients, no boxed CTAs
+- [x] **Geometry reset**: zero radius, zero shadows, hairline rules; `tailwind.config.ts` no longer generates radius or shadow scales
+- [x] **UI primitives reset**: flat Card, typographic Badge, flat Button, rule Fields (Input/Select/Textarea)
+- [x] **Interior page consistency**: shared `PageHeader` on About, Services, Portfolio, Process, Team, Contact, and both detail templates; shared `ContactBlock` at page ends
+- [x] **Work index**: projects presented as rows with sector, year, and one metric; fake thumbnails removed; portfolio filter converted from pills to text tabs
+- [x] **Copy cleanup**: visible `[PLACEHOLDER]` / `// TODO(content)` markers removed from projects, services, process, team roles set; studio and project copy rewritten in plain English
+- [x] **Typography corrections**: display scale widened; mono metadata raised to a 10px floor; body sizes set by role
+- [x] **Mobile work rows**: ordinal, category, title, sector, and metric reflow without narrow-column wrapping
+- [ ] **Real imagery**: project covers, founder portraits, and a studio image set; the typographic index is a holding pattern until these exist
+- [ ] **Verified brand/contact**: final name, legal entity, domain, email, phone, and address in [`content/site.ts`](file:///d:/WebDev/portfolio/content/site.ts)
+- [ ] **Remove legacy components**: `TrustBar`, `StatsStrip`, `TechStackStrip`, `Testimonials`, `ProcessPreview`, `ServicesOverview`, `FeaturedProjects`, `CTABanner` are no longer imported but remain on disk (sandbox denied deletion)
+- [ ] **Viewport CI gate**: install `@playwright/test`, then re-enable `tests/e2e/viewport.test.ts` (currently excluded from `tsc`)
 
 ---
 

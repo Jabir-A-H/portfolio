@@ -21,7 +21,7 @@ const placeholderPartners: PartnerPlaceholder[] = [
 
 export function TrustBar() {
   return (
-    <Section spacing="sm" className="border-y border-border/60 bg-muted/20">
+    <Section index={2} label="TRUST" spacing="sm" className="border-y border-border/60 bg-muted/20">
       <Container size="xl">
         <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-muted-foreground text-center mb-6">
           Trusted by forward-thinking teams, high-growth startups, and global clients

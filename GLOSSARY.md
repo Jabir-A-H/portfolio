@@ -1,46 +1,66 @@
 # Glossary: Visual Identity & "De-AI" Framework
 
-This glossary defines the terminology used to guide the visual evolution of the portfolio away from generic AI-generated patterns toward a hand-curated, authorial aesthetic.
+Terms used to keep the site from drifting back toward generic agency-template patterns. The operative decision is [ADR-007](docs/ADR/007-editorial-reset.md); [ADR-006](docs/ADR/006-visual-identity-pivot.md) supplies the tokens.
 
 ## Core Concepts
 
+### Editorial Reset
+The decision to stop decorating a standard marketing template and recompose the site as an editorial document: five movements on the home page, hairline-separated rows, and typography carrying the hierarchy. See ADR-007.
+
 ### Hand-Curated Aesthetic
-The intentional application of "imperfections," asymmetry, and specific design choices that signal human authorship. It is characterized by a move away from sterile symmetry and predictable SaaS patterns.
+Intentional asymmetry, specific writing, and visible rules rather than sterile centered symmetry. It is measured by what was removed, not by what was added.
 
-### Intentional Friction
-UI elements that slow the user down slightly or require active engagement (e.g., magnetic buttons, cursor-reveals) to create a tactile, physical sensation of interacting with a crafted object.
+### Authorial Voice
+The writing and the layout should sound like one studio. Short sentences, concrete nouns, no pitch-deck adjectives, no exclamation marks, no rhetorical questions.
 
-### Authorial Voice (Visual)
-The use of design tokens (colors, typography, layout) that express a specific opinion or "vibe" (e.g., "Technical Precisionist") rather than a neutral, "safe" corporate look.
+### Intentional Silence
+Large margins and short pages are allowed. Empty space is a composition decision, not a missing component. The page should not fill every band with a grid.
 
-### The Anti-Grid
-A layout philosophy that breaks the standard 12-column centered symmetry in favor of asymmetric balance, overlapping elements, and variable section rhythms.
+## Identity Terms
 
-### Technical Blueprinting
-A stylistic direction that incorporates elements of engineering documentation (grid lines, mono-spaced labels, versioning tags) to emphasize the "Engineering" aspect of the agency.
+### Warm Paper
+The light-mode canvas: `hsl(40 35% 94%)`. A low-contrast paper tone for long reading and large display type.
 
-## Identity Terms (Settled)
+### Cold Ink
+The dark-mode canvas: `hsl(40 6% 7%)`. Not pure black; it keeps the same warm bias as the paper.
 
-### Warm Gallery
-The light-mode canvas: a warm, paper-toned off-white with cream surfaces and deep-ink text. Signals a curated gallery rather than a corporate portal.
+### Bone
+The dark-mode foreground: `hsl(38 26% 87%)`. A warm off-white used for text, rules, and the inverted studio band.
 
-### Cold Studio
-The dark-mode canvas: a cold, near-black ink with deep-slate surfaces and bone-white text. Signals a precision studio after hours.
-
-### Signature Color
-The single accent hue permitted to carry brand emphasis. It is expected to remain constant across both themes (see *International Orange*), so the identity never shifts hue between modes.
-
-### International Orange
-The signature color. An industrial, high-visibility orange with architectural provenance, used sparingly to mark significance rather than to decorate.
+### Vermilion
+The single signature: `hsl(15 88% 47%)`. Used for marks, hover states, metric figures, and the small square in a label. It never fills a large surface.
 
 ### Technical Hybrid
-A typographic pairing that joins an elegant serif display voice (the Architect) with a mono-spaced metadata voice (the Engineer), supported by a neutral sans (the Ghost).
+Cormorant Garamond for display, Space Mono for metadata, Inter for body. The serif is the voice; the mono is the filing system; the sans is invisible.
 
-### Refined Brutalism
-A geometry stance: micro-radius corners, borderless surfaces, and hard offset shadows. It borrows brutalism's honesty without its aggression.
+## Composition Terms
 
-### The Gallerist
-The spacing philosophy: fluid, generous vertical rhythm with deliberate compositional silence, so each statement occupies its own room.
+### Hairline
+A one-pixel rule in `--border` that separates rows, sections, and page regions. It replaces the card border, the shadow, and the coloured panel.
+
+### Work Index
+The home and portfolio presentation of projects: ordinal, category, title, sector, year, one metric. The row is the link. No thumbnail, no card, no badge.
+
+### Flat Card
+A compartment with a top hairline and padding only. No fill, no frame, no radius, no shadow.
+
+### Label, Not Pill
+Badges are typographic: mono capitals, optional leading vermilion square, no background, no border, no radius.
+
+### Page Header
+The shared opening spread for interior pages: mono label, large serif title, right-margin lede, optional metadata. Implemented in `components/layout/PageHeader.tsx`.
+
+### Inverted Band
+The studio statement uses `bg-foreground text-background`. In light mode it is an ink band; in dark mode it becomes a bone insert. The inversion is intentional.
+
+### Rule Fields
+Form inputs are transparent with a single bottom rule. Focus turns the rule vermilion. There are no boxes or filled states.
+
+## Motion
 
 ### The Gallery
-The interaction philosophy: slow, cinematic, parallax-aware motion that treats the page as an exhibition rather than a dashboard.
+Slow, sparse entrance motion. Currently limited to the existing `ScrollReveal` / `RevealItem` primitives; the editorial pages do not depend on animation to be legible.
+
+## Retired Terms
+
+The following ADR-006 terms described the previous decorative pass and are no longer in use: *Sharp Tag Badge*, *Press-Physics Button*, *Section Coordinates*, *Systemic Token Purge* (kept as a principle, not a feature), *Technical Blueprinting* (replaced by hairline composition).

@@ -6,24 +6,17 @@ import { usePathname } from 'next/navigation';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { siteConfig } from '@/content/site';
 import { ThemeToggle } from '@/components/layout/ThemeToggle';
-import { Button } from '@/components/ui/Button';
 
 export function Navbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
-  // Close mobile drawer on route change
   React.useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
 
-  // Lock body scroll when mobile drawer is active
   React.useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
@@ -35,42 +28,37 @@ export function Navbar() {
   }));
 
   const quoteCta = {
-    label: siteConfig.nav.cta?.getQuote?.title || 'Get a Quote',
-    href: siteConfig.nav.cta?.getQuote?.href || '/contact',
+    label: siteConfig.nav.cta?.startProject?.title || 'Start a project',
+    href: siteConfig.nav.cta?.startProject?.href || '/contact',
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md transition-colors">
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
-        {/* Brand Logo Placeholder */}
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-sm">
+      <div className="mx-auto flex h-[72px] w-full max-w-sheet items-center justify-between px-gutter">
         <Link
           href="/"
-          className="flex items-center space-x-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg px-1 py-0.5"
+          className="flex items-baseline gap-2.5 focus-visible:outline-none"
+          aria-label={`${siteConfig.name} home`}
         >
-          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-black text-sm tracking-wider">
-            {siteConfig.name.replace(/\[PLACEHOLDER\]\s*/, '').substring(0, 2).toUpperCase()}
-          </div>
-          <span className="font-bold text-base sm:text-lg tracking-tight text-foreground">
+          <span className="font-display text-[1.45rem] leading-none tracking-[-0.02em] text-foreground">
             {siteConfig.name}
+          </span>
+          <span className="hidden font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground sm:inline">
+            Studio
           </span>
         </Link>
 
-        {/* Desktop Navigation Links (>= 1024px) */}
-        <nav className="hidden lg:flex items-center space-x-1">
+        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
           {navItems.map((item) => {
             const isActive =
-              item.href === '/'
-                ? pathname === '/'
-                : pathname?.startsWith(item.href);
+              item.href === '/' ? pathname === '/' : pathname?.startsWith(item.href);
 
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  isActive
-                    ? 'text-primary font-semibold bg-muted/60'
-                    : 'text-muted-foreground hover:text-foreground hover:bg-muted/40'
+                className={`relative font-mono text-[10px] uppercase tracking-[0.14em] transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-accent after:transition-transform hover:text-foreground hover:after:scale-x-100 ${
+                  isActive ? 'text-foreground after:scale-x-100' : 'text-muted-foreground'
                 }`}
               >
                 {item.label}
@@ -79,72 +67,65 @@ export function Navbar() {
           })}
         </nav>
 
-        {/* Desktop Actions */}
-        <div className="hidden lg:flex items-center space-x-3">
-          <ThemeToggle />
-          <Button
+        <div className="flex items-center gap-4">
+          <Link
             href={quoteCta.href}
-            variant="accent"
-            size="sm"
-            rightIcon={<ArrowUpRight className="w-4 h-4" />}
+            className="group hidden items-center gap-1.5 border-b border-foreground/30 pb-0.5 text-[13px] font-medium text-foreground transition-colors hover:border-accent hover:text-accent sm:inline-flex"
           >
             {quoteCta.label}
-          </Button>
-        </div>
-
-        {/* Mobile Hamburger & Theme Toggle (< 1024px) */}
-        <div className="flex lg:hidden items-center space-x-2">
-          <ThemeToggle />
+            <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </Link>
+          <ThemeToggle className="hidden sm:inline-flex" />
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-expanded={mobileMenuOpen}
             aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-            className="p-2 rounded-lg border border-border text-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="p-1 text-foreground lg:hidden"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-16 sm:top-20 bottom-0 bg-background/95 backdrop-blur-md border-b border-border z-40 px-6 py-6 overflow-y-auto">
-          <nav className="flex flex-col space-y-2">
-            {navItems.map((item) => {
+        <div className="fixed inset-x-0 bottom-0 top-[72px] z-40 flex flex-col overflow-y-auto border-t border-border bg-background px-gutter pb-10 pt-8 lg:hidden">
+          <nav className="flex flex-col" aria-label="Mobile">
+            {navItems.map((item, index) => {
               const isActive =
-                item.href === '/'
-                  ? pathname === '/'
-                  : pathname?.startsWith(item.href);
+                item.href === '/' ? pathname === '/' : pathname?.startsWith(item.href);
 
               return (
                 <Link
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`px-4 py-3 rounded-lg text-base font-medium transition-colors ${
-                    isActive
-                      ? 'bg-muted text-primary font-semibold'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
+                  className={`flex items-baseline gap-4 border-b border-border py-5 ${
+                    isActive ? 'text-accent' : 'text-foreground'
                   }`}
                 >
-                  {item.label}
+                  <span className="font-mono text-[10px] tracking-[0.14em] text-muted-foreground">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <span className="font-display text-4xl leading-none">{item.label}</span>
                 </Link>
               );
             })}
           </nav>
 
-          <div className="mt-8 pt-6 border-t border-border flex flex-col space-y-4">
-            <Button
+          <div className="mt-10 flex flex-col gap-6">
+            <Link
               href={quoteCta.href}
-              variant="accent"
-              size="lg"
-              className="w-full justify-center"
-              rightIcon={<ArrowUpRight className="w-4 h-4" />}
               onClick={() => setMobileMenuOpen(false)}
+              className="inline-flex items-center justify-between border-b border-foreground pb-3 font-mono text-[11px] uppercase tracking-[0.14em]"
             >
               {quoteCta.label}
-            </Button>
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+            <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+              <span>{siteConfig.contact.address.formatted}</span>
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       )}

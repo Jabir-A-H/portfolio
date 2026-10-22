@@ -1,100 +1,62 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Home, Compass, MessageSquare, AlertCircle } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { siteConfig } from '@/content/site';
 import { Container } from '@/components/layout/Container';
-import { Section } from '@/components/layout/Section';
-import { Badge } from '@/components/ui/Badge';
-import { Button } from '@/components/ui/Button';
 
 export const metadata: Metadata = {
-  title: `404 - Page Not Found | ${siteConfig.name}`,
+  title: `404 | ${siteConfig.name}`,
   description: 'The requested page could not be found.',
 };
 
 export default function NotFound() {
   return (
-    <div className="w-full flex-1 flex flex-col items-center justify-center py-16 sm:py-24">
-      <Section spacing="lg">
-        <Container size="md" className="text-center">
-          {/* Subtle error badge */}
-          <Badge variant="accent" size="md" className="mb-6 inline-flex items-center gap-1.5 shadow-sm">
-            <AlertCircle className="w-4 h-4 text-accent" />
-            <span>Error 404 &bull; Resource Missing</span>
-          </Badge>
-
-          {/* Large decorative 404 graphic */}
-          <div
-            aria-hidden="true"
-            className="text-7xl sm:text-8xl md:text-9xl font-black tracking-tight text-accent/20 select-none font-mono"
-          >
-            404
-          </div>
-
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground mt-4">
-            Page Not Found
-          </h1>
-
-          <p className="mt-4 text-base sm:text-lg text-muted-foreground max-w-lg mx-auto leading-relaxed">
-            The page you are looking for does not exist, has been relocated, or is temporarily unavailable.
+    <div className="flex w-full flex-1 items-center py-20 sm:py-28">
+      <Container size="xl">
+        <div className="grid grid-cols-12 gap-x-6 gap-y-8 border-t border-border pt-10">
+          <p className="col-span-12 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground lg:col-span-2">
+            Error 404
           </p>
 
-          {/* Recovery navigation actions */}
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button
-              href="/"
-              variant="accent"
-              size="lg"
-              leftIcon={<Home className="w-4 h-4" />}
-              className="w-full sm:w-auto"
+          <div className="col-span-12 lg:col-span-9">
+            <p
+              aria-hidden="true"
+              className="font-display text-[7rem] leading-none text-muted-foreground/20 sm:text-[10rem]"
             >
-              Return Home
-            </Button>
-            <Button
-              href="/services"
-              variant="outline"
-              size="lg"
-              leftIcon={<Compass className="w-4 h-4" />}
-              className="w-full sm:w-auto"
-            >
-              Explore Services
-            </Button>
-            <Button
-              href="/contact"
-              variant="ghost"
-              size="lg"
-              leftIcon={<MessageSquare className="w-4 h-4" />}
-              className="w-full sm:w-auto"
-            >
-              Contact Support
-            </Button>
-          </div>
-
-          {/* Helpful route jump links */}
-          <div className="mt-12 pt-8 border-t border-border/60 max-w-md mx-auto">
-            <p className="text-xs uppercase font-semibold text-muted-foreground tracking-wider mb-4">
-              Quick Navigation
+              404
             </p>
-            <div className="flex flex-wrap justify-center gap-3 text-sm">
-              <Link href="/portfolio" className="text-muted-foreground hover:text-accent transition-colors">
-                Case Studies
+            <h1 className="mt-10 max-w-[16ch] font-display text-display-lg text-foreground">
+              This page is not here.
+            </h1>
+            <p className="mt-5 max-w-[48ch] text-[15px] leading-[1.7] text-muted-foreground">
+              It may have moved, or the link may be out of date. The work and the studio are one
+              click away.
+            </p>
+
+            <div className="mt-10 flex flex-wrap gap-x-8 gap-y-4">
+              <Link
+                href="/portfolio"
+                className="group inline-flex items-center gap-2 border-b border-foreground/30 pb-1 text-[13px] transition-colors hover:border-accent hover:text-accent"
+              >
+                See the work
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Link>
-              <span className="text-border">&bull;</span>
-              <Link href="/about" className="text-muted-foreground hover:text-accent transition-colors">
-                About Us
+              <Link
+                href="/"
+                className="border-b border-foreground/30 pb-1 text-[13px] transition-colors hover:border-accent hover:text-accent"
+              >
+                Back home
               </Link>
-              <span className="text-border">&bull;</span>
-              <Link href="/team" className="text-muted-foreground hover:text-accent transition-colors">
-                Leadership
-              </Link>
-              <span className="text-border">&bull;</span>
-              <Link href="/process" className="text-muted-foreground hover:text-accent transition-colors">
-                Process
+              <Link
+                href="/contact"
+                className="border-b border-foreground/30 pb-1 text-[13px] transition-colors hover:border-accent hover:text-accent"
+              >
+                Contact
               </Link>
             </div>
           </div>
-        </Container>
-      </Section>
+        </div>
+      </Container>
     </div>
   );
 }

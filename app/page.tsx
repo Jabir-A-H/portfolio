@@ -1,14 +1,10 @@
 import type { Metadata } from 'next';
 import { siteConfig } from '@/content/site';
 import { Hero } from '@/components/sections/Hero';
-import { TrustBar } from '@/components/sections/TrustBar';
-import { ServicesOverview } from '@/components/sections/ServicesOverview';
-import { FeaturedProjects } from '@/components/sections/FeaturedProjects';
-import { StatsStrip } from '@/components/sections/StatsStrip';
-import { ProcessPreview } from '@/components/sections/ProcessPreview';
-import { TechStackStrip } from '@/components/sections/TechStackStrip';
-import { Testimonials } from '@/components/sections/Testimonials';
-import { CTABanner } from '@/components/sections/CTABanner';
+import { WorkIndex } from '@/components/sections/WorkIndex';
+import { Capabilities } from '@/components/sections/Capabilities';
+import { StudioStatement } from '@/components/sections/StudioStatement';
+import { ContactBlock } from '@/components/sections/ContactBlock';
 
 export const metadata: Metadata = {
   title: `${siteConfig.name} — ${siteConfig.tagline}`,
@@ -40,20 +36,16 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col w-full min-w-0">
+    <div className="flex w-full min-w-0 flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
       />
       <Hero />
-      <TrustBar />
-      <ServicesOverview />
-      <FeaturedProjects />
-      <StatsStrip />
-      <ProcessPreview />
-      <TechStackStrip />
-      <Testimonials />
-      <CTABanner />
+      <WorkIndex />
+      <Capabilities />
+      <StudioStatement />
+      <ContactBlock />
     </div>
   );
 }

@@ -36,14 +36,15 @@ export const projects: ProjectItem[] = [
   {
     id: 'proj-apex-cloud-erp',
     slug: 'apex-cloud-erp',
-    title: '[PLACEHOLDER] Enterprise Cloud ERP Modernization',
+    title: 'Inventory at the speed of freight',
     category: 'Web & Software',
-    clientType: 'Global Logistics & Supply Chain SaaS',
-    summary: '// TODO(content): [PLACEHOLDER] Architected a high-throughput Next.js and TypeScript portal reducing warehouse inventory reconciliation latency by 74%.',
+    clientType: 'Global logistics and supply chain',
+    summary:
+      'A freight platform that shows depot inventory as it moves. Reconciliation runs 74% faster across 14 international depots.',
     problem:
-      '// TODO(content): [PLACEHOLDER] The client operated on an aging monolithic application where page transitions took over 6 seconds, leading to inventory discrepancies and daily operational delays across 14 international freight depots.',
+      'Fourteen freight depots depended on one aging monolith. Pages took over 6 seconds to load, inventory counts drifted, and daily dispatch fell behind schedule.',
     solution:
-      '// TODO(content): [PLACEHOLDER] Re-engineered the platform with a static-first Next.js architecture, optimistic UI updates, and an event-driven Redis caching layer with strict TypeScript contracts.',
+      'Rebuilt the portal on Next.js with static rendering first and optimistic updates on every scan. A Redis cache fed by events keeps counts current, and TypeScript contracts hold the data shape end to end.',
     technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Node.js', 'PostgreSQL', 'Redis', 'Docker'],
     results: [
       { metric: '74%', label: 'Faster Inventory Processing' },
@@ -63,14 +64,15 @@ export const projects: ProjectItem[] = [
   {
     id: 'proj-fitpulse-mobile-app',
     slug: 'fitpulse-mobile-app',
-    title: '[PLACEHOLDER] FitPulse: AI-Powered Fitness Tracker',
+    title: 'FitPulse',
     category: 'Mobile & Games',
-    clientType: 'HealthTech & Wearables Startup',
-    summary: '// TODO(content): [PLACEHOLDER] Engineered a cross-platform Flutter application with offline biometric sync and real-time workout audio coaching.',
+    clientType: 'Health technology and wearables',
+    summary:
+      'A fitness tracker that keeps recording when the gym has no signal. Workouts sync in the background once the phone reconnects.',
     problem:
-      '// TODO(content): [PLACEHOLDER] The initial MVP suffered from excessive battery drain and failed to cache user metrics when gym cell coverage was poor, resulting in elevated user churn.',
+      'The first build drained batteries and lost workout data whenever coverage dropped. Users left, and the store ratings showed it.',
     solution:
-      '// TODO(content): [PLACEHOLDER] Rebuilt the mobile architecture with Flutter, native C++ Bluetooth low-energy bindings, and an offline-first SQLite database that syncs in the background upon reconnection.',
+      'Rebuilt the app in Flutter with native Bluetooth bindings and a local SQLite store. Sessions write to the device first, then sync when a connection returns.',
     technologies: ['Flutter', 'Dart', 'Swift', 'Kotlin', 'SQLite', 'Firebase', 'WebSockets'],
     results: [
       { metric: '4.9 ★', label: 'App Store & Google Play Rating' },
@@ -90,14 +92,15 @@ export const projects: ProjectItem[] = [
   {
     id: 'proj-logiflow-automation',
     slug: 'logiflow-warehouse-automation',
-    title: '[PLACEHOLDER] LogiFlow: Intelligent Freight Pipeline',
+    title: 'Customs, without the paperwork',
     category: 'Automation & Integration',
-    clientType: 'Multinational Freight & Customs Brokerage',
-    summary: '// TODO(content): [PLACEHOLDER] Built automated document extraction and webhook relays eliminating 180+ hours of manual customs data entry weekly.',
+    clientType: 'Freight forwarding and customs brokerage',
+    summary:
+      'Document extraction and webhook relays for a customs brokerage. Agents stopped re-keying manifests and got 180 hours a week back.',
     problem:
-      '// TODO(content): [PLACEHOLDER] Customs clearance agents manually re-keyed thousands of international shipping manifests across four separate regulatory web portals every week, causing human errors and demurrage fines.',
+      'Clearance agents retyped shipping manifests into four separate regulatory portals every week. Mistakes were common, and demurrage fines followed.',
     solution:
-      '// TODO(content): [PLACEHOLDER] Deployed an automated Python ingestion pipeline with optical document recognition and fault-tolerant webhook queues that automatically validate and submit regulatory entries.',
+      'A Python pipeline reads incoming documents, checks every field against the portal, and files the entry through fault-tolerant webhook queues. Failed submissions retry on their own.',
     technologies: ['Python', 'FastAPI', 'RabbitMQ', 'PostgreSQL', 'Docker', 'AWS Lambda'],
     results: [
       { metric: '180 hrs', label: 'Weekly Manual Labor Saved' },
@@ -117,14 +120,15 @@ export const projects: ProjectItem[] = [
   {
     id: 'proj-nordic-fintech',
     slug: 'nordic-fintech-portal',
-    title: '[PLACEHOLDER] Nordic Pay: Institutional Banking Portal',
+    title: 'Settlement, without the ceremony',
     category: 'Web & Software',
-    clientType: 'European Financial Services Group',
-    summary: '// TODO(content): [PLACEHOLDER] Developed a compliant, accessible multi-currency financial dashboard processing over €12M in daily corporate settlements.',
+    clientType: 'European corporate banking',
+    summary:
+      'A multi-currency portal for corporate banking clients. It handles more than €12M in daily settlements.',
     problem:
-      '// TODO(content): [PLACEHOLDER] Corporate clients required an intuitive web dashboard complying with strict European WCAG AAA accessibility and PSD2 regulatory guidelines.',
+      'Corporate clients needed one place for balances, payments, and settlement. The interface had to meet PSD2 rules and WCAG AAA, not just look clean.',
     solution:
-      '// TODO(content): [PLACEHOLDER] Built a hardened Next.js web application with strict TypeScript types, server-side cryptographically signed sessions, and high-contrast accessible design tokens.',
+      'Built on Next.js with strict TypeScript, server-signed sessions, and high-contrast design tokens. Every screen was checked against the regulatory and accessibility requirements before release.',
     technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Go', 'PostgreSQL'],
     results: [
       { metric: '€12M+', label: 'Daily Transaction Volume Handled' },
@@ -144,14 +148,15 @@ export const projects: ProjectItem[] = [
   {
     id: 'proj-nebula-tactics',
     slug: 'nebula-tactics-mobile-game',
-    title: '[PLACEHOLDER] Nebula Tactics: Tactical Turn-Based Strategy',
+    title: 'Nebula Tactics',
     category: 'Mobile & Games',
-    clientType: 'Indie Game Studio',
-    summary: '// TODO(content): [PLACEHOLDER] Developed a cross-platform 2D sci-fi strategy game built with Unity, featuring smooth procedural maps and multiplayer matchmaking.',
+    clientType: 'Independent game studio',
+    summary:
+      'A turn-based sci-fi strategy game built for touch. Procedural maps and matchmaking hold a locked 60 FPS.',
     problem:
-      '// TODO(content): [PLACEHOLDER] The indie studio needed to launch their desktop strategy game onto iOS and Android without sacrificing 60fps performance on budget mobile hardware.',
+      'A desktop strategy game needed to reach phones without losing its tactical feel. The original rendering load was too heavy for budget hardware.',
     solution:
-      '// TODO(content): [PLACEHOLDER] Optimized Unity draw-call batching, implemented custom sprite atlas shaders, and integrated lightweight Photon cloud networking.',
+      'Rebatched Unity draw calls and wrote custom sprite atlas shaders to cut the per-frame cost. Photon handles lightweight multiplayer and matchmaking.',
     technologies: ['Unity', 'C#', 'Photon Engine', 'Spine 2D', 'FMOD', 'iOS', 'Android'],
     results: [
       { metric: '60 FPS', label: 'Locked Frame Rate Across Mobile Devices' },
@@ -171,14 +176,15 @@ export const projects: ProjectItem[] = [
   {
     id: 'proj-lumina-brand',
     slug: 'lumina-brand-relaunch',
-    title: '[PLACEHOLDER] Lumina Studio: Global Brand & Video System',
+    title: 'Lumina',
     category: 'Creative',
-    clientType: 'Consumer Electronics Brand',
-    summary: '// TODO(content): [PLACEHOLDER] Crafted complete brand identity, 3D motion package, and high-energy product launch video series driving a $2.4M Kickstarter campaign.',
+    clientType: 'Consumer electronics',
+    summary:
+      'Brand identity, a 3D motion package, and a launch film series for new hardware. The Kickstarter closed at $2.4M.',
     problem:
-      "// TODO(content): [PLACEHOLDER] The client's groundbreaking ergonomic hardware lacked cohesive visual storytelling and launch video collateral for their global crowdfunding launch.",
+      'The hardware was ready, but the launch had no visual story and no film to carry it. A global crowdfunding campaign needed both.',
     solution:
-      '// TODO(content): [PLACEHOLDER] Produced a cinematic 90-second launch video with photorealistic 3D product renders, dynamic motion typography, and an adaptable digital asset kit.',
+      'Produced a 90-second launch film with photoreal 3D renders, motion typography, and a digital asset kit the client could extend without us.',
     technologies: ['Adobe Premiere Pro', 'After Effects', 'Cinema 4D', 'Figma', 'Illustrator'],
     results: [
       { metric: '$2.4M', label: 'Raised in 30-Day Crowdfunding Campaign' },

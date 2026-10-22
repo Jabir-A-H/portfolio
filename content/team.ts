@@ -23,7 +23,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: 'nasib-mohammad-arif',
     name: 'Nasib Mohammad Arif',
-    role: '',
+    role: 'Co-founder',
     bio: '',
     photoUrl: '',
     skills: [],
@@ -32,7 +32,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: 'abu-sayed-md-saad',
     name: 'Abu Sayed Md Saad',
-    role: '',
+    role: 'Co-founder',
     bio: '',
     photoUrl: '',
     skills: [],
@@ -41,7 +41,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: 'jabir-abdullah-haian',
     name: 'Jabir Abdullah Haian',
-    role: '',
+    role: 'Co-founder',
     bio: '',
     photoUrl: '',
     skills: [],

@@ -2,7 +2,7 @@
 
 > **Status:** Active & Production Verified  
 > **Framework:** Next.js 15+ (App Router, Static Export) | TypeScript | Tailwind CSS v3.4  
-> **Last Verified:** 2026-10-13 (All 29 static routes pre-rendered, 66/66 E2E tests passing)
+> **Last Verified:** 2026-10-22 (29 routes built, 27 route files verified, 66/66 E2E assertions, brand scan clean, typecheck and lint clean)
 
 ---
 
@@ -39,7 +39,7 @@ To enable friction-free rebranding and content updates without modifying React c
 The Next.js App Router statically exports 29 total HTML/XML pages into `out/`:
 
 ```
-/                         -> out/index.html (10-section Home page)
+/                         -> out/index.html (five-movement editorial home page)
 /services                 -> out/services/index.html (4 category groups overview)
 /services/[slug]          -> out/services/*/index.html (9 pre-rendered service deep-dives)
 /portfolio                -> out/portfolio/index.html (Filterable category grid)
@@ -59,7 +59,7 @@ The Next.js App Router statically exports 29 total HTML/XML pages into `out/`:
 
 ## 4. Design System Tokens & Anti-FOUC Theming
 
-**Visual identity:** "High-End Architect" — see [`ADR-006`](file:///d:/WebDev/portfolio/docs/ADR/006-visual-identity-pivot.md) and [`GLOSSARY.md`](file:///d:/WebDev/portfolio/GLOSSARY.md). This is a De-AI contract: asymmetric composition, compositional silence, and zero SaaS-generic styling.
+**Visual identity:** "High-End Architect", recomposed as an editorial document under [`ADR-007`](file:///d:/WebDev/portfolio/docs/ADR/007-editorial-reset.md). ADR-006 supplies the palette and type pairing; ADR-007 supplies the composition rules (hairlines, work index, page header, rule fields, zero decoration). See also [`GLOSSARY.md`](file:///d:/WebDev/portfolio/GLOSSARY.md).
 
 ### HSL CSS Variable Tokens
 Defined in [`styles/globals.css`](file:///d:/WebDev/portfolio/styles/globals.css) and mapped to utility classes in [`tailwind.config.ts`](file:///d:/WebDev/portfolio/tailwind.config.ts):
@@ -67,48 +67,65 @@ Defined in [`styles/globals.css`](file:///d:/WebDev/portfolio/styles/globals.css
 - `--primary`, `--primary-foreground`, `--accent`, `--accent-foreground`
 - `--border`, `--ring`
 
-| Token | Light ("Warm Gallery") | Dark ("Cold Studio") |
+| Token | Light ("Warm Paper") | Dark ("Cold Ink") |
 |---|---|---|
-| `--background` | `40 30% 98%` — warm paper `#FDFCFB` | `240 10% 5%` — cold ink `#0D0E12` |
-| `--surface` | `40 30% 96%` — soft cream | `240 10% 10%` — deep slate |
-| `--primary` | `0 0% 10%` — deep ink | `0 0% 90%` — bone white |
-| `--accent` | `18 100% 50%` — International Orange `#FF4F00` | same (single signature) |
-| `--radius` | `0.125rem` (2px micro-radius) | same |
+| `--background` | `40 35% 94%` — warm paper | `40 6% 7%` — cold ink |
+| `--surface` | `38 31% 90%` — deeper paper | `32 8% 10%` — lifted ink |
+| `--foreground` | `30 14% 10%` — ink | `38 26% 87%` — bone |
+| `--primary` | ink | bone |
+| `--accent` | `15 88% 47%` — vermilion | `15 88% 53%` — vermilion |
+| `--border` | `35 17% 78%` — warm hairline | `33 8% 22%` — cool hairline |
+| `--radius` | `0` | `0` |
+
+`tailwind.config.ts` deliberately removes the default radius and shadow scales (`borderRadius` exposes only `DEFAULT`, `none`, `full`; `boxShadow` exposes only `none`). New UI should not reintroduce `rounded-*` or `shadow-*` utilities.
 
 ### Typography (Technical Hybrid)
 Self-hosted via `next/font/google` in [`app/layout.tsx`](file:///d:/WebDev/portfolio/app/layout.tsx); exposed as CSS variables consumed by `tailwind.config.ts`.
 
 | Role | Family | Variable | Utility |
 |---|---|---|---|
-| Display / Architect | Cormorant Garamond (400–600, italic) | `--font-serif` | `font-display`, `font-serif` |
+| Display / Architect | Cormorant Garamond (300–600, italic) | `--font-serif` | `font-display`, `font-serif` |
 | Metadata / Engineer | Space Mono (400, 700) | `--font-mono` | `font-mono`, `text-label` |
 | Body / Ghost | Inter (variable) | `--font-sans` | `font-sans` (body default) |
 
-- Fluid display scale: `text-display-xl` / `-lg` / `-md` (clamp-based).
-- Technical label scale: `text-label` + `tracking-label` (0.18em, uppercase).
+- Fluid display scale: `text-display-xl` (clamp 3.4rem–8.75rem, line-height 0.9), `-lg` (2.6–4.75rem, 0.96), `-md` (1.9–2.9rem, 1.02).
+- Technical label scale: `text-label` = 0.6875rem with `tracking-label` (0.16em). Labels are uppercase and never rendered below 10px.
 - `h1–h3` default to the serif voice in the base layer; `font-synthesis: none` prevents faux-bold artefacts because Cormorant Garamond caps at 600.
+- Hero emphasis uses a single italic word, authored in `content/site.ts` as `*outlast*` and rendered as `<em>` by `Hero.tsx`.
 
-### Geometry, Depth & Motion Tokens
-- **Corners:** micro-radius (2px). No `rounded-xl`/`rounded-full` on new surfaces.
-- **Borders:** space divides, not hairlines; borderless is the default for new surfaces.
-- **Depth:** hard offset shadows (`shadow-hard-sm|hard|hard-lg|hard-accent`) plus parallax — never blurred glow shadows.
-- **Easing:** `ease-architect` (`cubic-bezier(0.16,1,0.3,1)`), `ease-gallery` (`cubic-bezier(0.65,0,0.35,1)`); durations `duration-400|700|1000`.
-- **Rhythm:** `py-section`, `py-section-lg`, `px-gutter` drive fluid compositional spacing in [`Section.tsx`](file:///d:/WebDev/portfolio/components/layout/Section.tsx) and [`Container.tsx`](file:///d:/WebDev/portfolio/components/layout/Container.tsx).
+### Composition Primitives
+- **`components/layout/PageHeader.tsx`** — interior page opening: mono label, `display-lg` serif title, right-margin lede, optional metadata. Every top-level page and both detail templates use it.
+- **`components/layout/Section.tsx`** — spacing wrapper (`none | sm | md | lg`). `index` and `label` props are accepted only as `data-*` metadata; they are not rendered.
+- **`components/layout/Container.tsx`** — `max-w-sheet` (100rem) with fluid `px-gutter`.
+- **`components/ui/Card.tsx`** — flat card: top hairline only. No fill, frame, radius, or shadow in the primitive; callers may still apply a background.
+- **`components/ui/Badge.tsx`** — label, not pill: mono capitals, optional vermilion square, no fill or border.
+- **`components/ui/Button.tsx`** — flat rectangles with colour-only hover; no shadows or transforms.
+- **`components/ui/Input.tsx` / `Select.tsx` / `Textarea.tsx`** — rule fields: transparent, bottom border, mono label, vermilion focus rule.
+
+### Home Page Structure
+Five movements, in order, in [`app/page.tsx`](file:///d:/WebDev/portfolio/app/page.tsx):
+1. `Hero` — studio strip, display statement, lede, two links, discipline rule.
+2. `WorkIndex` — three featured projects as rows with sector and headline metric.
+3. `Capabilities` — four service groups as rows with descriptions and counts.
+4. `StudioStatement` — inverted band with statement, two paragraphs, about link.
+5. `ContactBlock` — display question, email link, contact link.
 
 ### Motion Layer — "The Gallery" (framer-motion)
 Implemented in [`components/motion/`](file:///d:/WebDev/portfolio/components/motion/):
-- **MotionProvider** — client boundary wrapping all motion; centralizes `prefers-reduced-motion` via `useReducedMotion()`, defaults to spring physics (stiffness 120, damping 18, mass 0.8), falls back to tween when reduced motion is active.
-- **ScrollReveal / RevealItem** — viewport-triggered entrance animations with staggered children. Variants: `fade-up`, `fade-in`, `slide-left`, `slide-right`, `scale-up`. Configurable `stagger`, `delay`, `once`, and `margin`. Used on Hero to sequence badge → headline → subheadline → CTAs → metadata.
-- **Parallax / ParallaxLayer** — scroll-linked depth using `useScroll` + `useTransform`. `Parallax` for single-element vertical/horizontal drift; `ParallaxLayer` for multi-layer depth stacks (speed 0 = fixed, 1 = normal, >1 = accelerated).
-- All motion respects `prefers-reduced-motion` at the provider level — zero extra work per component.
+- **MotionProvider** — client boundary wrapping all motion; centralizes `prefers-reduced-motion` via `useReducedMotion()`.
+- **ScrollReveal / RevealItem** — viewport-triggered entrance animations with staggered children. Variants: `fade-up`, `fade-in`, `slide-left`, `slide-right`, `scale-up`.
+- **Parallax / ParallaxLayer** — scroll-linked depth using `useScroll` + `useTransform`.
+- The editorial pages are legible without animation; motion is optional and must not be required to reveal content.
 
 ### Theming & Anti-FOUC Mechanism
 1. **Inline Script**: An anti-FOUC script executes synchronously in `<head>` before body hydration in [`app/layout.tsx`](file:///d:/WebDev/portfolio/app/layout.tsx), inspecting `localStorage.getItem('theme')` and `window.matchMedia('(prefers-color-scheme: dark)')` to toggle `.dark` on `document.documentElement`.
 2. **Interactive Toggle**: [`components/layout/ThemeToggle.tsx`](file:///d:/WebDev/portfolio/components/layout/ThemeToggle.tsx) switches between light and dark themes and writes the preference back to `localStorage`.
 
 ### Responsive Layout Geometry
-- Viewport break testing at 360px (mobile), 768px (tablet), 1024px (laptop), and 1440px (desktop).
-- Enforced zero horizontal overflow through `overflow-x: hidden` and `max-w-` constraints on [`components/layout/Container.tsx`](file:///d:/WebDev/portfolio/components/layout/Container.tsx).
+- Visual verification at 360px (mobile), 768px (tablet), 1024px (laptop), and 1440px (desktop) via full-page screenshots in `.review/` (not committed).
+- Zero horizontal overflow is enforced by `overflow-x: hidden`, `max-w-100vw` on root, and `max-w-sheet` on `Container`.
+- **Viewport CI Gate (pending):** `tests/e2e/viewport.test.ts` and the `test:viewport` script exist, but `@playwright/test` is not installed and the test is excluded from `tsc` until it is. Do not claim this gate is active.
+
 
 ---
 

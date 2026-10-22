@@ -14,22 +14,18 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 const variantClasses: Record<NonNullable<ButtonProps['variant']>, string> = {
-  primary:
-    'bg-primary text-primary-foreground hover:bg-primary-hover shadow-sm active:scale-[0.99]',
-  accent:
-    'bg-accent text-accent-foreground hover:bg-accent-hover shadow-sm active:scale-[0.99]',
-  secondary:
-    'bg-muted text-foreground hover:bg-muted/80 shadow-none',
+  primary: 'bg-primary text-primary-foreground hover:bg-primary-hover',
+  accent: 'bg-accent text-accent-foreground hover:bg-accent-hover',
+  secondary: 'bg-muted text-foreground hover:bg-border',
   outline:
-    'border border-border bg-transparent text-foreground hover:bg-muted/60',
-  ghost:
-    'bg-transparent text-foreground hover:bg-muted/60',
+    'border border-foreground/35 text-foreground hover:border-foreground hover:bg-foreground hover:text-background',
+  ghost: 'text-foreground hover:text-accent',
 };
 
 const sizeClasses: Record<NonNullable<ButtonProps['size']>, string> = {
-  sm: 'px-3 py-1.5 text-xs font-medium rounded-md gap-1.5 min-h-[32px]',
-  md: 'px-4 py-2 text-sm font-medium rounded-lg gap-2 min-h-[40px]',
-  lg: 'px-6 py-3 text-base font-semibold rounded-lg gap-2.5 min-h-[48px]',
+  sm: 'h-8 px-3 text-[11px] gap-1.5',
+  md: 'h-10 px-4 text-[13px] gap-2',
+  lg: 'h-12 px-5 text-sm gap-2.5',
 };
 
 export function Button({
@@ -47,7 +43,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const baseClasses =
-    'inline-flex items-center justify-center font-medium transition-all select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed';
+    'inline-flex select-none items-center justify-center whitespace-nowrap font-medium tracking-[0.01em] transition-colors disabled:pointer-events-none disabled:opacity-40';
 
   const combinedClasses = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
 
@@ -56,10 +52,10 @@ export function Button({
       <Link
         href={href}
         target={target}
-        rel={target === '_blank' ? (rel || 'noopener noreferrer') : rel}
+        rel={target === '_blank' ? rel || 'noopener noreferrer' : rel}
         className={combinedClasses}
       >
-        {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
+        {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
         {!isLoading && leftIcon}
         <span>{children}</span>
         {!isLoading && rightIcon}
@@ -74,7 +70,7 @@ export function Button({
       className={combinedClasses}
       {...props}
     >
-      {isLoading && <Loader2 className="w-4 h-4 animate-spin" />}
+      {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
       {!isLoading && leftIcon}
       <span>{children}</span>
       {!isLoading && rightIcon}

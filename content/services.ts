@@ -67,28 +67,28 @@ export const serviceGroups: ServiceGroup[] = [
   {
     id: 'web-software',
     title: 'Web & Software',
-    description: 'High-performance web applications, robust enterprise software architectures, and ongoing SLA maintenance.',
+    description: 'Web applications, enterprise software, and the maintenance that keeps both online.',
     iconName: 'Globe',
     serviceSlugs: ['web-design-development', 'software-design-development', 'website-software-maintenance'],
   },
   {
     id: 'mobile-games',
     title: 'Mobile & Games',
-    description: 'Cross-platform iOS and Android mobile applications and captivating interactive 2D/3D game experiences.',
+    description: 'Cross-platform mobile apps and games for iOS, Android, and the browser.',
     iconName: 'Smartphone',
     serviceSlugs: ['mobile-app-development', 'game-development'],
   },
   {
     id: 'automation-integration',
     title: 'Automation & Integration',
-    description: 'Intelligent business workflow automation, custom ETL data bridges, and fault-tolerant API middleware.',
+    description: 'Workflow automation, ETL bridges, and API middleware that moves data between systems.',
     iconName: 'Cpu',
     serviceSlugs: ['business-automation', 'api-system-integration'],
   },
   {
     id: 'creative',
     title: 'Creative',
-    description: 'Distinctive brand identity systems, high-converting digital marketing collateral, and cinematic video editing.',
+    description: 'Brand systems, marketing design, and video that give a company a recognizable voice.',
     iconName: 'Palette',
     serviceSlugs: ['graphics-design', 'video-editing'],
   },
@@ -102,19 +102,19 @@ export const services: ServiceItem[] = [
     id: 'web-design-dev',
     slug: 'web-design-development',
     title: 'Web Design & Development',
-    shortDescription: 'Modern, high-performance web applications and responsive corporate portals engineered with Next.js, React, and Tailwind CSS.',
+    shortDescription: 'Custom websites and web applications built on Next.js, React, and TypeScript. Fast to load and straightforward for your team to run.',
     groupId: 'web-software',
     groupName: 'Web & Software',
     iconName: 'Code',
     overview: {
-      headline: 'Bespoke Web Solutions Engineered for Speed, Scale, and Conversion',
+      headline: 'Websites and Web Apps Built Around Real Use',
       description:
-        '// TODO(content): [PLACEHOLDER] We craft custom websites and full-featured web applications tailored to your business objectives. From enterprise landing platforms to complex SaaS applications, our web engineering pairs clean architecture with stunning visual interactions.',
+        'Custom sites and full web applications built around your business goals. The work ranges from marketing platforms to complex SaaS products. The code is clean, the interactions are considered, and the pages load quickly on a phone.',
       benefits: [
-        'Blazing-fast load times with static export & server-side rendering',
-        'Accessible, responsive layouts tested across 360px to 1440px viewports',
-        'Clean TypeScript architecture with reusable design systems',
-        'SEO-optimized structure with automated JSON-LD schemas',
+        'Fast first loads through static export and server rendering',
+        'Layouts tested from 360px to 1440px',
+        'A TypeScript codebase with reusable design tokens',
+        'Structured metadata and schema markup for search',
       ],
     },
     whatWeDeliver: {
@@ -122,28 +122,28 @@ export const services: ServiceItem[] = [
       items: [
         {
           title: 'Custom Web Application Architecture',
-          description: 'Production-grade Next.js/React frontend with robust state management and modular components.',
+          description: 'A production Next.js and React frontend with modular components and predictable state.',
         },
         {
-          title: 'High-Converting Marketing Portals',
-          description: 'Pixel-perfect responsive designs optimized for lead generation and brand authority.',
+          title: 'Marketing Portals That Earn Leads',
+          description: 'Responsive pages designed to hold attention and collect inquiries.',
         },
         {
           title: 'CMS & E-Commerce Implementations',
-          description: 'Headless CMS integrations (Sanity, Strapi) and Shopify/Stripe setups tailored for scalability.',
+          description: 'Headless CMS setups (Sanity, Strapi) and Shopify or Stripe stores that grow with the catalog.',
         },
         {
           title: 'Performance & Core Web Vitals Optimization',
-          description: '90+ Google Lighthouse scores across performance, SEO, accessibility, and best practices.',
+          description: 'Lighthouse scores of 90 or above across performance, SEO, accessibility, and best practice checks.',
         },
       ],
     },
     process: [
-      { step: 1, title: 'Wireframing & UX Architecture', description: 'Establishing user personas, information hierarchy, and responsive wireframes.' },
-      { step: 2, title: 'High-Fidelity UI Design', description: 'Figma component libraries, design token specifications, and interactive prototypes.' },
-      { step: 3, title: 'Component Engineering', description: 'Modular TypeScript and Tailwind CSS development adhering to strict linting rules.' },
-      { step: 4, title: 'Quality & Performance Auditing', description: 'Automated testing, cross-browser audits, accessibility review, and responsive checks.' },
-      { step: 5, title: 'Production Edge Deployment', description: 'Zero-downtime deployment configured for static edge CDN hosting.' },
+      { step: 1, title: 'Wireframing & UX Architecture', description: 'User personas, page hierarchy, and wireframes for every breakpoint.' },
+      { step: 2, title: 'High-Fidelity UI Design', description: 'Figma component libraries, design tokens, and clickable prototypes.' },
+      { step: 3, title: 'Component Engineering', description: 'Typed components in TypeScript and Tailwind, checked against strict lint rules.' },
+      { step: 4, title: 'Quality & Performance Auditing', description: 'Automated tests, browser checks, accessibility review, and responsive passes.' },
+      { step: 5, title: 'Production Edge Deployment', description: 'Deployment with no downtime, served from a global CDN.' },
     ],
     technologies: [
       { name: 'Next.js', category: 'Frontend' },
@@ -158,20 +158,20 @@ export const services: ServiceItem[] = [
     faqs: [
       {
         question: 'What frontend stack do you use for web development?',
-        answer: 'We specialize in modern TypeScript ecosystems centered on Next.js, React, and Tailwind CSS, ensuring maximum performance, type safety, and maintainability.',
+        answer: 'Next.js, React, TypeScript, and Tailwind CSS. That combination gives us type safety, fast pages, and a codebase your developers can read.',
       },
       {
         question: 'Can you migrate our existing legacy site to Next.js?',
-        answer: 'Yes. We regularly handle full-scale migrations from legacy CMS or monolithic platforms to modern decoupled Next.js architectures with zero SEO loss.',
+        answer: 'Yes. We move sites from legacy CMS platforms and monoliths to Next.js. URL paths and metadata stay intact, so search rankings do too.',
       },
       {
         question: 'How do you ensure our website meets high accessibility and SEO standards?',
-        answer: 'Every page is built semantic-first, verified with automated Lighthouse audits, and configured with dynamic metadata, OpenGraph cards, and schema structured data.',
+        answer: 'Pages start with semantic HTML. Lighthouse checks run on every build, and metadata, Open Graph cards, and schema markup go in before launch.',
       },
     ],
     cta: {
-      headline: 'Ready to Build a High-Performance Web Platform?',
-      subheadline: "Let's turn your vision into an ultra-fast, beautifully designed web experience.",
+      headline: 'Build a Web Platform That Pulls Its Weight',
+      subheadline: 'Tell us what the site needs to do, and we will map the build.',
       buttonText: 'Discuss Your Web Project',
       buttonLink: '/contact',
     },
@@ -181,19 +181,19 @@ export const services: ServiceItem[] = [
     id: 'software-design-dev',
     slug: 'software-design-development',
     title: 'Software Design & Development',
-    shortDescription: 'Scalable backend systems, cloud-native microservices, and bespoke enterprise software built to automate operations and drive growth.',
+    shortDescription: 'Backend systems, cloud services, and internal tools built to carry real operational load.',
     groupId: 'web-software',
     groupName: 'Web & Software',
     iconName: 'Server',
     overview: {
-      headline: 'Enterprise-Grade Custom Software Architecture',
+      headline: 'Software for Work That Cannot Stop',
       description:
-        '// TODO(content): [PLACEHOLDER] We architect and develop resilient software solutions designed to handle demanding enterprise workloads. From internal business tooling to customer-facing SaaS platforms, we build secure, maintainable software designed for scale.',
+        'We design and build software for important work: internal tools, customer platforms, and services that talk to each other. Architecture decisions come with reasons, not just diagrams. The result is a system your team can operate and extend.',
       benefits: [
-        'Robust microservice and modular monolithic system architectures',
-        'Type-safe end-to-end APIs with OpenAPI specifications',
-        'Enterprise-grade database modeling and query optimization',
-        'Comprehensive automated test suites with high unit and integration coverage',
+        'Modular services or a structured monolith, chosen for the job',
+        'Typed APIs documented with OpenAPI',
+        'Database models and queries tuned for real workloads',
+        'Automated tests across unit and integration paths',
       ],
     },
     whatWeDeliver: {
@@ -201,28 +201,28 @@ export const services: ServiceItem[] = [
       items: [
         {
           title: 'Custom SaaS Platforms',
-          description: 'Multi-tenant SaaS products with user authentication, subscription billing, and administrative dashboards.',
+          description: 'Multi-tenant products with accounts, billing, and admin controls.',
         },
         {
           title: 'Enterprise Internal Tools',
-          description: 'Custom internal dashboards, ERP extensions, and workflow management portals.',
+          description: 'Dashboards, ERP extensions, and workflow portals that match how the team works.',
         },
         {
           title: 'Cloud Infrastructure & Serverless APIs',
-          description: 'Scalable microservices running on AWS, GCP, or Docker containers with high availability.',
+          description: 'Services on AWS, GCP, or Docker with room to scale and health checks built in.',
         },
         {
           title: 'Database Architecture & Migration',
-          description: 'Optimized relational and document datastores with automated backup and zero-downtime migrations.',
+          description: 'Relational and document stores, backups, and migrations that run without downtime.',
         },
       ],
     },
     process: [
-      { step: 1, title: 'Requirements Discovery & Scope', description: 'Domain modeling, user role mapping, and detailed technical specifications.' },
-      { step: 2, title: 'System Architecture & Schema Design', description: 'Entity-relationship diagrams, API contracts, and security policies.' },
-      { step: 3, title: 'Sprint-Based Engineering', description: 'Test-driven development with bi-weekly milestone demonstrations.' },
-      { step: 4, title: 'Automated CI/CD & Security Audits', description: 'Static analysis, vulnerability scanning, and performance benchmarking.' },
-      { step: 5, title: 'Cloud Deployment & Handover', description: 'Production provisioning with infrastructure-as-code and team training.' },
+      { step: 1, title: 'Requirements Discovery & Scope', description: 'Domain modeling, user roles, and written technical specifications.' },
+      { step: 2, title: 'System Architecture & Schema Design', description: 'Entity diagrams, API contracts, and security rules.' },
+      { step: 3, title: 'Sprint-Based Engineering', description: 'Test-driven work with a demo at the end of every two-week sprint.' },
+      { step: 4, title: 'Automated CI/CD & Security Audits', description: 'Static analysis, dependency scanning, and benchmark runs.' },
+      { step: 5, title: 'Cloud Deployment & Handover', description: 'Infrastructure as code, production provisioning, and training for your team.' },
     ],
     technologies: [
       { name: 'TypeScript', category: 'Language' },
@@ -237,21 +237,21 @@ export const services: ServiceItem[] = [
     faqs: [
       {
         question: 'How do you handle data security and privacy in custom software?',
-        answer: 'We adhere to industry-standard encryption protocols (TLS in transit, AES-256 at rest), role-based access control (RBAC), and automated vulnerability testing in our CI/CD pipelines.',
+        answer: 'TLS in transit, AES-256 at rest, role-based access control, and dependency scanning in CI. Security reviews are part of the release process, not a separate audit.',
       },
       {
         question: 'Can you integrate with our existing legacy enterprise databases?',
-        answer: 'Yes. We design decoupled adapter layers and ETL pipelines that interface cleanly with legacy SQL, Oracle, or proprietary backends.',
+        answer: 'Yes. We build adapter layers and ETL jobs that read from legacy SQL, Oracle, or proprietary systems without forcing a rewrite.',
       },
       {
         question: 'What development methodology do you follow?',
-        answer: 'We work in 2-week Agile sprints with transparent backlog tracking, code reviews, and working demo releases at each sprint boundary.',
+        answer: 'Two-week sprints, a shared backlog, code review on every change, and a working demo at each sprint boundary.',
       },
     ],
     cta: {
-      headline: 'Build Scalable Software Built for Enterprise Demands',
-      subheadline: 'Partner with our engineering team to develop resilient custom software.',
-      buttonText: 'Start Software Project',
+      headline: 'Build Software That Holds Up Under Load',
+      subheadline: 'Bring us the workflow, the bottleneck, or the system that keeps falling over.',
+      buttonText: 'Start a Software Project',
       buttonLink: '/contact',
     },
   },
@@ -260,19 +260,19 @@ export const services: ServiceItem[] = [
     id: 'web-software-maint',
     slug: 'website-software-maintenance',
     title: 'Website & Software Maintenance',
-    shortDescription: 'Proactive 24/7 SLA-backed monitoring, dependency patches, security hardening, and performance tuning for critical web and software systems.',
+    shortDescription: 'Monitoring, security patches, and performance work for sites and systems that have to stay online.',
     groupId: 'web-software',
     groupName: 'Web & Software',
     iconName: 'Wrench',
     overview: {
-      headline: 'Continuous Reliability, Security, and Evolution for Your Digital Assets',
+      headline: 'Care for Software After Launch',
       description:
-        '// TODO(content): [PLACEHOLDER] Software is never truly finished. Our dedicated maintenance and reliability engineering ensures your applications remain secure, lightning-fast, and updated against emerging vulnerabilities.',
+        'Software needs attention after launch. We watch uptime, apply security patches, and fix problems before users report them. Plans include response times and an engineer who knows your stack.',
       benefits: [
-        'Guaranteed response time SLAs for critical incidents',
-        'Proactive weekly dependency updates and security vulnerability patching',
-        'Continuous uptime monitoring and real-time incident alerting',
-        'Ongoing database indexing and performance optimization',
+        'Response time commitments for critical incidents',
+        'Weekly dependency updates and security patches',
+        'Uptime and error monitoring with alerts that reach a person',
+        'Database indexing and performance reviews',
       ],
     },
     whatWeDeliver: {
@@ -280,28 +280,28 @@ export const services: ServiceItem[] = [
       items: [
         {
           title: '24/7 Monitoring & Alerting',
-          description: 'Real-time tracking of uptime, error rates, and server resource health with automated notifications.',
+          description: 'Uptime, error rates, and server health tracked around the clock.',
         },
         {
           title: 'Security Patching & Vulnerability Mitigation',
-          description: 'Proactive dependency audits, security hardening, and zero-day patch deployments.',
+          description: 'Dependency audits, hardening, and patch releases when a zero-day lands.',
         },
         {
           title: 'Database Backups & Disaster Recovery',
-          description: 'Automated encrypted daily snapshots and verified disaster recovery runbooks.',
+          description: 'Encrypted daily snapshots and recovery steps that have been tested.',
         },
         {
           title: 'Feature Enhancements & Optimization',
-          description: 'Ongoing UX tweaks, speed optimizations, and feature iterations handled by dedicated engineers.',
+          description: 'Small UX fixes, speed work, and new features from an engineer who knows the code.',
         },
       ],
     },
     process: [
-      { step: 1, title: 'Health Baseline Audit', description: 'Comprehensive inspection of code health, dependencies, and hosting logs.' },
-      { step: 2, title: 'Monitoring & Alert Setup', description: 'Configuring APM, error tracking via Sentry, and uptime heartbeat checks.' },
-      { step: 3, title: 'SLA Definition & Runbook', description: 'Documenting emergency escalation procedures and dedicated communication channels.' },
-      { step: 4, title: 'Scheduled Maintenance Cycles', description: 'Bi-weekly staging updates, regression testing, and production rollouts.' },
-      { step: 5, title: 'Monthly Health Reporting', description: 'Transparent summaries of uptime, issues resolved, and performance scores.' },
+      { step: 1, title: 'Health Baseline Audit', description: 'A review of code health, dependencies, and hosting logs.' },
+      { step: 2, title: 'Monitoring & Alert Setup', description: 'APM, Sentry error tracking, and uptime checks.' },
+      { step: 3, title: 'SLA Definition & Runbook', description: 'Escalation paths, response targets, and a shared channel.' },
+      { step: 4, title: 'Scheduled Maintenance Cycles', description: 'Bi-weekly staging updates, regression tests, and production releases.' },
+      { step: 5, title: 'Monthly Health Reporting', description: 'Uptime, incidents resolved, and performance scores in one summary.' },
     ],
     technologies: [
       { name: 'Docker', category: 'DevOps' },
@@ -316,20 +316,20 @@ export const services: ServiceItem[] = [
     faqs: [
       {
         question: 'What response times are covered in your maintenance SLAs?',
-        answer: 'Depending on your plan, we offer critical incident response times as fast as 1 hour, with dedicated engineering support.',
+        answer: 'Critical incidents are answered in as little as 1 hour, depending on the plan. Every plan has a written response target.',
       },
       {
         question: 'Do you maintain software built by other agencies or internal teams?',
-        answer: 'Yes. We conduct a preliminary architectural audit and code onboarding phase before assuming operational maintenance.',
+        answer: 'Yes. We start with an architecture audit and a code walkthrough, then take over operations once the risks are clear.',
       },
       {
         question: 'How are software updates tested to avoid breaking production?',
-        answer: 'All patches and feature upgrades are validated in staging environments with automated regression tests before being scheduled for zero-downtime production release.',
+        answer: 'Every patch runs in staging against the regression suite first. Production releases happen in a scheduled window with no downtime.',
       },
     ],
     cta: {
-      headline: 'Protect Your Digital Infrastructure with SLA-Backed Care',
-      subheadline: 'Ensure 99.9% uptime, airtight security, and seamless continuous operations.',
+      headline: 'Keep the Platform Healthy',
+      subheadline: 'Cover the gaps before they turn into incidents.',
       buttonText: 'Explore Maintenance Plans',
       buttonLink: '/contact',
     },
@@ -342,19 +342,19 @@ export const services: ServiceItem[] = [
     id: 'mobile-app-dev',
     slug: 'mobile-app-development',
     title: 'Mobile App Development',
-    shortDescription: 'Native and cross-platform iOS & Android mobile applications crafted with Flutter, React Native, and Swift for fluid user experiences.',
+    shortDescription: 'Native and cross-platform iOS and Android apps in Flutter, React Native, Swift, or Kotlin.',
     groupId: 'mobile-games',
     groupName: 'Mobile & Games',
     iconName: 'Smartphone',
     overview: {
-      headline: 'Intuitive, High-Performance Mobile Applications for iOS & Android',
+      headline: 'Mobile Apps That Feel Native on Both Platforms',
       description:
-        '// TODO(content): [PLACEHOLDER] We engineer native and cross-platform mobile apps that users love to engage with daily. From consumer lifestyle apps to mission-critical field operations tools, we combine fluid 60fps animations with offline-first local data synchronization.',
+        'Native and cross-platform apps for consumers and field teams. Animation runs at 60 FPS, and data stays available when the signal drops. Releases are handled through App Store and Google Play review.',
       benefits: [
-        'Cross-platform efficiency with native-quality performance',
-        'Offline-first architectures with intelligent cloud sync',
-        'Seamless push notification and background task management',
-        'Frictionless App Store and Google Play compliance and release',
+        'One codebase, with native performance where it matters',
+        'Offline-first storage and sync when the network returns',
+        'Push notifications and background jobs that behave',
+        'App Store and Google Play submissions handled end to end',
       ],
     },
     whatWeDeliver: {
@@ -362,28 +362,28 @@ export const services: ServiceItem[] = [
       items: [
         {
           title: 'Cross-Platform iOS & Android Apps',
-          description: 'Single-codebase Flutter or React Native apps with pixel-perfect native UI widgets.',
+          description: 'A single Flutter or React Native codebase with native UI on both platforms.',
         },
         {
           title: 'Native Modules & Hardware Integration',
-          description: 'Deep platform integrations including biometrics, camera, Bluetooth, and GPS sensors.',
+          description: 'Biometrics, camera, Bluetooth, and GPS wired into the app.',
         },
         {
           title: 'Backend API Integration & Offline Sync',
-          description: 'Real-time GraphQL/REST syncing with local encrypted SQLite storage.',
+          description: 'GraphQL or REST sync backed by encrypted local storage.',
         },
         {
           title: 'App Store Deployment & ASO',
-          description: 'End-to-end app store submission, metadata optimization, and approval management.',
+          description: 'Submission, store metadata, and approval issues handled.',
         },
       ],
     },
     process: [
-      { step: 1, title: 'Mobile Product Strategy', description: 'User persona mapping, platform feature matrix, and prototype flows.' },
-      { step: 2, title: 'Native UX/UI Design', description: 'Human Interface Guidelines & Material 3 compliant interface designs.' },
+      { step: 1, title: 'Mobile Product Strategy', description: 'User personas, a platform feature matrix, and prototype flows.' },
+      { step: 2, title: 'Native UX/UI Design', description: 'Screens that follow iOS Human Interface Guidelines and Material 3.' },
       { step: 3, title: 'Cross-Platform Mobile Engineering', description: 'State management, API integration, and native platform channels.' },
-      { step: 4, title: 'Multi-Device QA & Emulation', description: 'Testing across iOS and Android form factors, screen resolutions, and OS versions.' },
-      { step: 5, title: 'App Store Publishing', description: 'Signing, store listing review, and analytics monitoring.' },
+      { step: 4, title: 'Multi-Device QA & Emulation', description: 'Tested across screen sizes, form factors, and OS versions.' },
+      { step: 5, title: 'App Store Publishing', description: 'Signing, listing review, and analytics after release.' },
     ],
     technologies: [
       { name: 'Flutter', category: 'Cross-Platform' },
@@ -398,21 +398,21 @@ export const services: ServiceItem[] = [
     faqs: [
       {
         question: 'Should we build cross-platform with Flutter or native apps?',
-        answer: 'For over 90% of business applications, modern cross-platform frameworks like Flutter provide 60fps native performance at nearly half the development and maintenance cost.',
+        answer: 'For more than 90% of business applications, Flutter delivers 60 FPS at nearly half the development and maintenance cost of two native apps.',
       },
       {
         question: 'Do you handle App Store and Google Play submissions?',
-        answer: 'Yes. We manage certificates, provisioning profiles, store listing assets, compliance requirements, and the review submission process.',
+        answer: 'Yes. Certificates, provisioning profiles, listing assets, compliance requirements, and review submissions are part of the work.',
       },
       {
         question: 'Can the app function without an active internet connection?',
-        answer: 'Yes. We build offline-first mobile apps using local encrypted caches that automatically synchronize whenever network connectivity resumes.',
+        answer: 'Yes. Data is cached locally in encrypted storage and syncs when the connection returns.',
       },
     ],
     cta: {
-      headline: 'Launch a Mobile Experience Your Users Will Love',
-      subheadline: 'Bring your mobile app concept to life on iOS and Android.',
-      buttonText: 'Discuss Mobile App',
+      headline: 'Get Your App Into Daily Use',
+      subheadline: 'iOS, Android, and the release process that follows.',
+      buttonText: 'Discuss a Mobile App',
       buttonLink: '/contact',
     },
   },
@@ -421,19 +421,19 @@ export const services: ServiceItem[] = [
     id: 'game-dev',
     slug: 'game-development',
     title: 'Game Development',
-    shortDescription: 'Immersive 2D and 3D games, gamified interactive experiences, and cross-platform game engineering built with Unity and Unreal Engine.',
+    shortDescription: '2D and 3D games in Unity and Unreal, from playable prototype to store release.',
     groupId: 'mobile-games',
     groupName: 'Mobile & Games',
     iconName: 'Gamepad2',
     overview: {
-      headline: 'Captivating Game Worlds and Gamified Brand Experiences',
+      headline: 'Games and Playable Brand Work',
       description:
-        '// TODO(content): [PLACEHOLDER] We blend imaginative storytelling with high-framerate real-time game engineering. Whether you are creating a standalone mobile game, a gamified marketing experience, or a WebGL browser showcase, our team delivers captivating interactive gameplay.',
+        'We build games for phones, desktop, and the browser. Work starts with a prototype that proves the loop is fun, then moves into art, engineering, and release. Multiplayer and live operations are ready before launch, not bolted on after.',
       benefits: [
-        'Optimized real-time 2D and 3D physics and rendering pipelines',
-        'Cross-platform deployment to PC, Mobile (iOS/Android), and WebGL',
-        'Engaging game economies, progression loops, and reward mechanics',
-        'Integrated telemetry, analytics, and multiplayer networking',
+        'Rendering and physics tuned for the target device',
+        'Builds for PC, iOS, Android, and WebGL',
+        'Progression, currency, and reward systems that hold up',
+        'Telemetry, analytics, and multiplayer networking',
       ],
     },
     whatWeDeliver: {
@@ -441,28 +441,28 @@ export const services: ServiceItem[] = [
       items: [
         {
           title: 'Mobile & Casual 2D/3D Games',
-          description: 'Polished gameplay loops, intuitive touch controls, and fluid particle animations.',
+          description: 'Gameplay loops, touch controls, and particle work that feel finished.',
         },
         {
           title: 'Gamified Corporate & Marketing Experiences',
-          description: 'Interactive brand games that skyrocket audience engagement and retention.',
+          description: 'Brand games people choose to play more than once.',
         },
         {
           title: 'WebGL Browser Games',
-          description: 'Zero-install 3D/2D games playable instantly across modern mobile and desktop browsers.',
+          description: 'Games that load in a browser with no install step.',
         },
         {
           title: 'Multiplayer Networking & Backend Services',
-          description: 'Matchmaking, leaderboards, cloud saves, and in-game economy backends.',
+          description: 'Matchmaking, leaderboards, cloud saves, and economy backends.',
         },
       ],
     },
     process: [
-      { step: 1, title: 'Game Design Document (GDD)', description: 'Mechanics, narrative structure, art style, and target player profiles.' },
-      { step: 2, title: 'Rapid Prototyping & Greyboxing', description: 'Validating fun factor and mechanics before asset production.' },
-      { step: 3, title: 'Asset Creation & Sound Design', description: '2D sprites, 3D low-poly models, shader creation, and audio scoring.' },
+      { step: 1, title: 'Game Design Document (GDD)', description: 'Mechanics, narrative, art direction, and player profiles.' },
+      { step: 2, title: 'Rapid Prototyping & Greyboxing', description: 'The loop gets tested before any art production starts.' },
+      { step: 3, title: 'Asset Creation & Sound Design', description: 'Sprites, low-poly models, shaders, and score.' },
       { step: 4, title: 'Game Engineering & Optimization', description: 'C# scripting, memory profiling, draw call batching, and device testing.' },
-      { step: 5, title: 'Publishing & LiveOps Setup', description: 'Store builds, monetization integration, and telemetry tracking.' },
+      { step: 5, title: 'Publishing & LiveOps Setup', description: 'Store builds, monetization, and telemetry.' },
     ],
     technologies: [
       { name: 'Unity', category: 'Game Engine' },
@@ -477,21 +477,21 @@ export const services: ServiceItem[] = [
     faqs: [
       {
         question: 'Can games be embedded directly into our marketing website?',
-        answer: 'Yes. Using lightweight WebGL and WebAssembly builds, we create zero-install interactive browser experiences that run directly on modern web pages.',
+        answer: 'Yes. A WebGL or WebAssembly build runs directly in the page with no install step.',
       },
       {
         question: 'What game engines do you specialize in?',
-        answer: 'We primarily build in Unity (C#) for mobile and 2D/3D cross-platform titles, and Unreal Engine for high-fidelity 3D environments.',
+        answer: 'Unity with C# for mobile and cross-platform 2D or 3D work. Unreal Engine for high-fidelity 3D environments.',
       },
       {
         question: 'Do you handle game monetization and in-app purchases?',
-        answer: 'Yes. We implement ethical, high-converting monetization models including rewarded ads, battle passes, and in-app currency stores.',
+        answer: 'Yes. Rewarded ads, battle passes, and in-app stores, designed so they do not punish players.',
       },
     ],
     cta: {
-      headline: 'Create an Unforgettable Interactive Game Experience',
-      subheadline: "From hyper-casual to gamified brand journeys, let's create something extraordinary.",
-      buttonText: 'Pitch Your Game Concept',
+      headline: 'Make Something People Play Twice',
+      subheadline: 'From first prototype to store release.',
+      buttonText: 'Pitch a Game Concept',
       buttonLink: '/contact',
     },
   },
@@ -503,19 +503,19 @@ export const services: ServiceItem[] = [
     id: 'biz-automation',
     slug: 'business-automation',
     title: 'Business Automation',
-    shortDescription: 'Eliminate repetitive manual labor with intelligent workflow automation, CRM synchronization, document processing, and custom bots.',
+    shortDescription: 'Workflow automation, document processing, and CRM sync that takes repetitive work out of the week.',
     groupId: 'automation-integration',
     groupName: 'Automation & Integration',
     iconName: 'Cpu',
     overview: {
-      headline: 'Streamline Operations and Eliminate Repetitive Manual Work',
+      headline: 'Remove the Repetitive Work',
       description:
-        '// TODO(content): [PLACEHOLDER] Transform tedious manual operational processes into automated, error-free digital pipelines. We connect your software tools, synchronize customer data across departments, and automate critical workflows so your team can focus on high-value strategy.',
+        'Manual processes become automated pipelines. We connect the tools your team already uses, move data between them, and flag anything that fails. The work left for people is the work that needs judgment.',
       benefits: [
-        'Up to 80% reduction in manual data entry and processing overhead',
-        'Zero-error data handoffs between marketing, sales, and fulfillment',
-        'Automated document generation, invoice creation, and PDF signing',
-        'Real-time Slack, Discord, and email operational notification alerts',
+        'Up to 80% less manual data entry and processing time',
+        'Clean data handoffs between marketing, sales, and fulfillment',
+        'Generated documents, invoices, and signed PDFs',
+        'Slack, Discord, and email alerts when a run needs attention',
       ],
     },
     whatWeDeliver: {
@@ -523,28 +523,28 @@ export const services: ServiceItem[] = [
       items: [
         {
           title: 'End-to-End Workflow Orchestration',
-          description: 'Automating cross-tool workflows across CRM, ERP, and communication hubs.',
+          description: 'Cross-tool workflows across CRM, ERP, and messaging.',
         },
         {
           title: 'Automated Document & Invoice Pipelines',
-          description: 'Auto-parsing receipts, generating contracts, and syncing with accounting systems.',
+          description: 'Receipts parsed, contracts generated, and accounting systems updated.',
         },
         {
           title: 'Custom Operational Bots & Scripts',
-          description: 'Python and Node.js microservices for scheduled data scraping, validation, and sync.',
+          description: 'Python and Node services for scheduled scraping, validation, and sync.',
         },
         {
           title: 'Lead Routing & Marketing Automation',
-          description: 'Instant routing of inbound leads with scoring and automatic scheduling.',
+          description: 'Inbound leads scored, routed, and booked without a spreadsheet.',
         },
       ],
     },
     process: [
-      { step: 1, title: 'Operational Process Mapping', description: 'Identifying repetitive bottlenecks, time costs, and tool overlaps.' },
-      { step: 2, title: 'Automation Architecture Blueprint', description: 'Mapping trigger events, failure recovery loops, and data payloads.' },
-      { step: 3, title: 'Pipeline Development & Testing', description: 'Connecting APIs, writing custom transforms, and testing edge cases.' },
-      { step: 4, title: 'Shadow Mode Validation', description: 'Running alongside human workflows to verify accuracy and error-handling.' },
-      { step: 5, title: 'Deployment & Monitoring', description: 'Live launch with automated incident logging and team documentation.' },
+      { step: 1, title: 'Operational Process Mapping', description: 'Where time goes, where tools overlap, and where errors start.' },
+      { step: 2, title: 'Automation Architecture Blueprint', description: 'Triggers, failure paths, and payload shapes mapped before the build.' },
+      { step: 3, title: 'Pipeline Development & Testing', description: 'APIs connected, data mapped, edge cases tested.' },
+      { step: 4, title: 'Shadow Mode Validation', description: 'The pipeline runs beside the human process until the output matches.' },
+      { step: 5, title: 'Deployment & Monitoring', description: 'Launch with incident logging and documentation for the team.' },
     ],
     technologies: [
       { name: 'Python', category: 'Language' },
@@ -559,21 +559,21 @@ export const services: ServiceItem[] = [
     faqs: [
       {
         question: 'What tools can you automate between?',
-        answer: 'Any software with an API or webhook support—including Salesforce, HubSpot, Stripe, QuickBooks, Google Workspace, Slack, Jira, and custom in-house databases.',
+        answer: 'Anything with an API or webhooks. Salesforce, HubSpot, Stripe, QuickBooks, Google Workspace, Slack, and in-house databases are common.',
       },
       {
         question: 'What happens if an automated pipeline encounters an error?',
-        answer: 'We build automated retry policies with exponential backoff and dead-letter alert queues, notifying your team immediately on Slack or email with actionable error context.',
+        answer: 'Retries with exponential backoff, then a dead-letter queue. Your team gets an alert with the payload and a clear next step.',
       },
       {
         question: 'Can self-hosted automation engines be deployed for data privacy?',
-        answer: 'Yes. We deploy self-hosted n8n and custom Python microservices in your private cloud to ensure sensitive company data never leaves your infrastructure.',
+        answer: 'Yes. n8n and Python services can run in your private cloud, so sensitive data never leaves your infrastructure.',
       },
     ],
     cta: {
-      headline: 'Put Your Repetitive Workflows on Autopilot',
-      subheadline: 'Save hundreds of team hours monthly with custom business automation.',
-      buttonText: 'Schedule Automation Audit',
+      headline: 'Take the Repeatable Work Off the Team',
+      subheadline: 'An audit shows where the hours go and what can be automated.',
+      buttonText: 'Book an Automation Audit',
       buttonLink: '/contact',
     },
   },
@@ -582,19 +582,19 @@ export const services: ServiceItem[] = [
     id: 'api-sys-integration',
     slug: 'api-system-integration',
     title: 'API & System Integration',
-    shortDescription: 'Connect disparate software ecosystems with resilient REST & GraphQL middleware, webhook pipelines, and secure enterprise ETL data bridges.',
+    shortDescription: 'REST and GraphQL middleware, webhook pipelines, and ETL bridges that connect systems never designed to talk.',
     groupId: 'automation-integration',
     groupName: 'Automation & Integration',
     iconName: 'Network',
     overview: {
-      headline: 'Unify Your Disparate Software into One Cohesive Ecosystem',
+      headline: 'Make Separate Systems Behave Like One',
       description:
-        '// TODO(content): [PLACEHOLDER] Break down data silos across your organization. We engineer robust middleware, webhook relays, and secure API gateways that allow disparate third-party SaaS tools, legacy mainframes, and modern web services to communicate reliably in real time.',
+        'Data sits in tools that do not share a common language. We build the middleware, webhook relays, and API gateways that close the gap. Messages arrive in order, failures retry, and the interface is documented.',
       benefits: [
-        'Unified single-pane-of-glass data availability across organizational tools',
-        'Sub-second webhook delivery with guaranteed at-least-once message delivery',
-        'Standardized RESTful and GraphQL schemas across fragmented databases',
-        'Air-tight authentication (OAuth2, JWT, mTLS) and rate limiting',
+        'One consistent view of data across tools',
+        'Sub-second webhook delivery with at-least-once guarantees',
+        'Shared REST and GraphQL schemas across systems',
+        'OAuth2, JWT, and mTLS with rate limiting',
       ],
     },
     whatWeDeliver: {
@@ -602,28 +602,28 @@ export const services: ServiceItem[] = [
       items: [
         {
           title: 'Custom API Gateway & Middleware',
-          description: 'High-throughput proxy layers handling authentication, caching, and rate limiting.',
+          description: 'A proxy layer for authentication, caching, and rate limits.',
         },
         {
           title: 'Webhook Ingestion & Event Bridges',
-          description: 'Resilient webhook handlers with Redis message queues and idempotent processing.',
+          description: 'Webhook handlers backed by Redis queues and idempotent processing.',
         },
         {
           title: 'Third-Party SaaS Connectors',
-          description: 'Custom adapters for ERPs, payment gateways, shipping providers, and CRMs.',
+          description: 'Adapters for ERPs, payment gateways, shipping providers, and CRMs.',
         },
         {
           title: 'Data Synchronization & ETL Pipelines',
-          description: 'Scheduled or real-time bi-directional database synchronization.',
+          description: 'Scheduled or real-time sync in both directions.',
         },
       ],
     },
     process: [
-      { step: 1, title: 'Interface & Protocol Audit', description: 'Analyzing endpoints, authentication protocols, rate limits, and schemas.' },
-      { step: 2, title: 'Data Schema Mapping', description: 'Drafting unified data dictionaries and message transformation rules.' },
-      { step: 3, title: 'Middleware Engineering', description: 'Building fault-tolerant message brokers with Redis/RabbitMQ.' },
-      { step: 4, title: 'Load Testing & Failure Simulation', description: 'Testing network timeouts, unexpected payload shapes, and high concurrency.' },
-      { step: 5, title: 'Production Cutover & Telemetry', description: 'Deploying with APM tracing, alerting dashboards, and runbook documentation.' },
+      { step: 1, title: 'Interface & Protocol Audit', description: 'Endpoints, auth, rate limits, and schema gaps reviewed.' },
+      { step: 2, title: 'Data Schema Mapping', description: 'A shared data dictionary and mapping rules.' },
+      { step: 3, title: 'Middleware Engineering', description: 'Message brokers in Redis or RabbitMQ, built to survive failure.' },
+      { step: 4, title: 'Load Testing & Failure Simulation', description: 'Timeouts, malformed payloads, and high concurrency tested.' },
+      { step: 5, title: 'Production Cutover & Telemetry', description: 'APM tracing, alert dashboards, and a runbook.' },
     ],
     technologies: [
       { name: 'Node.js', category: 'Runtime' },
@@ -638,20 +638,20 @@ export const services: ServiceItem[] = [
     faqs: [
       {
         question: 'How do you prevent data loss during third-party API outages?',
-        answer: 'We incorporate persistent message queues (e.g. Redis/RabbitMQ) and idempotency keys, guaranteeing that messages are safely retried until the downstream service recovers.',
+        answer: 'Messages land in a persistent queue and retry until the downstream service recovers. Idempotency keys keep duplicates out.',
       },
       {
         question: 'Can you connect modern cloud software to on-premise legacy servers?',
-        answer: 'Yes. We configure secure VPN tunnels, reverse proxies, and agent-based middleware that bridge on-premise infrastructure with cloud services without compromising firewall security.',
+        answer: 'Yes. VPN tunnels, reverse proxies, and agent-based middleware connect on-premise systems to cloud services without opening the firewall.',
       },
       {
         question: 'Do you supply documentation for integrated APIs?',
-        answer: 'Always. Every integration includes interactive Swagger/OpenAPI documentation, test fixtures, and architectural topology diagrams.',
+        answer: 'Every integration ships with OpenAPI documentation, test fixtures, and a topology diagram.',
       },
     ],
     cta: {
-      headline: 'Unify Your Systems with Fault-Tolerant Integrations',
-      subheadline: 'Eliminate data silos with custom middleware and enterprise API bridges.',
+      headline: 'Connect the Systems That Should Already Talk',
+      subheadline: 'Middleware that survives outages and bad payloads.',
       buttonText: 'Discuss System Integration',
       buttonLink: '/contact',
     },
@@ -664,19 +664,19 @@ export const services: ServiceItem[] = [
     id: 'graphics-design',
     slug: 'graphics-design',
     title: 'Graphics Design',
-    shortDescription: 'Memorable brand identities, digital design systems, marketing collateral, and UI/UX design assets that elevate brand credibility.',
+    shortDescription: 'Brand identities, design systems, and marketing assets that hold together across every channel.',
     groupId: 'creative',
     groupName: 'Creative',
     iconName: 'Palette',
     overview: {
-      headline: 'Distinctive Visual Identities and High-Conversion Design Systems',
+      headline: 'Design That Makes the Brand Recognizable',
       description:
-        '// TODO(content): [PLACEHOLDER] Great design turns casual browsers into brand advocates. Our creative team develops comprehensive brand identities, vector asset libraries, social media creative kits, and high-converting marketing materials crafted with precision.',
+        'Brand work starts with what the company actually is, then gets built into a system. That means a mark, type, color, and rules for using them. The assets work in print, on the web, and in a social feed.',
       benefits: [
-        'Distinctive, coherent brand identity guidelines and asset kits',
-        'Vector-perfect SVG assets optimized for lightning-fast web rendering',
-        'Consistent design language across print, digital, and social channels',
-        'Production-ready Figma design system tokens and modular UI components',
+        'Identity guidelines and assets a team can use',
+        'SVG assets sized for fast web rendering',
+        'One visual language across print, digital, and social',
+        'Figma tokens and components ready for production',
       ],
     },
     whatWeDeliver: {
@@ -684,28 +684,28 @@ export const services: ServiceItem[] = [
       items: [
         {
           title: 'Brand Identity & Logo Systems',
-          description: 'Logomarks, typography pairing, color palettes, and brand guidelines.',
+          description: 'Marks, type pairing, color, and written brand rules.',
         },
         {
           title: 'Digital Marketing & Social Collateral',
-          description: 'High-impact ad banners, social templates, pitch decks, and email graphics.',
+          description: 'Ad banners, social templates, pitch decks, and email graphics.',
         },
         {
           title: 'Iconography & Custom Illustrations',
-          description: 'Bespoke vector icon sets and editorial illustrations tailored to your brand voice.',
+          description: 'Vector icon sets and editorial illustration in the brand voice.',
         },
         {
           title: 'Print & Packaging Collateral',
-          description: 'Business stationery, event booth designs, merchandise, and product packaging.',
+          description: 'Stationery, event stands, merchandise, and packaging.',
         },
       ],
     },
     process: [
-      { step: 1, title: 'Creative Discovery & Moodboards', description: 'Understanding brand values, competitive landscape, and visual aesthetics.' },
-      { step: 2, title: 'Conceptual Sketching & Iteration', description: 'Exploring diverse logo and layout directions with client feedback loops.' },
-      { step: 3, title: 'Vector Refinement & Polish', description: 'Precision mathematical vector alignment, typography kerning, and color contrast testing.' },
-      { step: 4, title: 'Asset Toolkit Compilation', description: 'Exporting master files in all web and print formats (SVG, PNG, PDF, EPS).' },
-      { step: 5, title: 'Brand Style Guide Delivery', description: 'Comprehensive brand guidelines documenting proper usage and typography.' },
+      { step: 1, title: 'Creative Discovery & Moodboards', description: 'Brand values, competitors, and a visual direction.' },
+      { step: 2, title: 'Conceptual Sketching & Iteration', description: 'Logo and layout routes explored with your feedback.' },
+      { step: 3, title: 'Vector Refinement & Polish', description: 'Paths aligned, type kerned, contrast checked.' },
+      { step: 4, title: 'Asset Toolkit Compilation', description: 'Master files exported for web and print: SVG, PNG, PDF, EPS.' },
+      { step: 5, title: 'Brand Style Guide Delivery', description: 'A guide covering usage, spacing, and type.' },
     ],
     technologies: [
       { name: 'Figma', category: 'UI/UX' },
@@ -718,21 +718,21 @@ export const services: ServiceItem[] = [
     faqs: [
       {
         question: 'What formats do you provide when delivering logos and graphics?',
-        answer: 'We deliver full vector master files (.AI, .EPS, .SVG) as well as optimized raster exports (.PNG with transparency, .WEBP, .PDF) across all color variations (full color, monochrome, reverse dark).',
+        answer: 'Vector masters (.AI, .EPS, .SVG) plus PNG, WebP, and PDF exports. Every mark comes in full color, mono, and reverse.',
       },
       {
         question: 'Do we retain full commercial ownership of all designs created?',
-        answer: 'Yes. 100% of intellectual property, copyright, and master source files belong entirely to you upon project sign-off.',
+        answer: 'Yes. Copyright, intellectual property, and source files transfer to you on sign-off.',
       },
       {
         question: 'Can you create a design system that our development team can use in code?',
-        answer: 'Absolutely. We specialize in design-to-code pipelines, exporting Figma tokens directly to Tailwind CSS variables and modular component libraries.',
+        answer: 'Yes. Figma tokens can be exported to Tailwind variables and used in the component library, so design and code stay aligned.',
       },
     ],
     cta: {
-      headline: 'Elevate Your Brand with World-Class Visual Design',
-      subheadline: 'Stand out in crowded markets with memorable branding and digital assets.',
-      buttonText: 'Request Design Portfolio',
+      headline: 'Give the Brand a Clear Visual System',
+      subheadline: 'Identity, assets, and rules your team can apply without asking.',
+      buttonText: 'Request a Design Portfolio',
       buttonLink: '/contact',
     },
   },
@@ -741,19 +741,19 @@ export const services: ServiceItem[] = [
     id: 'video-editing',
     slug: 'video-editing',
     title: 'Video Editing',
-    shortDescription: 'High-impact video production, motion design, promotional trailers, and social video reels that captivate audiences and drive conversions.',
+    shortDescription: 'Product films, motion graphics, and social edits that explain the work and hold attention.',
     groupId: 'creative',
     groupName: 'Creative',
     iconName: 'Video',
     overview: {
-      headline: 'Dynamic Video Content and Motion Design That Captivates',
+      headline: 'Video That Explains, Not Just Decorates',
       description:
-        '// TODO(content): [PLACEHOLDER] Video is the most powerful storytelling medium on the web. We edit cinematic product commercials, software SaaS explainers, dynamic social reels, and corporate presentations that stop the scroll and communicate complex ideas effortlessly.',
+        'We edit product films, SaaS walkthroughs, and short social cuts. Pacing, color, and sound are treated as part of the argument. Each deliverable is cut for the platform it runs on.',
       benefits: [
-        'Cinematic pacing, color grading, and dynamic audio sound design',
-        'Multi-platform aspect ratios (16:9 widescreen, 9:16 vertical reels, 1:1 square)',
-        'High-energy 2D/3D motion graphics and UI screen recordings',
-        'Fast turnaround with collaborative frame-accurate review rounds',
+        'Pacing, color grading, and sound design handled together',
+        'Deliverables in 16:9, 9:16, and 1:1',
+        'Motion graphics and UI capture that read clearly',
+        'Review rounds with frame-accurate comments',
       ],
     },
     whatWeDeliver: {
@@ -761,28 +761,28 @@ export const services: ServiceItem[] = [
       items: [
         {
           title: 'SaaS Product Walkthroughs & Explainers',
-          description: 'Crisp screen capture editing with animated cursor callouts and motion graphics.',
+          description: 'Screen capture, cursor callouts, and motion graphics.',
         },
         {
           title: 'Short-Form Social Reels',
-          description: 'TikTok, Instagram Reels, and YouTube Shorts formatted for maximum viral watch time.',
+          description: 'TikTok, Instagram Reels, and YouTube Shorts cut to hold attention.',
         },
         {
           title: 'Commercial & Promotional Videos',
-          description: 'Cinematic brand teasers, event recaps, and video ads with licensed music.',
+          description: 'Brand films, event recaps, and ads with licensed music.',
         },
         {
           title: 'Motion Graphics & Title Animations',
-          description: 'Logo reveals, kinetic typography, lower thirds, and animated infographic overlays.',
+          description: 'Logo reveals, kinetic type, lower thirds, and animated data.',
         },
       ],
     },
     process: [
-      { step: 1, title: 'Creative Brief & Storyboard', description: 'Scripting, audio pacing, visual style references, and storyboard mapping.' },
-      { step: 2, title: 'Assembly & Rough Cut', description: 'Footage ingestion, audio sync, narrative pacing, and basic transitions.' },
-      { step: 3, title: 'Motion Graphics & Title Styling', description: 'Animated callouts, kinetic typography, and visual effect overlays.' },
-      { step: 4, title: 'Color Grading & Audio Mastering', description: 'Professional color calibration, noise reduction, sound effects, and loudness mastering.' },
-      { step: 5, title: 'Multi-Format Delivery', description: 'High-bitrate 4K master files and compressed, web-optimized MP4/WEBP exports.' },
+      { step: 1, title: 'Creative Brief & Storyboard', description: 'Script, pacing, references, and a shot plan.' },
+      { step: 2, title: 'Assembly & Rough Cut', description: 'Footage in, audio synced, story shaped.' },
+      { step: 3, title: 'Motion Graphics & Title Styling', description: 'Callouts, kinetic type, and overlays.' },
+      { step: 4, title: 'Color Grading & Audio Mastering', description: 'Color matched, noise removed, loudness set.' },
+      { step: 5, title: 'Multi-Format Delivery', description: '4K masters plus compressed MP4 and WebP files for the web.' },
     ],
     technologies: [
       { name: 'Adobe Premiere Pro', category: 'NLE Editing' },
@@ -794,22 +794,22 @@ export const services: ServiceItem[] = [
     ],
     faqs: [
       {
-        question: "Can you create videos if we don't have existing raw footage?",
-        answer: 'Yes. We create 100% motion-graphic SaaS explainers using screen captures, animated vector UI illustrations, licensed stock footage, and kinetic typography.',
+        question: 'Can you create videos if we do not have existing raw footage?',
+        answer: 'Yes. Explainers can be built from screen capture, animated UI, licensed stock, and kinetic type, with no shoot required.',
       },
       {
         question: 'What is the typical turnaround time for a promo video?',
-        answer: 'Standard project turnarounds range from 5 to 10 business days, including two rounds of collaborative revision.',
+        answer: 'Most promos take 5 to 10 business days, including two rounds of revision.',
       },
       {
         question: 'Do you supply licensed background music and sound effects?',
-        answer: 'Yes. All delivered video assets include full commercial licensing for audio tracks, sound design elements, and voiceovers.',
+        answer: 'Yes. Music, sound effects, and voiceover come with commercial licensing for the delivered edit.',
       },
     ],
     cta: {
-      headline: 'Tell Your Story with High-Impact Video & Motion',
-      subheadline: 'Boost conversions and engagement with professional video editing.',
-      buttonText: 'Discuss Video Project',
+      headline: 'Tell the Story in Moving Pictures',
+      subheadline: 'Product films and social cuts with a point of view.',
+      buttonText: 'Discuss a Video Project',
       buttonLink: '/contact',
     },
   },

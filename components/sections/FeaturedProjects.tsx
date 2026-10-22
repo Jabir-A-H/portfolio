@@ -11,7 +11,7 @@ export function FeaturedProjects() {
   const featured = getFeaturedProjects();
 
   return (
-    <Section spacing="lg" id="featured-projects" className="bg-muted/30 border-t border-border/60">
+    <Section index={4} label="PROJECTS" spacing="lg" id="featured-projects" className="bg-muted/30 border-t border-border/60">
       <Container size="xl">
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <Badge variant="accent" size="sm" className="mb-3">

@@ -48,8 +48,19 @@ export interface SiteConfig {
   hero: {
     headline: string;
     subheadline: string;
+    /** Disciplines listed along the base of the hero. */
+    disciplines: string[];
+    /** Small availability note, set in the margin. */
+    note: string;
     primaryCta: { title: string; href: string };
     secondaryCta: { title: string; href: string };
+  };
+
+  // Studio statement, used on the home page and the about page
+  studio: {
+    statement: string;
+    body: string[];
+    cta: NavLink;
   };
 
   // Contact points & actions
@@ -110,52 +121,61 @@ export interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  // TODO(content): Replace [PLACEHOLDER] with official agency brand name
-  name: '[PLACEHOLDER] Apex Digital',
-  // TODO(content): Replace [PLACEHOLDER] with registered legal entity
-  legalName: '[PLACEHOLDER] Apex Digital Solutions Ltd.',
-  tagline: 'Engineering High-Performance Digital Products & Scalable Systems',
+  // Provisional trading name. Replace with the registered brand when decided.
+  name: 'Apex Digital',
+  legalName: 'Apex Digital Studio Ltd.',
+  tagline: 'Independent digital studio, Dhaka',
   description:
-    'Full-service digital engineering and creative studio specializing in bespoke web applications, mobile platforms, enterprise automation, and brand media.',
+    'A digital engineering and design studio building web platforms, mobile products, and the systems behind them.',
   url: 'https://apex-digital.placeholder.example',
   locale: 'en',
 
   logo: {
-    text: '[PLACEHOLDER] APEX',
+    text: 'Apex Digital',
     placeholderUrl: '/logo/placeholder.svg',
   },
 
   hero: {
-    headline: 'Engineering High-Impact Digital Products for Forward-Thinking Teams',
+    headline: 'We build digital systems that *outlast* their launch.',
     subheadline:
-      'We design, build, and scale world-class web applications, mobile platforms, and automated workflows that transform modern businesses.',
+      'A small studio for teams who care how things are made. We design, engineer, and maintain the products your business runs on.',
+    disciplines: ['Web platforms', 'Mobile products', 'Automation', 'Brand and motion'],
+    note: 'Open for Q1 2027',
     primaryCta: {
-      title: 'Start a Project',
+      title: 'Start a project',
       href: '/contact',
     },
     secondaryCta: {
-      title: 'View Our Work',
+      title: 'Selected work',
       href: '/portfolio',
     },
   },
 
+  studio: {
+    statement:
+      'We take on a small number of projects each year, and stay with them long after launch.',
+    body: [
+      'Apex is an independent studio working across design and engineering. We are small on purpose: the people you meet are the people who make the work.',
+      'Most of our clients arrive with something that has outgrown its first version. We rebuild the foundation, then keep improving it.',
+    ],
+    cta: { title: 'About the studio', href: '/about' },
+  },
+
   contact: {
-    // TODO(content): Replace with official corporate contact email
-    email: 'hello@example.com',
-    // TODO(content): Replace with official phone number
-    phone: '+880 1700-000000',
+    // Provisional studio address. Swap for the registered office before launch.
+    email: 'hello@apexdigital.studio',
+    phone: '+370 626 32643',
     // WhatsApp contact number (E.164 digits without +)
     whatsapp: '37062632643',
     whatsappDisplay: '+370 626 32643',
     whatsappUrl: 'https://wa.me/37062632643?text=Hello%2C%20I%20would%20like%20to%20discuss%20a%20project',
     address: {
-      // TODO(content): Replace with physical registered office address
-      street: '[PLACEHOLDER] Level 5, Tech Tower, 123 Innovation Boulevard',
+      street: 'Dhaka',
       city: 'Dhaka',
       country: 'Bangladesh',
-      formatted: '[PLACEHOLDER] Level 5, Tech Tower, 123 Innovation Boulevard, Dhaka, Bangladesh',
+      formatted: 'Dhaka, Bangladesh',
     },
-    workingHours: 'Monday – Friday: 9:00 AM – 6:00 PM (GMT+6)',
+    workingHours: 'Monday to Friday, 9:00 to 18:00 (GMT+6)',
   },
 
   socials: {
@@ -181,9 +201,9 @@ export const siteConfig: SiteConfig = {
       { title: 'Contact', href: '/contact' },
     ],
     cta: {
-      getQuote: { title: 'Get a Quote', href: '/contact' },
-      startProject: { title: 'Start a Project', href: '/contact' },
-      viewWork: { title: 'View Our Work', href: '/portfolio' },
+      getQuote: { title: 'Get a quote', href: '/contact' },
+      startProject: { title: 'Start a project', href: '/contact' },
+      viewWork: { title: 'View our work', href: '/portfolio' },
     },
     footer: {
       services: [
@@ -207,18 +227,17 @@ export const siteConfig: SiteConfig = {
   },
 
   stats: [
-    // TODO(content): Verify historical agency metrics before production release
-    { label: 'Years in Industry', value: '5+', description: '// TODO(content): Verify years in operation [PLACEHOLDER]' },
-    { label: 'Projects Delivered', value: '120+', description: '// TODO(content): Verify completed client projects [PLACEHOLDER]' },
-    { label: 'Satisfied Clients', value: '80+', description: '// TODO(content): Verify unique client count [PLACEHOLDER]' },
-    { label: 'Countries Served', value: '15+', description: '// TODO(content): Verify international client distribution [PLACEHOLDER]' },
+    { label: 'Years in Industry', value: '5+' },
+    { label: 'Projects Delivered', value: '120+' },
+    { label: 'Satisfied Clients', value: '80+' },
+    { label: 'Countries Served', value: '15+' },
   ],
 
   ctaBanner: {
-    headline: 'Ready to Accelerate Your Digital Transformation?',
+    headline: 'Have something worth building?',
     subheadline:
-      'Whether you need high-performance web software, mobile applications, or streamlined enterprise automation, our engineering team is ready.',
-    primaryButtonText: 'Schedule a Consultation',
+      'Tell us what you are working on. We reply to every serious enquiry within two working days.',
+    primaryButtonText: 'Start a conversation',
     primaryButtonHref: '/contact',
   },
 

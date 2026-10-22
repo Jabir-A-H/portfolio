@@ -10,7 +10,7 @@ export function CTABanner() {
   const whatsappUrl = `https://wa.me/${whatsappCleanNumber}`;
 
   return (
-    <Section spacing="none" className="my-12 sm:my-16 lg:my-20">
+    <Section index={8} label="CONTACT" spacing="none" className="my-12 sm:my-16 lg:my-20">
       <Container size="xl">
         <div className="relative overflow-hidden rounded-2xl bg-primary text-primary-foreground p-8 sm:p-12 lg:p-16 shadow-xl text-center flex flex-col items-center">
           {/* Subtle gradient overlay */}

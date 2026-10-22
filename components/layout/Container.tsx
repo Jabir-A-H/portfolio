@@ -6,10 +6,10 @@ export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const sizeClasses: Record<NonNullable<ContainerProps['size']>, string> = {
-  sm: 'max-w-3xl',
-  md: 'max-w-5xl',
-  lg: 'max-w-6xl',
-  xl: 'max-w-7xl',
+  sm: 'max-w-[42rem]',
+  md: 'max-w-[56rem]',
+  lg: 'max-w-[72rem]',
+  xl: 'max-w-screen-2xl',
   full: 'max-w-full',
 };
 
@@ -22,7 +22,7 @@ export function Container({
 }: ContainerProps) {
   return (
     <Component
-      className={`w-full mx-auto px-gutter ${sizeClasses[size]} ${className}`}
+      className={`mx-auto w-full px-gutter ${sizeClasses[size]} ${className}`}
       {...props}
     >
       {children}

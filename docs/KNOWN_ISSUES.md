@@ -9,9 +9,14 @@
 | ID | Severity | Component | Summary | Workaround / Status |
 |---|---|---|---|---|
 | `KI-001` | Low | Contact Form | `NEXT_PUBLIC_FORM_ENDPOINT` is unconfigured locally | Form operates in simulated preview mode with instant feedback. Set in `.env.local` for live submissions. |
-| `KI-002` | Medium | Typography | Legacy headings across all pages still use `font-extrabold`/`font-black` (800/900). Cormorant Garamond caps at 600, so these render at 600 with `font-synthesis: none` — visually fine, but the intent is unclear | Migrate to `font-display text-display-*` during the Phase 1.5 layout sweep (see `docs/ROADMAP.md`). |
-| `KI-003` | Medium | Geometry | `rounded-xl`, `rounded-2xl`, `rounded-full`, and blurred `shadow-sm/md/lg/xl` still ship in `ui/Card.tsx`, `ui/Badge.tsx`, `ui/Button.tsx`, `sections/Hero.tsx` and page templates — leftover from the pre-pivot SaaS look | Pending Phase 1.5 "Geometry conformance sweep". New surfaces must not introduce these. |
-| `KI-004` | Low | Hero / Layout | `Hero.tsx` was centered with a blurred accent aura, contradicting the "Bold Break" offset-axis rule | **Resolved**: Hero refactored to offset-axis layout with staggered ScrollReveal; aura removed. |
+| `KI-002` | Resolved | Typography | All headings migrated to `font-display text-display-*` via Phase 1.5 geometry sweep (see `docs/ROADMAP.md`). |
+| `KI-003` | Resolved | Geometry | All components use zero radius, zero shadows, and hairline rules per ADR-007. |
+| `KI-004` | Resolved | Hero / Layout | `Hero.tsx` was centered with a blurred accent aura, contradicting the "Bold Break" offset-axis rule | Rebuilt as an offset editorial spread with no aura; see ADR-007. |
+| `KI-005` | High | Imagery | No project covers, founder portraits, or studio photography exist; the site is intentionally typographic until they do | Add assets to `public/images/` and wire them into the work index and team page. Do not reintroduce fake gradient thumbnails. |
+| `KI-006` | Medium | Brand & Contact | Trading name ("Apex Digital"), legal entity, email (`hello@apexdigital.studio`), phone, and address are provisional | Replace in [`content/site.ts`](file:///d:/WebDev/portfolio/content/site.ts) before launch; the brand gate only forbids hardcoding them in components. |
+| `KI-007` | Low | Dead Files | `TrustBar`, `StatsStrip`, `TechStackStrip`, `Testimonials`, `ProcessPreview`, `ServicesOverview`, `FeaturedProjects`, `CTABanner` are no longer imported but remain on disk | Delete in a normal editor session; the agent sandbox denied file deletion. |
+| `KI-008` | Medium | Test Gate | `tests/e2e/viewport.test.ts` cannot run because `@playwright/test` is not installed; `tsconfig` excludes `tests` | Install Playwright and re-add a `test:viewport` script, or rely on the manual screenshot review. |
+| `KI-009` | Medium | Content Claims | Agency stats (5+, 120+, 80+, 15+) and project metrics are illustrative and unverified | Verify or remove before launch. Case-study metrics are shown on the home page and portfolio index. |
 
 ---
 
@@ -24,3 +29,4 @@
 | `RES-003` | 2026-10-13 | WhatsApp Contact | Old placeholder +880 phone number across footers and contact links | Updated [`content/site.ts`](file:///d:/WebDev/portfolio/content/site.ts) with active WhatsApp contact `+370 626 32643` (`37062632643`). |
 | `RES-004` | 2026-10-13 | Anti-FOUC | Dark mode flicker on initial page load before hydration | Added inline synchronous theme script in `<head>` inspecting `localStorage` and `prefers-color-scheme`. |
 | `RES-005` | 2026-10-13 | Dynamic Routes | Static export failing when query parameters were evaluated at build time | Declared `export const dynamicParams = false;` across all dynamic routes with `generateStaticParams()`. |
+| `RES-006` | 2026-10-22 | Home / Interior Pages | The site still read as an AI-generated agency template: nine stacked sections, centered badge headers, card grids, icon tiles, fake thumbnails, visible placeholder copy | Recomposed as an editorial document under ADR-007: five home movements, work index rows, flat UI primitives, shared PageHeader/ContactBlock, cleaned copy. All 66 E2E assertions, route verification, brand scan, typecheck, lint, and build pass. |

@@ -18,9 +18,9 @@ export const processSteps: ProcessStep[] = [
   {
     stepNumber: 1,
     title: 'Discovery & Strategic Architecture',
-    summary: '// TODO(content): [PLACEHOLDER] Immersive workshops defining project scope, user journeys, and technical feasibility.',
+    summary: 'Workshops that define the scope, the user journeys, and what the build has to prove.',
     detailedDescription:
-      '// TODO(content): [PLACEHOLDER] We begin every project by deeply understanding your business model, target audiences, and technical constraints. Through collaborative scoping sessions, we crystallize exact success criteria and build a concrete roadmap.',
+      'Every project starts with the business model, the audience, and the constraints already in place. Scoping sessions turn that into success criteria you can test against, plus a roadmap with dates.',
     deliverables: [
       'Strategic Project Brief',
       'Technical Feasibility Analysis',
@@ -33,9 +33,9 @@ export const processSteps: ProcessStep[] = [
   {
     stepNumber: 2,
     title: 'UX/UI Design & System Architecture',
-    summary: '// TODO(content): [PLACEHOLDER] Crafting accessible design tokens, wireframes, and interactive Figma prototypes.',
+    summary: 'Wireframes, design tokens, and a Figma prototype that shows the real flow.',
     detailedDescription:
-      '// TODO(content): [PLACEHOLDER] Our design and engineering leads collaborate to build modular design systems and schema contracts. We create interactive prototypes that simulate exact user flows before writing production code.',
+      'Design and engineering work together on the component system and the data contracts. The prototype clicks through the same paths the product will take, so decisions happen before code.',
     deliverables: [
       'Interactive Figma Prototypes',
       'Design Token Library (Light/Dark)',
@@ -48,9 +48,9 @@ export const processSteps: ProcessStep[] = [
   {
     stepNumber: 3,
     title: 'Agile Engineering & Sprint Iterations',
-    summary: '// TODO(content): [PLACEHOLDER] Sprint-based implementation with weekly demos and automated CI/CD builds.',
+    summary: 'Two-week sprints with a working demo at the end of each one.',
     detailedDescription:
-      '// TODO(content): [PLACEHOLDER] We build in rapid, two-week Agile sprints with clean TypeScript code, test-driven methodologies, and continuous deployment to preview environments. You get full visibility with live weekly demonstrations.',
+      'Build work runs in two-week sprints: typed code, tests first where they help, and a deploy to a preview URL. You see the product every week and can redirect before the next sprint starts.',
     deliverables: [
       'Modular Production Codebase',
       'Weekly Staging Builds',
@@ -63,9 +63,9 @@ export const processSteps: ProcessStep[] = [
   {
     stepNumber: 4,
     title: 'Quality Engineering & Security Audits',
-    summary: '// TODO(content): [PLACEHOLDER] End-to-end testing, responsive audits, Lighthouse 90+ checks, and security scans.',
+    summary: 'Unit tests, responsive checks, Lighthouse scores, and a security scan before release.',
     detailedDescription:
-      '// TODO(content): [PLACEHOLDER] Before any release, we run rigorous quality assurance covering unit tests, responsive testing from 360px to 1440px viewports, WCAG accessibility validation, and static security vulnerability scans.',
+      'Nothing ships without a pass through the test suite, viewports from 360px to 1440px, WCAG checks, and a static security scan. Problems get fixed in the sprint, not in a list after launch.',
     deliverables: [
       'Automated Test Suite Pass (Tiers 1-4)',
       'Cross-Device Verification Report',
@@ -78,9 +78,9 @@ export const processSteps: ProcessStep[] = [
   {
     stepNumber: 5,
     title: 'Production Deployment & Launch Handover',
-    summary: '// TODO(content): [PLACEHOLDER] Zero-downtime static edge deployment, DNS cutover, and comprehensive training.',
+    summary: 'Deployment to the edge, DNS cutover, and a handover your team can follow.',
     detailedDescription:
-      '// TODO(content): [PLACEHOLDER] We orchestrate seamless production deployment configured for edge CDN performance, dynamic sitemaps, robots.txt, and DNS verification. We provide clear documentation and team onboarding.',
+      'Production goes out with CDN caching, sitemaps, robots rules, and DNS verified. Handover includes documentation and a walkthrough so your team can run the release without us.',
     deliverables: [
       'Live Production Release',
       'CDN & DNS Configuration',
@@ -93,9 +93,9 @@ export const processSteps: ProcessStep[] = [
   {
     stepNumber: 6,
     title: 'Proactive Maintenance & SLA Support',
-    summary: '// TODO(content): [PLACEHOLDER] Continuous uptime monitoring, dependency patching, and performance tuning.',
+    summary: 'Uptime monitoring, dependency patches, and tuning after launch.',
     detailedDescription:
-      '// TODO(content): [PLACEHOLDER] Post-launch, our reliability engineers monitor uptime, application performance, and security patches with guaranteed SLA response times to keep your platform running at peak efficiency.',
+      'After launch, we monitor uptime and error rates, patch dependencies, and keep an eye on performance. Response times are written into the agreement.',
     deliverables: [
       '24/7 Uptime & Error Alerting',
       'Bi-Weekly Security Patching',

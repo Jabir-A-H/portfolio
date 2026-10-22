@@ -111,7 +111,7 @@ export const tier1Tests = [
 
   {
     id: 'T1.6_home_navbar_structure',
-    description: 'Home page renders Navbar with brand placeholder, navigation links, and "Get a Quote" CTA',
+    description: 'Home page renders Navbar with studio wordmark, navigation links, and "Start a project" action',
     run: (baseDir = OUT_DIR) => {
       const html = loadRouteContent('/', baseDir);
       assert(
@@ -119,8 +119,8 @@ export const tier1Tests = [
         'Home page missing <header> or <nav> element'
       );
       assert(
-        html.toLowerCase().includes('quote') || html.toLowerCase().includes('get a quote'),
-        'Navbar missing "Get a Quote" action text'
+        html.toLowerCase().includes('start a project'),
+        'Navbar missing "Start a project" action text'
       );
       // Check essential navigation links
       const links = extractLinks(html);

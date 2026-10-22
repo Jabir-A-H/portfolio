@@ -6,18 +6,22 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 }
 
 const variantClasses: Record<NonNullable<BadgeProps['variant']>, string> = {
-  default: 'bg-primary/10 text-primary border border-primary/20',
-  accent: 'bg-accent/10 text-accent border border-accent/20',
-  secondary: 'bg-muted text-muted-foreground border border-border',
-  outline: 'bg-transparent text-foreground border border-border',
-  success: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20',
+  default: 'text-muted-foreground',
+  accent: "text-accent before:h-1 before:w-1 before:shrink-0 before:bg-accent before:content-['']",
+  secondary: 'text-muted-foreground',
+  outline: 'text-muted-foreground',
+  success: 'text-emerald-700 dark:text-emerald-400',
 };
 
 const sizeClasses: Record<NonNullable<BadgeProps['size']>, string> = {
-  sm: 'px-2 py-0.5 text-xs',
-  md: 'px-2.5 py-1 text-xs',
+  sm: 'text-[10px]',
+  md: 'text-[11px]',
 };
 
+/**
+ * A label, not a pill. Badges are typographic: a small vermilion square and a
+ * line of mono capitals. No fill, no border, no radius.
+ */
 export function Badge({
   variant = 'default',
   size = 'sm',
@@ -27,7 +31,7 @@ export function Badge({
 }: BadgeProps) {
   return (
     <span
-      className={`inline-flex items-center font-medium rounded-full transition-colors whitespace-nowrap ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
+      className={`inline-flex items-center gap-2 whitespace-nowrap font-mono uppercase leading-none tracking-label ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
       {...props}
     >
       {children}

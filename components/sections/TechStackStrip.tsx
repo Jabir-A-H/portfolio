@@ -25,7 +25,7 @@ const technologies: TechItem[] = [
 
 export function TechStackStrip() {
   return (
-    <Section spacing="md" id="tech-stack" className="bg-muted/20 border-t border-border/60">
+    <Section index={7} label="STACK" spacing="md" id="tech-stack" className="bg-muted/20 border-t border-border/60">
       <Container size="xl">
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
           <Badge variant="accent" size="sm" className="mb-2">

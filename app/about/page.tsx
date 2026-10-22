@@ -1,261 +1,217 @@
 import type { Metadata } from 'next';
-import {
-  Sparkles,
-  Target,
-  Compass,
-  CheckCircle2,
-  ArrowRight,
-  ShieldCheck,
-  Zap,
-  Users,
-} from 'lucide-react';
+import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
 import { siteConfig } from '@/content/site';
 import { Container } from '@/components/layout/Container';
 import { Section } from '@/components/layout/Section';
-import { Badge } from '@/components/ui/Badge';
-import { Button } from '@/components/ui/Button';
-import { Card } from '@/components/ui/Card';
+import { PageHeader } from '@/components/layout/PageHeader';
+import { ContactBlock } from '@/components/sections/ContactBlock';
 
 export const metadata: Metadata = {
-  title: `About Us | Our Story, Mission & Values | ${siteConfig.name}`,
-  description: `Discover the mission, engineering philosophy, and core values driving ${siteConfig.name} across global digital engineering.`,
+  title: `About | ${siteConfig.name}`,
+  description: `The studio, the people, and the way ${siteConfig.name} works.`,
   openGraph: {
-    title: `About Us | Our Story, Mission & Values | ${siteConfig.name}`,
-    description: `Discover the mission, engineering philosophy, and core values driving ${siteConfig.name} across global digital engineering.`,
+    title: `About | ${siteConfig.name}`,
+    description: `The studio, the people, and the way ${siteConfig.name} works.`,
     url: `${siteConfig.url}/about`,
     type: 'website',
   },
 };
 
+const commitments = [
+  {
+    title: 'Static first',
+    detail:
+      'Pages are generated ahead of time and served from the edge. Fewer moving parts, nothing to patch at 2am.',
+  },
+  {
+    title: 'No lock-in',
+    detail:
+      'One content model, one design system, plain TypeScript. The code and the accounts stay yours.',
+  },
+  {
+    title: 'Measured outcomes',
+    detail:
+      'Every engagement starts with a number that matters and ends with evidence of whether we moved it.',
+  },
+];
+
+const values = [
+  {
+    title: 'Engineering rigor',
+    detail:
+      'Types, tests, and documentation are part of the work, not an afterthought. We build things that can be read six months later.',
+  },
+  {
+    title: 'Direct talk',
+    detail:
+      'You hear about a slip the day we know about it. No status theatre, no invented certainty.',
+  },
+  {
+    title: 'Care for the surface',
+    detail:
+      'Performance and usability are the same problem. A fast page that is confusing is still a bad page.',
+  },
+  {
+    title: 'Longevity',
+    detail:
+      'We would rather ship a smaller system that survives than a large one that has to be replaced next year.',
+  },
+];
+
 export default function AboutPage() {
-  const coreValues = [
-    {
-      title: 'Engineering Rigor',
-      description:
-        'We reject fragile shortcuts. Every architecture is built with strict type safety, defensive programming, automated testing, and comprehensive documentation.',
-      icon: <ShieldCheck className="w-5 h-5 text-accent" />,
-    },
-    {
-      title: 'Radical Transparency',
-      description:
-        'Direct access to senior engineers, unvarnished project health reports, and zero hidden technical debt. We partner as trusted technical co-pilots.',
-      icon: <Zap className="w-5 h-5 text-accent" />,
-    },
-    {
-      title: 'Human-Centric Craft',
-      description:
-        'Cutting-edge performance is useless without intuitive usability. We blend aesthetic refinement with micro-interactions that delight end users.',
-      icon: <Users className="w-5 h-5 text-accent" />,
-    },
-    {
-      title: 'Velocity with Longevity',
-      description:
-        'We ship production milestones with rapid agility while guaranteeing that our codebases remain maintainable, modular, and extensible for years to come.',
-      icon: <Compass className="w-5 h-5 text-accent" />,
-    },
-  ];
-
   return (
-    <div className="w-full flex flex-col">
-      {/* Hero Header */}
-      <Section spacing="md" className="border-b border-border bg-gradient-to-b from-surface via-background to-background">
+    <div className="flex w-full flex-col">
+      <PageHeader
+        label="Studio"
+        title="A studio for the long run."
+        lede={siteConfig.studio.statement}
+        meta="Dhaka, Bangladesh"
+      />
+
+      <Section spacing="none" className="border-b border-border py-14 sm:py-20">
         <Container size="xl">
-          <div className="max-w-3xl">
-            <Badge variant="accent" size="md" className="mb-4">
-              <Sparkles className="w-3.5 h-3.5 mr-1" />
-              <span>About Us</span>
-            </Badge>
-
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-foreground leading-tight">
-              Engineering High-Impact Systems with Global Perspective
-            </h1>
-
-            <p className="mt-4 text-base sm:text-lg text-muted-foreground leading-relaxed">
-              {siteConfig.name} is a digital engineering and creative technology agency. We partner with ambitious organizations worldwide to conceptualize, design, and scale resilient software architectures.
-            </p>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Our Story / Who We Are */}
-      <Section spacing="lg" className="border-b border-border bg-background">
-        <Container size="xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            <div>
-              <div className="flex items-center gap-2 mb-3">
-                <Badge variant="secondary" size="sm">Our Story</Badge>
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
-                Who We Are & What We Stand For
-              </h2>
-              <div className="mt-6 space-y-4 text-base text-muted-foreground leading-relaxed">
+          <div className="grid grid-cols-12 gap-x-6 gap-y-12">
+            <div className="col-span-12 lg:col-span-7">
+              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+                The story
+              </p>
+              <div className="mt-6 space-y-5 text-[16px] leading-[1.75] text-foreground/85">
                 <p>
-                  {'// TODO(content): [PLACEHOLDER] Founded by an agile leadership team of seasoned systems engineers, product strategists, and creative designers, '}
-                  {siteConfig.name}
-                  {' bridges global vision with elite technical execution.'}
+                  Apex is an independent digital studio working across design and engineering. We
+                  are small on purpose: the people you meet are the people who make the work.
                 </p>
                 <p>
-                  We recognized that many organizations struggle between slow enterprise consultancies and fragmented freelance development. We established our delivery hub in Dhaka, Bangladesh with an international reach to deliver world-class velocity, enterprise-grade reliability, and cost-effective scalability.
+                  The studio started in Dhaka with three founders and a shared frustration. Large
+                  consultancies moved too slowly, and freelance teams left nothing behind. We
+                  wanted a third option: a small group that could take responsibility for a system
+                  from the first sketch to the years of maintenance after launch.
                 </p>
                 <p>
-                  Today, our distributed engineering culture serves clients spanning North America, Europe, and Asia-Pacific across financial technologies, logistics automation, mobile gaming, and digital brand media.
+                  Today we work with teams in North America, Europe, and Asia-Pacific on web
+                  platforms, mobile products, automation, and brand systems. The work is different
+                  each time. The method is not.
                 </p>
               </div>
 
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Button href="/team" variant="outline" size="md" rightIcon={<ArrowRight className="w-4 h-4" />}>
-                  Meet the Leadership Team
-                </Button>
-                <Button href="/process" variant="ghost" size="md">
-                  View Our Delivery Process
-                </Button>
+              <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
+                <Link
+                  href="/team"
+                  className="group inline-flex items-center gap-2 border-b border-foreground/30 pb-1 text-[13px] transition-colors hover:border-accent hover:text-accent"
+                >
+                  The people
+                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </Link>
+                <Link
+                  href="/process"
+                  className="group inline-flex items-center gap-2 border-b border-foreground/30 pb-1 text-[13px] transition-colors hover:border-accent hover:text-accent"
+                >
+                  How we work
+                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </Link>
               </div>
             </div>
 
-            {/* Visual Callout Box */}
-            <div className="p-8 sm:p-10 rounded-2xl border border-border bg-surface shadow-sm">
-              <h3 className="text-xl font-bold text-foreground mb-4">
-                Our Engineering Commitments
-              </h3>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="text-foreground block text-sm">Static-First Architecture</strong>
-                    <span className="text-xs text-muted-foreground">Optimal edge distribution, zero server maintenance overhead, and maximum DDoS resilience.</span>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="text-foreground block text-sm">Zero Brand Lock-In</strong>
-                    <span className="text-xs text-muted-foreground">Clean centralized configuration, modular primitives, and full IP transfer on project completion.</span>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="text-foreground block text-sm">Measurable Business Impact</strong>
-                    <span className="text-xs text-muted-foreground">Every architecture engagement is grounded in quantifiable KPIs: throughput, latency, and operational efficiency.</span>
-                  </div>
-                </li>
+            <div className="col-span-12 lg:col-span-4 lg:col-start-9">
+              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+                What we hold to
+              </p>
+              <ul className="mt-6 border-t border-border">
+                {commitments.map((commitment, index) => (
+                  <li key={commitment.title} className="border-b border-border py-5">
+                    <div className="flex items-baseline gap-4">
+                      <span className="font-mono text-[10px] tracking-[0.14em] text-muted-foreground">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <h2 className="font-display text-2xl text-foreground">{commitment.title}</h2>
+                    </div>
+                    <p className="mt-2 pl-8 text-[13px] leading-relaxed text-muted-foreground">
+                      {commitment.detail}
+                    </p>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
         </Container>
       </Section>
 
-      {/* Mission & Vision */}
-      <Section spacing="lg" className="border-b border-border bg-muted/20">
+      <Section spacing="none" className="border-b border-border py-14 sm:py-20">
         <Container size="xl">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <Badge variant="accent" size="sm" className="mb-2">Purpose & Direction</Badge>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
-              Our Mission and Vision
-            </h2>
-            <p className="mt-3 text-sm sm:text-base text-muted-foreground">
-              Guiding every technical decision, architecture roadmap, and client partnership we form.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card variant="elevated" className="p-8 border border-border bg-surface shadow-sm">
-              <div className="w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center mb-6">
-                <Target className="w-6 h-6" />
-              </div>
-              <h3 className="text-2xl font-bold text-foreground mb-3">
-                Our Mission
-              </h3>
-              <p className="text-base text-muted-foreground leading-relaxed">
-                To empower forward-thinking businesses by engineering reliable, secure, and blazing-fast digital systems that remove operational friction and accelerate growth.
+          <div className="grid grid-cols-12 gap-x-6 gap-y-10">
+            <div className="col-span-12 lg:col-span-3">
+              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+                Mission and vision
               </p>
-            </Card>
-
-            <Card variant="elevated" className="p-8 border border-border bg-surface shadow-sm">
-              <div className="w-12 h-12 rounded-xl bg-accent/10 text-accent flex items-center justify-center mb-6">
-                <Compass className="w-6 h-6" />
-              </div>
-              <h3 className="text-2xl font-bold text-foreground mb-3">
-                Our Vision
-              </h3>
-              <p className="text-base text-muted-foreground leading-relaxed">
-                To become the premier engineering partner globally recognized for architectural excellence, ethical engineering craft, and transforming complex requirements into elegant reality.
-              </p>
-            </Card>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Core Values & Principles */}
-      <Section spacing="lg" className="border-b border-border bg-background">
-        <Container size="xl">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <Badge variant="secondary" size="sm" className="mb-2">Operating Principles</Badge>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
-              Our Core Values & Principles
-            </h2>
-            <p className="mt-3 text-sm sm:text-base text-muted-foreground">
-              The fundamental standards that govern how we write code, communicate with stakeholders, and lead our teams.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {coreValues.map((val) => (
-              <Card key={val.title} variant="bordered" className="p-6 bg-surface shadow-sm">
-                <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
-                  {val.icon}
-                </div>
-                <h3 className="text-lg font-bold text-foreground mb-2">
-                  {val.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                  {val.description}
+            </div>
+            <div className="col-span-12 grid gap-10 sm:grid-cols-2 lg:col-span-8 lg:col-start-5">
+              <div>
+                <h2 className="font-display text-3xl text-foreground">Mission</h2>
+                <p className="mt-4 text-[15px] leading-[1.75] text-muted-foreground">
+                  Make software that removes work instead of creating it. Reliable systems, plain
+                  interfaces, and a maintenance plan that outlives the launch.
                 </p>
-              </Card>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
-      {/* Agency Metrics Strip */}
-      <Section spacing="md" className="border-b border-border bg-surface">
-        <Container size="xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            {siteConfig.stats.map((stat) => (
-              <div key={stat.label} className="p-4">
-                <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-accent tracking-tight">
-                  {stat.value}
-                </div>
-                <div className="mt-2 text-sm font-semibold text-foreground">
-                  {stat.label}
-                </div>
               </div>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
-      {/* Final Pre-Footer CTA */}
-      <Section spacing="md" className="bg-muted/20">
-        <Container size="xl">
-          <div className="rounded-2xl border border-border bg-surface p-8 sm:p-12 text-center max-w-4xl mx-auto shadow-sm">
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-foreground">
-              Ready to Partner with {siteConfig.name}?
-            </h2>
-            <p className="mt-3 text-base text-muted-foreground max-w-xl mx-auto">
-              Tell us about your product roadmap, engineering bottlenecks, or creative vision.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <Button href="/contact" variant="accent" size="lg" rightIcon={<ArrowRight className="w-4 h-4" />}>
-                Start a Project
-              </Button>
-              <Button href="/portfolio" variant="outline" size="lg">
-                View Case Studies
-              </Button>
+              <div>
+                <h2 className="font-display text-3xl text-foreground">Vision</h2>
+                <p className="mt-4 text-[15px] leading-[1.75] text-muted-foreground">
+                  A studio known for the things it declines as much as the things it ships. Small,
+                  senior, and still answering the phone years after handover.
+                </p>
+              </div>
             </div>
           </div>
         </Container>
       </Section>
+
+      <Section spacing="none" className="border-b border-border py-14 sm:py-20">
+        <Container size="xl">
+          <div className="grid grid-cols-12 gap-x-6 gap-y-10">
+            <div className="col-span-12 lg:col-span-3">
+              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+                Operating principles
+              </p>
+            </div>
+            <div className="col-span-12 lg:col-span-9">
+              <div className="border-t border-border">
+                {values.map((value, index) => (
+                  <div
+                    key={value.title}
+                    className="grid grid-cols-12 gap-x-4 gap-y-2 border-b border-border py-6"
+                  >
+                    <span className="col-span-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground sm:col-span-1">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <h2 className="col-span-10 font-display text-2xl text-foreground sm:col-span-4 sm:text-[1.65rem]">
+                      {value.title}
+                    </h2>
+                    <p className="col-span-10 col-start-3 max-w-[52ch] text-[14px] leading-relaxed text-muted-foreground sm:col-span-7 sm:col-start-6">
+                      {value.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      <Section spacing="none" className="py-12 sm:py-16">
+        <Container size="xl">
+          <div className="grid grid-cols-2 gap-y-8 border-t border-border pt-8 md:grid-cols-4">
+            {siteConfig.stats.map((stat) => (
+              <div key={stat.label}>
+                <p className="font-display text-4xl text-foreground sm:text-5xl">{stat.value}</p>
+                <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </Section>
+
+      <ContactBlock />
     </div>
   );
 }

@@ -1,11 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ShieldCheck, ArrowLeft, Mail, MapPin } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 import { siteConfig } from '@/content/site';
 import { Container } from '@/components/layout/Container';
 import { Section } from '@/components/layout/Section';
-import { Badge } from '@/components/ui/Badge';
-import { Button } from '@/components/ui/Button';
 
 export const metadata: Metadata = {
   title: `Privacy Policy | ${siteConfig.name}`,
@@ -20,42 +18,38 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="w-full flex flex-col">
-      {/* Return Navigation Bar */}
-      <div className="w-full border-b border-border bg-surface/50 backdrop-blur-sm">
-        <Container size="xl" className="py-3 flex items-center justify-between">
-          <Button
-            href="/"
-            variant="ghost"
-            size="sm"
-            leftIcon={<ArrowLeft className="w-4 h-4" />}
-          >
-            Return to Home
-          </Button>
-
-          <Button href="/services" variant="outline" size="sm">
-            Explore Services
-          </Button>
+    <div className="flex w-full flex-col">
+      <div className="border-b border-border">
+        <Container
+          size="xl"
+          className="flex items-center justify-between py-3 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground"
+        >
+          <div className="flex items-center gap-2">
+            <Link href="/" className="transition-colors hover:text-foreground">
+              Home
+            </Link>
+            <span>/</span>
+            <span className="text-foreground">Privacy</span>
+          </div>
+          <Link href="/contact" className="transition-colors hover:text-accent">
+            Contact
+          </Link>
         </Container>
       </div>
 
-      <Section spacing="lg" className="bg-background">
+      <Section spacing="none" className="py-14 sm:py-20">
         <Container size="md">
-          {/* Header */}
-          <div className="mb-10 pb-8 border-b border-border">
-            <Badge variant="accent" size="sm" className="mb-3">
-              <ShieldCheck className="w-3.5 h-3.5 mr-1" />
-              <span>Governance & Compliance</span>
-            </Badge>
+          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+            Legal / Privacy
+          </p>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground">
-              Privacy Policy
-            </h1>
+          <h1 className="mt-4 font-display text-display-lg text-foreground">Privacy policy</h1>
 
-            <p className="mt-3 text-sm text-muted-foreground">
-              Effective Date: January 1, 2025 | Last Updated: October 2026
-            </p>
-          </div>
+          <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
+            Effective January 1, 2025 / Last updated October 2026
+          </p>
+
+          <div className="mt-10 border-t border-border pt-8">
 
           {/* Legal Copy */}
           <div className="prose prose-neutral dark:prose-invert max-w-none space-y-8 text-foreground/90 text-sm sm:text-base leading-relaxed">
@@ -117,32 +111,36 @@ export default function PrivacyPolicyPage() {
               <p className="text-muted-foreground leading-relaxed">
                 If you have questions, comments, or requests regarding this Privacy Policy, please contact our data governance team directly:
               </p>
-              <div className="mt-4 p-4 rounded-xl border border-border bg-surface text-sm space-y-2">
-                <div className="flex items-center gap-2 text-foreground font-semibold">
-                  <span>{siteConfig.legalName}</span>
-                </div>
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <Mail className="w-4 h-4 text-accent" />
-                  <a href={`mailto:${siteConfig.contact.email}`} className="hover:text-accent transition-colors">
+              <div className="mt-4 border-t border-border pt-4 text-sm">
+                <p className="font-medium text-foreground">{siteConfig.legalName}</p>
+                <div className="mt-2 flex items-center gap-2 text-muted-foreground">
+                  <Mail className="h-4 w-4 text-accent" />
+                  <a href={`mailto:${siteConfig.contact.email}`} className="transition-colors hover:text-accent">
                     {siteConfig.contact.email}
                   </a>
                 </div>
-                <div className="flex items-start gap-2 text-muted-foreground">
-                  <MapPin className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                <div className="mt-2 flex items-start gap-2 text-muted-foreground">
+                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                   <span>{siteConfig.contact.address.formatted}</span>
                 </div>
               </div>
             </section>
           </div>
+          </div>
 
-          {/* Recovery Navigation Footer */}
-          <div className="mt-12 pt-8 border-t border-border flex flex-wrap gap-4 justify-between items-center">
-            <Link href="/terms" className="text-sm font-semibold text-accent hover:underline">
-              Read Terms of Service &rarr;
+          <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
+            <Link
+              href="/terms"
+              className="border-b border-foreground/30 pb-1 text-[13px] transition-colors hover:border-accent hover:text-accent"
+            >
+              Terms of service
             </Link>
-            <Button href="/" variant="outline" size="md">
-              Return to Home
-            </Button>
+            <Link
+              href="/"
+              className="border-b border-foreground/30 pb-1 text-[13px] transition-colors hover:border-accent hover:text-accent"
+            >
+              Back home
+            </Link>
           </div>
         </Container>
       </Section>
