@@ -1,0 +1,95 @@
+# ========================================================================
+# Hostinger LiteSpeed / Apache Configuration for Next.js Static Export
+# ========================================================================
+
+# 1. Prevent Directory Browsing
+Options -Indexes
+
+# 2. Custom Error Page
+ErrorDocument 404 /404.html
+
+# 3. Rewrite Engine & URL Normalization
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 3a. Force HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # 3b. Remove www (Canonical Domain)
+  # RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+  # RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+  # 3c. Ensure trailing slashes for directory index pages (matches Next.js export)
+  DirectorySlash On
+  DirectoryIndex index.html
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_URI} !(.[a-zA-Z0-9]{1,5})$
+  RewriteRule ^(.*[^/])$ /$1/ [L,R=301]
+</IfModule>
+
+# 4. Gzip / Deflate Compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# 5. Browser Caching (Expires & Cache-Control)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+
+  # HTML: Always revalidate so content updates appear instantly on deploy
+  ExpiresByType text/html "access plus 0 seconds"
+
+  # Hashed Next.js assets, CSS, JS: Cache for 1 year
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+
+  # Images and web fonts
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+</IfModule>
+
+# 6. HTTP Security & Cache-Control Headers
+<IfModule mod_headers.c>
+  # Next.js static hashed chunks are immutable
+  <FilesMatch "\.(js|css)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # HTML pages revalidate on each visit & bypass LiteSpeed reverse proxy
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+    Header set X-LiteSpeed-Cache-Control "no-cache"
+  </FilesMatch>
+
+  # Security Headers
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# 7. Hostinger LiteSpeed Server Cache Bypass for Dynamic HTML
+<IfModule LiteSpeed>
+  CacheLookup public off
+</IfModule>
+

@@ -39,10 +39,10 @@
 - [x] **Copy cleanup**: visible `[PLACEHOLDER]` / `// TODO(content)` markers removed from projects, services, process, team roles set; studio and project copy rewritten in plain English
 - [x] **Typography corrections**: display scale widened; mono metadata raised to a 10px floor; body sizes set by role
 - [x] **Mobile work rows**: ordinal, category, title, sector, and metric reflow without narrow-column wrapping
-- [x] **Docs reconciliation**: README, PROJECT, TECHNICAL_MANUAL, GLOSSARY, ROADMAP, KNOWN_ISSUES, GATE_STATUS, TEST_READY, and ADR-007 describe the shipped composition; historical reports are labelled as snapshots
+- [x] **Docs reconciliation**: README, ARCHITECTURE, ROADMAP, KNOWN_ISSUES, and ADRs describe the shipped composition; historical reports are archived
 - [ ] **Real imagery**: project covers, founder portraits, and a studio image set; the typographic index is a holding pattern until these exist
 - [ ] **Verified brand/contact**: final name, legal entity, domain, email, phone, and address in [`content/site.ts`](file:///d:/WebDev/portfolio/content/site.ts)
-- [ ] **Remove legacy components**: `TrustBar`, `StatsStrip`, `TechStackStrip`, `Testimonials`, `ProcessPreview`, `ServicesOverview`, `FeaturedProjects`, `CTABanner` are no longer imported but remain on disk (sandbox denied deletion)
+- [x] **Remove legacy components**: deleted 8 unused section components (`TrustBar`, `StatsStrip`, etc.) and dead motion/UI primitives
 - [ ] **Viewport CI gate**: install `@playwright/test`, then re-enable `tests/e2e/viewport.test.ts` (currently excluded from `tsc`)
 
 ---

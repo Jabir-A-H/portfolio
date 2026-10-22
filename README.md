@@ -40,7 +40,7 @@ Team NJS is an independent studio in Dhaka designing and building web platforms,
 - **Composition:** `PageHeader` opens interior pages; `WorkIndex` / `PortfolioFilterGrid` render projects as rows; `ContactBlock` closes every page. Home sections use The Gallerist spacing.
 - **Forms:** transparent fields with a single bottom rule; the rule turns International Orange on focus.
 
-Full details in [docs/TECHNICAL_MANUAL.md](docs/TECHNICAL_MANUAL.md), [GLOSSARY.md](GLOSSARY.md), and [ADR-007](docs/ADR/007-editorial-reset.md).
+Full details in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) and [ADR-007](docs/ADR/007-editorial-reset.md).
 
 ## Commands
 
@@ -82,14 +82,18 @@ components/
   sections/           Hero, WorkIndex, Capabilities, StudioStatement, ContactBlock
   portfolio/          PortfolioFilterGrid
   forms/              ContactForm
-  ui/                 Button, Badge, Card, Input, Select, Textarea
-  motion/             MotionProvider, ScrollReveal, RevealItem, Parallax
+  ui/                 Button, Input, Select, Textarea, utils
+  motion/             MotionProvider, Reveal
 content/              typed content modules
 styles/globals.css    tokens, base typography, focus and selection
-docs/                 ADRs, technical manual, roadmap, known issues
+docs/                 architecture, content decisions, roadmap, known issues, ADRs
 scripts/              route and brand verification
-tests/e2e/            opaque-box runner and tiers
+tests/                opaque-box runner and test inventory
 ```
+
+## Deployment
+
+The site is configured for automatic static deployment to **Hostinger** via GitHub Actions on push to `main`. See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for FTP credentials setup in GitHub repository secrets.
 
 ## Status
 

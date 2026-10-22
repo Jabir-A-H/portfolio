@@ -33,7 +33,7 @@
 - Palette, radius, hard shadows, Gallerist spacing, and reveal motion restored to ADR-006 after the first ADR-007 pass overrode them.
 - Availability note removed from the hero and from `SiteConfig`.
 - Copy cleaned: no visible `[PLACEHOLDER]` or `TODO(content)` markers; project titles rewritten.
-- Docs reconciled: README, PROJECT, TECHNICAL_MANUAL, GLOSSARY, ROADMAP, KNOWN_ISSUES, GATE_STATUS, TEST_READY, ADR-006, ADR-007.
+- Docs reconciled: README, ARCHITECTURE, ROADMAP, KNOWN_ISSUES, ADR-006, ADR-007.
 
 ## Verification
 

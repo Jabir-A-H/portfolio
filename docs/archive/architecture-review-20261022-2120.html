@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Architecture review — Team NJS portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+    <script>
+      window.addEventListener('DOMContentLoaded', function () {
+        if (window.mermaid) {
+          mermaid.initialize({ startOnLoad: true, theme: 'neutral', securityLevel: 'loose' });
+        }
+      });
+    </script>
+    <style>
+      body { font-feature-settings: 'ss01', 'cv11'; }
+      .seam { stroke-dasharray: 5 5; }
+      .diagram-label { letter-spacing: 0.14em; }
+      .deep-box { background: linear-gradient(135deg, #1c1917, #292524); }
+      .grain { background-image: radial-gradient(rgba(28, 25, 23, 0.08) 0.6px, transparent 0.6px); background-size: 8px 8px; }
+      pre.mermaid { background: transparent; }
+    </style>
+  </head>
+  <body class="bg-stone-50 text-stone-900 antialiased">
+    <main class="mx-auto max-w-6xl px-6 py-14 space-y-16">
+      <header class="grid gap-8 border-b border-stone-300 pb-10 lg:grid-cols-12">
+        <div class="lg:col-span-8">
+          <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-stone-500">Architecture review / 2026-10-22</p>
+          <h1 class="mt-4 max-w-[18ch] font-serif text-5xl leading-[0.95] tracking-tight text-stone-900">
+            Team NJS portfolio: where the modules are shallow.
+          </h1>
+          <p class="mt-5 max-w-[62ch] text-[15px] leading-relaxed text-stone-600">
+            Scope: the recent editorial recomposition and the content modules it touches. Six deepening candidates, ranked by leverage and risk. No interface designs yet.
+          </p>
+        </div>
+        <div class="lg:col-span-4 lg:justify-self-end">
+          <div class="border border-stone-300 bg-white p-4 text-xs text-stone-600">
+            <p class="mb-3 font-mono text-[10px] uppercase tracking-[0.18em] text-stone-500">Legend</p>
+            <ul class="space-y-2">
+              <li class="flex items-center gap-2"><span class="h-3 w-6 border border-stone-400 bg-white"></span> module</li>
+              <li class="flex items-center gap-2"><span class="h-3 w-6 border border-dashed border-stone-400"></span> seam</li>
+              <li class="flex items-center gap-2"><span class="h-3 w-6 bg-stone-900"></span> deep module</li>
+              <li class="flex items-center gap-2"><span class="h-3 w-6 border border-red-400 bg-red-50"></span> leakage / duplication</li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- Current shape -->
+      <section class="grid gap-6 lg:grid-cols-12">
+        <div class="lg:col-span-4">
+          <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-stone-500">Current shape</p>
+          <h2 class="mt-3 font-serif text-3xl leading-tight">Content is read raw, then reshaped at each call site.</h2>
+          <p class="mt-4 text-sm leading-relaxed text-stone-600">
+            The red edges are repeated work, not code dependencies. Every page that needs a grouped or formatted view rebuilds it from the arrays.
+          </p>
+        </div>
+        <div class="lg:col-span-8 border border-stone-300 bg-white p-4">
+          <pre class="mermaid">
+flowchart LR
+  P[pages and sections] --> F[filter / map / count]
+  F --> R[(raw content arrays)]
+  P --> M[metadata blocks]
+  M --> S[siteConfig]
+  C[ContactForm] --> V[validation inline]
+  C --> U[form UI]
+  classDef leak stroke:#dc2626,stroke-width:1.5px,color:#991b1b;
+  class F,V leak
+          </pre>
+        </div>
+      </section>
+
+      <section id="candidates" class="space-y-12">
+        <!-- 1 -->
+        <article id="content-queries" class="grid gap-6 border-t border-stone-300 pt-10 lg:grid-cols-12">
+          <div class="lg:col-span-4">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="bg-emerald-700 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-white">Strong</span>
+              <span class="border border-stone-300 bg-white px-2 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-stone-500">in-process</span>
+            </div>
+            <h3 class="mt-4 font-serif text-3xl leading-tight">Deepen the content query module.</h3>
+            <p class="mt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-stone-500">01 / content seam</p>
+          </div>
+          <div class="lg:col-span-8 space-y-5">
+            <div class="flex flex-wrap gap-x-4 gap-y-1 font-mono text-[11px] text-stone-600">
+              <span>content/services.ts</span><span>content/projects.ts</span><span>app/services/page.tsx</span><span>components/sections/Capabilities.tsx</span>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div class="border border-stone-300 bg-white p-4">
+                <p class="diagram-label font-mono text-[9px] uppercase text-stone-500">Before / callers reshape</p>
+                <div class="mt-4 space-y-2">
+                  <div class="flex items-center justify-between border border-red-300 bg-red-50 px-3 py-2 text-xs"><span>services page</span><span class="font-mono text-[10px]">filter × 2</span></div>
+                  <div class="flex items-center justify-between border border-red-300 bg-red-50 px-3 py-2 text-xs"><span>Capabilities</span><span class="font-mono text-[10px]">filter × 1</span></div>
+                  <div class="flex items-center justify-between border border-red-300 bg-red-50 px-3 py-2 text-xs"><span>contact form</span><span class="font-mono text-[10px]">map × 1</span></div>
+                  <div class="mt-3 border border-stone-300 bg-stone-100 px-3 py-3 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-stone-600">raw services[]</div>
+                </div>
+              </div>
+              <div class="border border-stone-300 bg-white p-4">
+                <p class="diagram-label font-mono text-[9px] uppercase text-stone-500">After / one seam</p>
+                <div class="mt-4 space-y-2">
+                  <div class="border border-stone-300 px-3 py-2 text-xs">services page</div>
+                  <div class="border border-stone-300 px-3 py-2 text-xs">Capabilities</div>
+                  <div class="border border-stone-300 px-3 py-2 text-xs">contact form</div>
+                  <div class="mt-2 border border-dashed border-stone-400 bg-stone-50 px-3 py-1 text-center font-mono text-[9px] uppercase tracking-[0.14em] text-stone-500">interface</div>
+                  <div class="deep-box px-3 py-5 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-stone-50">content queries</div>
+                  <div class="border border-stone-300 bg-stone-100 px-3 py-3 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-stone-600">raw content</div>
+                </div>
+              </div>
+            </div>
+            <p class="text-sm leading-relaxed"><strong>Problem:</strong> three call sites filter <span class="font-mono text-xs">services</span> by group; four query functions in the content module are never called.</p>
+            <p class="text-sm leading-relaxed"><strong>Solution:</strong> one module exposes the derived views the pages actually need: groups with services and counts, featured projects, categories, team, and the service-option list.</p>
+            <div class="grid gap-3 sm:grid-cols-2">
+              <ul class="space-y-1.5 text-sm">
+                <li>• locality: grouping in one module</li>
+                <li>• leverage: one interface, four callers</li>
+                <li>• tests hit derived views directly</li>
+              </ul>
+              <ul class="space-y-1.5 text-sm">
+                <li>• <strong>Do it:</strong> content is about to grow</li>
+                <li>• <strong>Why not:</strong> service names may still change</li>
+                <li>• keep raw arrays available for scripts</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2 -->
+        <article id="project-row" class="grid gap-6 border-t border-stone-300 pt-10 lg:grid-cols-12">
+          <div class="lg:col-span-4">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="bg-emerald-700 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-white">Strong</span>
+              <span class="border border-stone-300 bg-white px-2 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-stone-500">in-process</span>
+            </div>
+            <h3 class="mt-4 font-serif text-3xl leading-tight">One project index row, two callers.</h3>
+            <p class="mt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-stone-500">02 / row grammar</p>
+          </div>
+          <div class="lg:col-span-8 space-y-5">
+            <div class="flex flex-wrap gap-x-4 gap-y-1 font-mono text-[11px] text-stone-600">
+              <span>components/sections/WorkIndex.tsx</span><span>components/portfolio/PortfolioFilterGrid.tsx</span>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div class="border border-stone-300 bg-white p-4">
+                <p class="diagram-label font-mono text-[9px] uppercase text-stone-500">Before / same row twice</p>
+                <div class="mt-4 space-y-3">
+                  <div class="border border-red-300 bg-red-50 p-2 text-[11px]"><p class="font-mono text-[9px] uppercase text-red-700">WorkIndex</p><p class="mt-1">ordinal · title · metric · arrow</p></div>
+                  <div class="border border-red-300 bg-red-50 p-2 text-[11px]"><p class="font-mono text-[9px] uppercase text-red-700">PortfolioFilterGrid</p><p class="mt-1">ordinal · title · summary · metric · arrow</p></div>
+                  <p class="font-mono text-[9px] uppercase tracking-[0.14em] text-red-700">two copies of shortCategory</p>
+                </div>
+              </div>
+              <div class="border border-stone-300 bg-white p-4">
+                <p class="diagram-label font-mono text-[9px] uppercase text-stone-500">After / one deep row</p>
+                <div class="mt-4">
+                  <div class="flex gap-2 text-[11px]"><span class="border border-stone-300 px-2 py-1">home</span><span class="border border-stone-300 px-2 py-1">portfolio</span></div>
+                  <div class="mt-2 border border-dashed border-stone-400 bg-stone-50 px-3 py-1 text-center font-mono text-[9px] uppercase tracking-[0.14em] text-stone-500">small interface</div>
+                  <div class="deep-box mt-1 px-3 py-6 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-stone-50">project row<br /><span class="text-stone-400">shortCategory · metric · responsive</span></div>
+                </div>
+              </div>
+            </div>
+            <p class="text-sm leading-relaxed"><strong>Problem:</strong> the two modules own the same row grammar and category map; a visual change is a two-file edit.</p>
+            <p class="text-sm leading-relaxed"><strong>Solution:</strong> deepen the row to one module with a small interface; the portfolio keeps filtering and the optional summary behind its own interface.</p>
+            <div class="grid gap-3 sm:grid-cols-2">
+              <ul class="space-y-1.5 text-sm">
+                <li>• one interface, two callers</li>
+                <li>• visual changes land once</li>
+                <li>• row tests no longer need a page</li>
+              </ul>
+              <ul class="space-y-1.5 text-sm">
+                <li>• <strong>Do it:</strong> duplication is exact</li>
+                <li>• <strong>Why not:</strong> rows differ by summary/filter</li>
+                <li>• keep variants behind the module</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3 -->
+        <article id="metadata" class="grid gap-6 border-t border-stone-300 pt-10 lg:grid-cols-12">
+          <div class="lg:col-span-4">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="bg-emerald-700 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-white">Strong</span>
+              <span class="border border-stone-300 bg-white px-2 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-stone-500">local-substitutable</span>
+            </div>
+            <h3 class="mt-4 font-serif text-3xl leading-tight">Centralize page metadata.</h3>
+            <p class="mt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-stone-500">03 / metadata seam</p>
+          </div>
+          <div class="lg:col-span-8 space-y-5">
+            <div class="flex flex-wrap gap-x-4 gap-y-1 font-mono text-[11px] text-stone-600">
+              <span>app/*/page.tsx</span><span>app/layout.tsx</span><span>11 metadata blocks</span>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div class="border border-stone-300 bg-white p-4">
+                <p class="diagram-label font-mono text-[9px] uppercase text-stone-500">Before / 11 copies</p>
+                <div class="mt-3 grid grid-cols-3 gap-1.5">
+                  <div class="border border-red-200 bg-red-50 p-1 text-[8px] leading-tight">title<br />description<br />openGraph<br />url</div>
+                  <div class="border border-red-200 bg-red-50 p-1 text-[8px] leading-tight">title<br />description<br />openGraph<br />url</div>
+                  <div class="border border-red-200 bg-red-50 p-1 text-[8px] leading-tight">title<br />description<br />openGraph<br />url</div>
+                  <div class="border border-red-200 bg-red-50 p-1 text-[8px] leading-tight">title<br />description<br />openGraph<br />url</div>
+                  <div class="border border-red-200 bg-red-50 p-1 text-[8px] leading-tight">title<br />description<br />openGraph<br />url</div>
+                  <div class="border border-stone-200 bg-stone-50 p-1 text-[8px] text-stone-500">+6</div>
+                </div>
+              </div>
+              <div class="border border-stone-300 bg-white p-4">
+                <p class="diagram-label font-mono text-[9px] uppercase text-stone-500">After / one factory</p>
+                <div class="mt-3 flex items-center gap-2 text-[11px]"><span class="border border-stone-300 px-2 py-1">page</span><span class="font-mono text-[9px] text-stone-400">→</span><span class="border border-stone-300 px-2 py-1">3 fields</span></div>
+                <div class="mt-2 border border-dashed border-stone-400 bg-stone-50 px-3 py-1 text-center font-mono text-[9px] uppercase tracking-[0.14em] text-stone-500">interface</div>
+                <div class="deep-box mt-1 px-3 py-5 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-stone-50">metadata factory<br /><span class="text-stone-400">canonical · OG · type</span></div>
+                <div class="mt-1 border border-stone-300 bg-stone-100 px-3 py-2 text-center font-mono text-[9px] uppercase tracking-[0.14em]">Next Metadata</div>
+              </div>
+            </div>
+            <p class="text-sm leading-relaxed"><strong>Problem:</strong> every page rebuilds title, description, OG, and URL; the brand, domain, and contact copy are all still changing.</p>
+            <p class="text-sm leading-relaxed"><strong>Solution:</strong> a single metadata module takes the page-specific title, description, path, and type; it owns canonical URL, OG defaults, and the site suffix.</p>
+            <div class="grid gap-3 sm:grid-cols-2">
+              <ul class="space-y-1.5 text-sm">
+                <li>• brand swap touches one seam</li>
+                <li>• no missing OG fields</li>
+                <li>• tests assert one contract</li>
+              </ul>
+              <ul class="space-y-1.5 text-sm">
+                <li>• <strong>Do it:</strong> brand is undecided</li>
+                <li>• <strong>Why not:</strong> Next fields can be specific</li>
+                <li>• keep an escape hatch for overrides</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4 -->
+        <article id="contact" class="grid gap-6 border-t border-stone-300 pt-10 lg:grid-cols-12">
+          <div class="lg:col-span-4">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="bg-emerald-700 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-white">Strong</span>
+              <span class="border border-stone-300 bg-white px-2 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-stone-500">in-process</span>
+            </div>
+            <h3 class="mt-4 font-serif text-3xl leading-tight">Deepen contact intake.</h3>
+            <p class="mt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-stone-500">04 / conversion seam</p>
+          </div>
+          <div class="lg:col-span-8 space-y-5">
+            <div class="flex flex-wrap gap-x-4 gap-y-1 font-mono text-[11px] text-stone-600">
+              <span>components/forms/ContactForm.tsx</span><span>content/services.ts</span>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div class="border border-stone-300 bg-white p-4">
+                <p class="diagram-label font-mono text-[9px] uppercase text-stone-500">Before / one 390-line module</p>
+                <div class="mt-3 border border-red-300 bg-red-50 p-2 text-[10px] leading-relaxed">
+                  <p class="font-mono text-[9px] uppercase text-red-700">ContactForm</p>
+                  <div class="mt-2 grid grid-cols-2 gap-1 font-mono text-[9px]">
+                    <span class="border border-red-200 bg-white px-1 py-1">validate</span>
+                    <span class="border border-red-200 bg-white px-1 py-1">payload</span>
+                    <span class="border border-red-200 bg-white px-1 py-1">status</span>
+                    <span class="border border-red-200 bg-white px-1 py-1">options</span>
+                    <span class="col-span-2 border border-red-200 bg-white px-1 py-1">JSX</span>
+                  </div>
+                </div>
+              </div>
+              <div class="border border-stone-300 bg-white p-4">
+                <p class="diagram-label font-mono text-[9px] uppercase text-stone-500">After / view over a deep module</p>
+                <div class="mt-3 border border-stone-300 px-2 py-1 text-center text-[10px]">ContactForm view</div>
+                <div class="mt-1 border border-dashed border-stone-400 bg-stone-50 px-2 py-1 text-center font-mono text-[9px] uppercase tracking-[0.14em]">interface</div>
+                <div class="deep-box mt-1 px-2 py-5 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-stone-50">contact intake<br /><span class="text-stone-400">validate · payload · state</span></div>
+                <div class="mt-1 border border-stone-300 bg-stone-100 px-2 py-1 text-center font-mono text-[9px] uppercase tracking-[0.14em]">endpoint</div>
+              </div>
+            </div>
+            <p class="text-sm leading-relaxed"><strong>Problem:</strong> validation, payload building, status transitions, service options, and markup live in one client module; the validation is only testable through the DOM.</p>
+            <p class="text-sm leading-relaxed"><strong>Solution:</strong> a deep contact intake module owns the pure rules and payload; the client view owns only fields and feedback. Options are passed as data.</p>
+            <div class="grid gap-3 sm:grid-cols-2">
+              <ul class="space-y-1.5 text-sm">
+                <li>• tests hit validation seam</li>
+                <li>• payload one place</li>
+                <li>• view shrinks, rules deepen</li>
+              </ul>
+              <ul class="space-y-1.5 text-sm">
+                <li>• <strong>Do it:</strong> conversion-critical</li>
+                <li>• <strong>Why not:</strong> service list is in flux</li>
+                <li>• pass options in; keep preview mode</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5 -->
+        <article id="route-manifest" class="grid gap-6 border-t border-stone-300 pt-10 lg:grid-cols-12">
+          <div class="lg:col-span-4">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="bg-amber-600 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-white">Worth exploring</span>
+              <span class="border border-stone-300 bg-white px-2 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-stone-500">out-of-process</span>
+            </div>
+            <h3 class="mt-4 font-serif text-3xl leading-tight">One route manifest, three consumers.</h3>
+            <p class="mt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-stone-500">05 / build seam</p>
+          </div>
+          <div class="lg:col-span-8 space-y-5">
+            <div class="flex flex-wrap gap-x-4 gap-y-1 font-mono text-[11px] text-stone-600">
+              <span>scripts/verify-routes.mjs</span><span>app/sitemap.ts</span><span>tests/e2e/helpers.mjs</span>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div class="border border-stone-300 bg-white p-4">
+                <p class="diagram-label font-mono text-[9px] uppercase text-stone-500">Before / three lists</p>
+                <div class="mt-3 space-y-2 font-mono text-[9px]">
+                  <div class="border border-red-200 bg-red-50 px-2 py-2">verify-routes: 9 + 6 slugs</div>
+                  <div class="border border-red-200 bg-red-50 px-2 py-2">sitemap: routes from content</div>
+                  <div class="border border-red-200 bg-red-50 px-2 py-2">tests: expected slugs</div>
+                </div>
+              </div>
+              <div class="border border-stone-300 bg-white p-4">
+                <p class="diagram-label font-mono text-[9px] uppercase text-stone-500">After / one manifest</p>
+                <div class="deep-box px-3 py-4 text-center font-mono text-[10px] uppercase tracking-[0.14em] text-stone-50">route manifest</div>
+                <div class="mt-2 grid grid-cols-3 gap-1 text-center font-mono text-[8px] uppercase tracking-[0.1em]">
+                  <span class="border border-stone-300 px-1 py-2">verify</span>
+                  <span class="border border-stone-300 px-1 py-2">sitemap</span>
+                  <span class="border border-stone-300 px-1 py-2">tests</span>
+                </div>
+              </div>
+            </div>
+            <p class="text-sm leading-relaxed"><strong>Problem:</strong> service and project slugs are copied into the build script and the test helpers; a content rename can pass the site build and fail the gate, or drift silently.</p>
+            <p class="text-sm leading-relaxed"><strong>Solution:</strong> generate one manifest from the content modules; verification, sitemap, and tests consume it.</p>
+            <div class="grid gap-3 sm:grid-cols-2">
+              <ul class="space-y-1.5 text-sm">
+                <li>• one source of slugs</li>
+                <li>• gate and content agree</li>
+                <li>• rename becomes a content edit</li>
+              </ul>
+              <ul class="space-y-1.5 text-sm">
+                <li>• <strong>Do it:</strong> content phase will rename</li>
+                <li>• <strong>Why not:</strong> adds a generation step</li>
+                <li>• 15 slugs may not justify it yet</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6 -->
+        <article id="legacy" class="grid gap-6 border-t border-stone-300 pt-10 lg:grid-cols-12">
+          <div class="lg:col-span-4">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="bg-emerald-700 px-2 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-white">Strong</span>
+              <span class="border border-stone-300 bg-white px-2 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-stone-500">deletion</span>
+            </div>
+            <h3 class="mt-4 font-serif text-3xl leading-tight">Delete the legacy section modules.</h3>
+            <p class="mt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-stone-500">06 / dead surface</p>
+          </div>
+          <div class="lg:col-span-8 space-y-5">
+            <div class="flex flex-wrap gap-x-4 gap-y-1 font-mono text-[11px] text-stone-600">
+              <span>8 orphan modules</span><span>components/layout/Section.tsx</span>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div class="border border-stone-300 bg-white p-4">
+                <p class="diagram-label font-mono text-[9px] uppercase text-stone-500">Before / eight paths</p>
+                <div class="mt-3 grid grid-cols-2 gap-1 font-mono text-[8px] uppercase tracking-[0.1em] text-stone-500">
+                  <span class="border border-stone-200 bg-stone-50 px-1 py-3">TrustBar</span>
+                  <span class="border border-stone-200 bg-stone-50 px-1 py-3">StatsStrip</span>
+                  <span class="border border-stone-200 bg-stone-50 px-1 py-3">TechStack</span>
+                  <span class="border border-stone-200 bg-stone-50 px-1 py-3">Testimonials</span>
+                  <span class="border border-stone-200 bg-stone-50 px-1 py-3">ProcessPreview</span>
+                  <span class="border border-stone-200 bg-stone-50 px-1 py-3">ServicesOverview</span>
+                  <span class="border border-stone-200 bg-stone-50 px-1 py-3">FeaturedProjects</span>
+                  <span class="border border-stone-200 bg-stone-50 px-1 py-3">CTABanner</span>
+                </div>
+              </div>
+              <div class="border border-stone-300 bg-white p-4">
+                <p class="diagram-label font-mono text-[9px] uppercase text-stone-500">After / no false paths</p>
+                <div class="mt-3 flex h-[150px] items-center justify-center border border-dashed border-stone-300 bg-stone-50 text-center font-mono text-[9px] uppercase tracking-[0.14em] text-stone-400">
+                  nothing imports these<br />delete with confidence
+                </div>
+              </div>
+            </div>
+            <p class="text-sm leading-relaxed"><strong>Problem:</strong> eight modules are no longer imported; <span class="font-mono text-xs">Section</span> still exposes <span class="font-mono text-xs">index</span> and <span class="font-mono text-xs">label</span> props no caller uses.</p>
+            <p class="text-sm leading-relaxed"><strong>Solution:</strong> delete the eight modules and shrink the <span class="font-mono text-xs">Section</span> interface to the props that exist.</p>
+            <div class="grid gap-3 sm:grid-cols-2">
+              <ul class="space-y-1.5 text-sm">
+                <li>• deletion concentrates nothing</li>
+                <li>• smaller navigation surface</li>
+                <li>• no visual change</li>
+              </ul>
+              <ul class="space-y-1.5 text-sm">
+                <li>• <strong>Do it:</strong> zero risk</li>
+                <li>• <strong>Why not:</strong> history is in git</li>
+                <li>• do it with the first refactor</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section id="top-recommendation" class="border-t border-stone-300 pt-10">
+        <div class="deep-box p-8 text-stone-50 lg:p-10">
+          <p class="font-mono text-[10px] uppercase tracking-[0.2em] text-stone-400">Top recommendation</p>
+          <h2 class="mt-3 max-w-[20ch] font-serif text-4xl leading-tight">Start with the content query module.</h2>
+          <p class="mt-4 max-w-[62ch] text-sm leading-relaxed text-stone-300">
+            It is the deepest leverage in the repo: every page currently reshapes raw content, four query functions are unused, and the content phase will add more views. One seam stabilizes grouping, counts, categories, and options before services and projects are rewritten. The project row and metadata candidates become smaller once this seam exists.
+          </p>
+          <a href="#content-queries" class="mt-6 inline-flex border-b border-stone-500 pb-1 text-sm text-stone-100 hover:border-emerald-400 hover:text-emerald-300">Jump to candidate 01 →</a>
+        </div>
+      </section>
+
+      <section class="border-t border-stone-300 pt-8 text-sm text-stone-600">
+        <p class="font-mono text-[10px] uppercase tracking-[0.18em] text-stone-500">Also considered, not recommended</p>
+        <ul class="mt-4 grid gap-3 sm:grid-cols-2">
+          <li><strong>Theme module:</strong> the inline anti-FOUC script cannot import a shared module; the seam would be hypothetical.</li>
+          <li><strong>Section rhythm module:</strong> pages use deliberate one-off spacing; a shared rhythm module would hide the composition.</li>
+          <li><strong>Reveal implementation seam:</strong> real 50 kB home-bundle saving, but motion quality risk; revisit after content ships.</li>
+          <li><strong>Portfolio filter hook:</strong> one caller; a seam would be hypothetical until a second filter exists.</li>
+        </ul>
+      </section>
+
+      <footer class="border-t border-stone-300 pt-6 font-mono text-[10px] uppercase tracking-[0.16em] text-stone-500">
+        Team NJS / architecture review / 2026-10-22 / no files changed
+      </footer>
+    </main>
+  </body>
+</html>
