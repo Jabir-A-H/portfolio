@@ -53,3 +53,23 @@ Gate Result: **PASS** (Review subagents terminated per critical user directive; 
 | Tier 5: Adversarial Pipeline | Static export routes & zero hardcoded brand scripts | 2 scripts | PASS (27 routes, 0 brand leaks) |
 
 Gate Result: **PASS** (100% of all 66 E2E tests and adversarial pipeline assertions passed cleanly)
+
+---
+
+## Gate — Editorial Reset (2026-10-22, commit `95c45c4`)
+| Check | Scope | Result |
+|---|---|---|
+| `npm run typecheck` | TypeScript strict | PASS, 0 errors |
+| `npm run lint` | ESLint app/components/content | PASS, 0 warnings |
+| `rm -rf .next && npm run build` | Static export after cache clear | PASS, 29 routes exported |
+| `node scripts/verify-routes.mjs` | 27 HTML/XML/TXT route files | PASS, 27/27 |
+| `node scripts/verify-no-hardcoded-brand.mjs` | Brand isolation across 47 files | PASS, 0 violations |
+| `node tests/e2e/runner.mjs` | 4-tier opaque-box suite | PASS, 66/66 |
+| Manual screenshot review | Home, portfolio, services, about, process, team, contact, service detail, case study, privacy, 404 at 1440px; home at 390px and dark | PASS, no overflow or clipping |
+
+Notes:
+- The build required deleting `.next/` first. A stale Next 15 cache produced `a[d] is not a function` and `no direct app page entry` errors that were not source defects.
+- `tests/e2e/viewport.test.ts` is not part of this gate; `@playwright/test` is not installed.
+- The Tier 1 home-page and placeholder tests were reconciled to the ADR-007 composition in the same session; `TEST_READY.md` now matches the runner.
+
+Gate Result: **PASS** (automated suite and manual visual review)

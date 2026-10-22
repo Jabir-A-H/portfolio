@@ -123,8 +123,8 @@ Implemented in [`components/motion/`](file:///d:/WebDev/portfolio/components/mot
 
 ### Responsive Layout Geometry
 - Visual verification at 360px (mobile), 768px (tablet), 1024px (laptop), and 1440px (desktop) via full-page screenshots in `.review/` (not committed).
-- Zero horizontal overflow is enforced by `overflow-x: hidden`, `max-w-100vw` on root, and `max-w-sheet` on `Container`.
-- **Viewport CI Gate (pending):** `tests/e2e/viewport.test.ts` and the `test:viewport` script exist, but `@playwright/test` is not installed and the test is excluded from `tsc` until it is. Do not claim this gate is active.
+- Zero horizontal overflow is enforced by `overflow-x: hidden`, `max-width: 100vw` on root, and `max-w-screen-2xl` on the `Container` primitive. The Navbar keeps `max-w-sheet` for its own frame.
+- **Viewport CI Gate (pending):** `tests/e2e/viewport.test.ts` exists, but `@playwright/test` is not installed, there is no `test:viewport` script, and the file is excluded from `tsc`. Do not claim this gate is active.
 
 
 ---
@@ -132,7 +132,7 @@ Implemented in [`components/motion/`](file:///d:/WebDev/portfolio/components/mot
 ## 5. Contact Form, Anti-Spam & Marketing Integrations
 
 ### Client-Side Inquiry Form ([`components/forms/ContactForm.tsx`](file:///d:/WebDev/portfolio/components/forms/ContactForm.tsx))
-- **Validation**: Strict client-side validation on Full Name, Email, Service Selection, Budget Range, Desired Timeline, and Project Description.
+- **Validation**: Client-side validation on Name, Email, Service, Budget, Timeline, and Project. Company is optional.
 - **Honeypot Anti-Spam**: Visually hidden field `_gotcha` with `tabIndex={-1}` and `aria-hidden="true"`. If populated by bot scrapers, submission is silently sunk with a simulated success response.
 - **Configurable Endpoint**: Dispatches payloads via `fetch` to `process.env.NEXT_PUBLIC_FORM_ENDPOINT` (e.g. Web3Forms or Formspree). If unset, runs in simulated preview mode.
 - **Direct WhatsApp Chat**: Dynamic link generator formats phone numbers into `https://wa.me/{digits}` with pre-populated inquiry text.
@@ -151,6 +151,8 @@ npm run typecheck
 npm run lint
 
 # 3. Production Static Export Build
+# If Next reports a webpack runtime or "no direct app page entry" error,
+# delete .next/ first; it is a stale cache, not a source failure.
 npm run build
 
 # 4. Route Pre-rendering Verification Gate

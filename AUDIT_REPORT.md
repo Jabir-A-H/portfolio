@@ -1,5 +1,7 @@
 # Post-Victory Audit Final Handoff Report
 
+> **Historical snapshot (2026-10-13).** This audit covers the pre-ADR-007 skeleton. The functional gates it records still pass, but its section-by-section descriptions of the home page and its claim that placeholder copy is still visible are out of date. Current state: [GATE_STATUS.md](GATE_STATUS.md), [PROJECT.md](PROJECT.md), [docs/TECHNICAL_MANUAL.md](docs/TECHNICAL_MANUAL.md).
+
 **Audit Target**: Multi-Page Marketing Agency Site Skeleton (`plan-01-core-skeleton.md`)  
 **Auditor**: Victory Auditor (`victory_auditor_1`)  
 **Recipient**: Project Sentinel (`60602c50-4a9f-47d3-9240-86776eba0f92`)  

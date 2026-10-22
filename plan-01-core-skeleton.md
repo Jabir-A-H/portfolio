@@ -1,5 +1,7 @@
 # Plan 01: Core Site Skeleton
 
+> **Historical blueprint (2026-10-13).** Functional scope and technical constraints still apply. The visual composition, home-page section list, and UI primitives were replaced by [ADR-007](docs/ADR/007-editorial-reset.md). For current structure use [PROJECT.md](PROJECT.md) and [docs/TECHNICAL_MANUAL.md](docs/TECHNICAL_MANUAL.md).
+
 Goal: a deployable, multi-page, professional-looking site with placeholder content, where the name, logo, projects and copy can be dropped in later without restructuring anything.
 
 ## 1. Decisions locked in

@@ -39,6 +39,7 @@
 - [x] **Copy cleanup**: visible `[PLACEHOLDER]` / `// TODO(content)` markers removed from projects, services, process, team roles set; studio and project copy rewritten in plain English
 - [x] **Typography corrections**: display scale widened; mono metadata raised to a 10px floor; body sizes set by role
 - [x] **Mobile work rows**: ordinal, category, title, sector, and metric reflow without narrow-column wrapping
+- [x] **Docs reconciliation**: README, PROJECT, TECHNICAL_MANUAL, GLOSSARY, ROADMAP, KNOWN_ISSUES, GATE_STATUS, TEST_READY, and ADR-007 describe the shipped composition; historical reports are labelled as snapshots
 - [ ] **Real imagery**: project covers, founder portraits, and a studio image set; the typographic index is a holding pattern until these exist
 - [ ] **Verified brand/contact**: final name, legal entity, domain, email, phone, and address in [`content/site.ts`](file:///d:/WebDev/portfolio/content/site.ts)
 - [ ] **Remove legacy components**: `TrustBar`, `StatsStrip`, `TechStackStrip`, `Testimonials`, `ProcessPreview`, `ServicesOverview`, `FeaturedProjects`, `CTABanner` are no longer imported but remain on disk (sandbox denied deletion)

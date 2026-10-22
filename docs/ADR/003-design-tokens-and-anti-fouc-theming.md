@@ -1,6 +1,6 @@
 # ADR 003: CSS Variable Design Tokens and Anti-FOUC Theming
 
-- **Status:** Accepted and Implemented
+- **Status:** Accepted and Implemented. Token names remain authoritative; the palette values were replaced by ADR-006 and ADR-007. Current values live in [`styles/globals.css`](file:///d:/WebDev/portfolio/styles/globals.css).
 - **Date:** 2026-10-13
 - **Deciders:** Engineering Architecture
 

@@ -1,15 +1,16 @@
-# TEST_READY: Marketing Agency Site Skeleton E2E Suite
+# TEST_READY: Marketing Agency Site E2E Suite
 
-**Test Writer**: `test_writer_1`  
-**Status**: Ready for Execution Gate  
+**Owner**: Engineering  
+**Status**: Active. Reconciled to the post-ADR-007 editorial site on 2026-10-22.  
 **Target Runner**: `node tests/e2e/runner.mjs`  
-**Date**: 2026-10-13  
+
+> The suite remains 66 opaque-box assertions against `out/`. Tier 1 previously described the old nine-section home page; the home tests now assert the five current movements and the editorial typography.
 
 ---
 
 ## 1. Executive Summary
 
-The complete, opaque-box E2E test suite for the Marketing Agency Site Skeleton has been designed and implemented across all four tiers specified in `TEST_INFRA.md` and `PROJECT.md`. The suite operates without external test framework dependencies, running natively on Node.js 24 with native ES modules. It evaluates the pre-rendered static export in `out/` as well as source contract integrity.
+The complete, opaque-box E2E test suite for the Apex Digital site. It operates without external test framework dependencies, running natively on Node.js 24 with native ES modules. It evaluates the pre-rendered static export in `out/` as well as source contract integrity.
 
 - **Total Test Cases**: 66 tests
 - **Tier 1 (Feature Coverage)**: 31 tests
@@ -26,7 +27,7 @@ The complete, opaque-box E2E test suite for the Marketing Agency Site Skeleton h
 ```bash
 node tests/e2e/runner.mjs
 ```
-*(When executed after `npm run build`, verifies all 14 routes, all 9 dynamic services, portfolio case studies, layout contracts, SEO, and responsive geometry.)*
+*(When executed after `npm run build`, verifies all 29 exported routes, all 9 dynamic services, portfolio case studies, layout contracts, SEO, and responsive geometry.)*
 
 ### Filter by Specific Tier
 ```bash
@@ -63,15 +64,15 @@ Focuses on happy-path pre-rendering, route availability, section sequence, servi
 - `T1.3_dynamic_portfolio_routes_html_exists`: Pre-rendered HTML exists for portfolio case studies in `out/portfolio/[slug]/`
 - `T1.4_404_error_page_exists`: Custom 404 error page is statically exported in `out/404.html`
 - `T1.5_valid_doctype_and_html_lang`: Pre-rendered HTML files contain `<!DOCTYPE html>` and `<html lang="en">`
-- `T1.6_home_navbar_structure`: Home page renders Navbar with brand placeholder, navigation links, and "Get a Quote" CTA
-- `T1.7_home_hero_section`: Home page renders Hero section with headline and dual CTAs ("Start a Project", "View Our Work")
-- `T1.8_home_trust_bar`: Home page renders Trust Bar section with partner/client logos
-- `T1.9_home_services_overview`: Home page renders Services Overview section with 4 group cards linking to services
-- `T1.10_home_featured_projects`: Home page renders Featured Projects section displaying 3 curated cards
-- `T1.11_home_stats_strip`: Home page renders Stats Strip with agency metrics (years, projects, clients, countries)
-- `T1.12_home_process_preview`: Home page renders Process Preview section outlining 5-6 workflow steps with link to `/process`
-- `T1.13_home_tech_stack_strip`: Home page renders Tech Stack Strip highlighting core technologies
-- `T1.14_home_cta_banner`: Home page renders pre-footer CTA Banner with link to `/contact`
+- `T1.6_home_navbar_structure`: Home page renders the studio wordmark, navigation links, and the "Start a project" action
+- `T1.7_home_hero_section`: Home page renders the hero statement with primary and secondary actions
+- `T1.8_home_work_index`: Home page renders the selected-work index with three case-study links
+- `T1.9_home_capabilities`: Home page renders the capabilities index with four disciplines and service links
+- `T1.10_home_studio_statement`: Home page renders the inverted studio statement and an about link
+- `T1.11_home_project_metrics`: Home page work index surfaces three project outcome metrics with labels
+- `T1.12_home_discipline_rule`: Home page renders the four studio disciplines in the hero baseline rule
+- `T1.13_home_editorial_typography`: Home page uses the display-serif and mono-label type system
+- `T1.14_home_contact_block`: Home page closes with the contact statement, mailto link, and contact action
 - `T1.15_home_testimonials_suppressed`: Home page suppresses testimonials until real client reviews exist
 - `T1.16_home_footer_structure`: Home page renders Footer with multi-column links, contact details, socials, and copyright
 - `T1.17_services_overview_groups`: `/services` page lists all 4 service groups (Web & Software, Mobile & Games, Automation & Integration, Creative)
@@ -82,11 +83,11 @@ Focuses on happy-path pre-rendering, route availability, section sequence, servi
 - `T1.22_service_detail_technologies_section`: Service detail templates render a Technologies section highlighting tools and stacks
 - `T1.23_service_detail_faq_section`: Service detail templates render a FAQ section with questions and answers
 - `T1.24_service_detail_cta_section`: Service detail templates render a CTA section linking to `/contact`
-- `T1.25_portfolio_overview_project_cards`: `/portfolio` page renders project case study cards with titles and links
+- `T1.25_portfolio_overview_work_index`: `/portfolio` page renders the work index with titles and case-study links
 - `T1.26_portfolio_category_filters`: `/portfolio` page contains category filters for project grouping
 - `T1.27_portfolio_detail_case_study_structure`: Project case study template renders problem, solution, tech stack, and results
 - `T1.28_about_page_content`: `/about` page renders company story, mission statement, and core values
-- `T1.29_team_page_leadership`: `/team` page renders leadership profiles ("The three heads") with roles and bios
+- `T1.29_team_page_leadership`: `/team` page renders the three founders with their roles
 - `T1.30_process_page_methodology`: `/process` page renders detailed 5-6 step delivery methodology
 - `T1.31_legal_pages_rendered`: Legal pages (`/privacy` and `/terms`) render policy text and company references
 
@@ -106,8 +107,8 @@ Focuses on viewport widths, empty states, 404 recovery, honeypot inputs, and inv
 - `T2.12_contact_form_service_dropdown`: Contact form provides a `<select>` or service dropdown for client inquiries
 - `T2.13_contact_form_budget_and_timeline`: Contact form provides inputs for budget range and project timeline
 - `T2.14_empty_fields_handling`: Pre-rendered HTML contains no literal `"undefined"`, `"null"`, or `"[object Object]"` DOM text
-- `T2.15_placeholder_tagging_integrity`: Placeholder content in content files or output is tagged with `"// TODO(content)"` or `"[PLACEHOLDER]"`
-- `T2.16_stats_strip_placeholder_values`: Home page stats strip includes descriptive labels alongside metrics
+- `T2.15_no_visible_placeholder_markers`: Pre-rendered pages contain no visible `[PLACEHOLDER]` or `TODO(content)` text
+- `T2.16_home_metric_labels`: Home page pairs project metrics with descriptive labels
 - `T2.17_favicon_and_meta_icons`: HTML `<head>` links to a favicon or icon resource
 - `T2.18_static_export_dynamic_params_false`: Dynamic service page module configures `dynamicParams = false` for static export safety
 
@@ -155,6 +156,7 @@ tests/e2e/
 
 ## 5. Verification Gate Status
 
-- **Harness self-test against sample fixtures**: 66/66 PASSED (100% pass rate in 271ms).
-- **Execution against unbuilt repository**: Fails with Exit Code 1, providing explicit diagnostic errors pointing to missing pre-rendered files in `out/`.
-- **Status for Milestones M1 - M3**: Ready. Milestone 4 will execute `node tests/e2e/runner.mjs` as the final acceptance gate.
+- **Current export**: 66/66 PASSED against `out/` on 2026-10-22 after the editorial reset.
+- **Harness self-test against sample fixtures**: 66/66 PASSED.
+- **Execution against unbuilt repository**: Fails with Exit Code 1, with diagnostics pointing to missing pre-rendered files in `out/`.
+- **Viewport suite**: `tests/e2e/viewport.test.ts` is separate and cannot run until `@playwright/test` is installed. See `docs/KNOWN_ISSUES.md` KI-008.

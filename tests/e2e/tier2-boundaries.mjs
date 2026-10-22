@@ -300,47 +300,36 @@ export const tier2Tests = [
   },
 
   {
-    id: 'T2.15_placeholder_tagging_integrity',
-    description: 'Placeholder content in content files or pre-rendered output is tagged with "// TODO(content)" or "[PLACEHOLDER]"',
+    id: 'T2.15_no_visible_placeholder_markers',
+    description: 'Pre-rendered pages contain no visible placeholder or TODO markers',
     run: (baseDir = OUT_DIR) => {
-      let foundTags = 0;
-      if (fs.existsSync(CONTENT_DIR)) {
-        const contentFiles = getFilesRecursively(CONTENT_DIR, ['.ts', '.js', '.json']);
-        for (const file of contentFiles) {
-          const content = fs.readFileSync(file, 'utf-8');
-          if (content.includes('TODO(content)') || content.includes('[PLACEHOLDER]')) {
-            foundTags++;
-          }
-        }
-      } else {
-        const homeHtml = loadRouteContent('/', baseDir);
-        if (homeHtml.includes('[PLACEHOLDER]') || homeHtml.includes('PLACEHOLDER')) {
-          foundTags++;
-        }
+      const sampleRoutes = ['/', '/services', '/portfolio', '/about', '/team', '/process', '/contact'];
+      for (const route of sampleRoutes) {
+        const html = loadRouteContent(route, baseDir);
+        assert(
+          !html.includes('[PLACEHOLDER]'),
+          `Route ${route} still renders a [PLACEHOLDER] marker`
+        );
+        assert(
+          !html.includes('TODO(content)'),
+          `Route ${route} still renders a TODO(content) marker`
+        );
       }
-      assert(
-        foundTags >= 1,
-        'Expected placeholder content to be tagged with "// TODO(content)" or "[PLACEHOLDER]"'
-      );
     },
   },
 
   {
-    id: 'T2.16_stats_strip_placeholder_values',
-    description: 'Home page stats strip includes descriptive labels alongside metrics',
+    id: 'T2.16_home_metric_labels',
+    description: 'Home page pairs project metrics with descriptive labels',
     run: (baseDir = OUT_DIR) => {
       const html = loadRouteContent('/', baseDir);
-      const lower = html.toLowerCase();
-      // Ensure metrics have labels like "years", "projects", "clients", "countries"
-      const labels = ['projects', 'clients', 'countries', 'years'];
-      let matchedCount = 0;
-      for (const label of labels) {
-        if (lower.includes(label)) matchedCount++;
-      }
+      assert(html.includes('74%'), 'Home page missing the inventory metric');
       assert(
-        matchedCount >= 2,
-        `Expected stats strip to include at least 2 metric labels, matched ${matchedCount}`
+        html.includes('Faster Inventory Processing'),
+        'Inventory metric is missing its label'
       );
+      assert(html.includes('4.9'), 'Home page missing the app rating metric');
+      assert(html.includes('App Store'), 'App rating metric is missing its label');
     },
   },
 

@@ -142,7 +142,7 @@ export const tier1Tests = [
 
   {
     id: 'T1.7_home_hero_section',
-    description: 'Home page renders Hero section with headline and dual CTAs ("Start a Project", "View Our Work")',
+    description: 'Home page renders the hero statement with a primary action and a selected-work link',
     run: (baseDir = OUT_DIR) => {
       const html = loadRouteContent('/', baseDir);
       const headings = extractHeadings(html, 1);
@@ -161,116 +161,113 @@ export const tier1Tests = [
   },
 
   {
-    id: 'T1.8_home_trust_bar',
-    description: 'Home page renders Trust Bar section with partner/client logos',
+    id: 'T1.8_home_work_index',
+    description: 'Home page renders the selected-work index with three project rows linking to full case studies',
     run: (baseDir = OUT_DIR) => {
       const html = loadRouteContent('/', baseDir);
-      const lower = html.toLowerCase();
       assert(
-        lower.includes('trusted by') ||
-          lower.includes('trust') ||
-          lower.includes('clients') ||
-          lower.includes('partner'),
-        'Home page missing Trust Bar indicator or partner logos section'
-      );
-    },
-  },
-
-  {
-    id: 'T1.9_home_services_overview',
-    description: 'Home page renders Services Overview section with 4 group cards linking to services',
-    run: (baseDir = OUT_DIR) => {
-      const html = loadRouteContent('/', baseDir);
-      const lower = html.toLowerCase();
-      assert(
-        lower.includes('services') || lower.includes('what we do'),
-        'Home page missing Services overview section'
-      );
-      // Check for presence of group mentions or links to services
-      const links = extractLinks(html);
-      const serviceLinks = links.filter((l) => l.href.includes('/services'));
-      assert(
-        serviceLinks.length >= 4,
-        `Expected at least 4 links in Services overview, found ${serviceLinks.length}`
-      );
-    },
-  },
-
-  {
-    id: 'T1.10_home_featured_projects',
-    description: 'Home page renders Featured Projects section displaying 3 curated cards',
-    run: (baseDir = OUT_DIR) => {
-      const html = loadRouteContent('/', baseDir);
-      const lower = html.toLowerCase();
-      assert(
-        lower.includes('featured') || lower.includes('case studies') || lower.includes('recent work'),
-        'Home page missing Featured Projects section'
-      );
-      // Links to portfolio items
-      const links = extractLinks(html);
-      const portfolioLinks = links.filter((l) => l.href.includes('/portfolio'));
-      assert(
-        portfolioLinks.length >= 3,
-        `Home page should link to at least 3 featured portfolio items or portfolio overview, found ${portfolioLinks.length}`
-      );
-    },
-  },
-
-  {
-    id: 'T1.11_home_stats_strip',
-    description: 'Home page renders Stats Strip with agency metrics (years, projects, clients, countries)',
-    run: (baseDir = OUT_DIR) => {
-      const html = loadRouteContent('/', baseDir);
-      const lower = html.toLowerCase();
-      assert(
-        lower.includes('projects') || lower.includes('clients') || lower.includes('years'),
-        'Home page missing Stats Strip with agency metrics'
-      );
-    },
-  },
-
-  {
-    id: 'T1.12_home_process_preview',
-    description: 'Home page renders Process Preview section outlining 5-6 workflow steps with link to /process',
-    run: (baseDir = OUT_DIR) => {
-      const html = loadRouteContent('/', baseDir);
-      const lower = html.toLowerCase();
-      assert(
-        lower.includes('process') || lower.includes('how we work'),
-        'Home page missing Process Preview section'
+        html.toLowerCase().includes('selected work'),
+        'Home page missing the "Selected work" index'
       );
       const links = extractLinks(html);
-      const processLink = links.find((l) => l.href.replace(/\/$/, '').endsWith('/process'));
-      assert(Boolean(processLink), 'Process Preview must link to /process');
+      const caseStudyLinks = links.filter((l) => /\/portfolio\/[^/]+/.test(l.href));
+      assert(
+        caseStudyLinks.length >= 3,
+        `Expected 3 case-study links in the work index, found ${caseStudyLinks.length}`
+      );
     },
   },
 
   {
-    id: 'T1.13_home_tech_stack_strip',
-    description: 'Home page renders Tech Stack Strip highlighting core technologies',
+    id: 'T1.9_home_capabilities',
+    description: 'Home page renders the capabilities index with all four disciplines and links to services',
+    run: (baseDir = OUT_DIR) => {
+      const html = loadRouteContent('/', baseDir);
+      const lower = html.toLowerCase();
+      assert(lower.includes('what we do'), 'Home page missing the capabilities heading');
+      for (const group of ['web &amp; software', 'mobile &amp; games', 'automation &amp; integration', 'creative']) {
+        assert(lower.includes(group), `Home page capabilities missing "${group}"`);
+      }
+      const links = extractLinks(html).filter((l) => l.href.includes('/services'));
+      assert(links.length >= 4, `Expected at least 4 service links, found ${links.length}`);
+    },
+  },
+
+  {
+    id: 'T1.10_home_studio_statement',
+    description: 'Home page renders the inverted studio statement and an about link',
+    run: (baseDir = OUT_DIR) => {
+      const html = loadRouteContent('/', baseDir);
+      const lower = html.toLowerCase();
+      assert(lower.includes('the studio'), 'Home page missing the studio label');
+      assert(
+        lower.includes('small number of projects'),
+        'Home page missing the studio statement'
+      );
+      const links = extractLinks(html).filter((l) => l.href.replace(/\/$/, '').endsWith('/about'));
+      assert(links.length >= 1, 'Studio statement must link to /about');
+    },
+  },
+
+  {
+    id: 'T1.11_home_project_metrics',
+    description: 'Home page work index surfaces project outcome metrics',
+    run: (baseDir = OUT_DIR) => {
+      const html = loadRouteContent('/', baseDir);
+      const metrics = ['74%', '4.9', '180 hrs'].filter((metric) => html.includes(metric));
+      assert(metrics.length >= 3, `Expected three project metrics, found ${metrics.join(', ')}`);
+      assert(
+        html.includes('Faster Inventory Processing'),
+        'Home page missing the inventory metric label'
+      );
+    },
+  },
+
+  {
+    id: 'T1.12_home_discipline_rule',
+    description: 'Home page renders the four studio disciplines in the hero baseline rule',
+    run: (baseDir = OUT_DIR) => {
+      const html = loadRouteContent('/', baseDir);
+      const lower = html.toLowerCase();
+      for (const discipline of ['web platforms', 'mobile products', 'brand and motion']) {
+        assert(lower.includes(discipline), `Hero discipline rule missing "${discipline}"`);
+      }
+    },
+  },
+
+  {
+    id: 'T1.13_home_editorial_typography',
+    description: 'Home page uses the display-serif and mono-label typographic system',
+    run: (baseDir = OUT_DIR) => {
+      const html = loadRouteContent('/', baseDir);
+      assert(html.includes('font-display'), 'Home page missing font-display classes');
+      assert(
+        html.includes('text-display-xl') || html.includes('text-display-lg'),
+        'Home page missing the fluid display scale'
+      );
+      assert(html.includes('font-mono'), 'Home page missing mono metadata classes');
+      assert(
+        html.includes('tracking-[0.16em]') || html.includes('tracking-[0.14em]'),
+        'Home page missing tracked mono label styling'
+      );
+    },
+  },
+
+  {
+    id: 'T1.14_home_contact_block',
+    description: 'Home page closes with the contact block, an email link, and a contact action',
     run: (baseDir = OUT_DIR) => {
       const html = loadRouteContent('/', baseDir);
       const lower = html.toLowerCase();
       assert(
-        lower.includes('technolog') || lower.includes('tech stack') || lower.includes('tools'),
-        'Home page missing Tech Stack Strip section'
+        lower.includes('have something worth building'),
+        'Home page missing the closing contact statement'
       );
-    },
-  },
-
-  {
-    id: 'T1.14_home_cta_banner',
-    description: 'Home page renders pre-footer CTA Banner with link to /contact',
-    run: (baseDir = OUT_DIR) => {
-      const html = loadRouteContent('/', baseDir);
-      const links = extractLinks(html);
-      const ctaContact = links.filter(
-        (l) => l.href.includes('/contact') && (l.text.toLowerCase().includes('start') || l.text.toLowerCase().includes('get in touch') || l.text.toLowerCase().includes('talk') || l.text.toLowerCase().includes('quote'))
+      assert(/href=["']mailto:/i.test(html), 'Contact block missing a mailto link');
+      const contactLinks = extractLinks(html).filter((l) =>
+        l.href.replace(/\/$/, '').endsWith('/contact')
       );
-      assert(
-        ctaContact.length >= 1,
-        'Home page CTA banner must contain an action link to /contact'
-      );
+      assert(contactLinks.length >= 1, 'Contact block missing a link to /contact');
     },
   },
 
@@ -416,8 +413,8 @@ export const tier1Tests = [
   },
 
   {
-    id: 'T1.25_portfolio_overview_project_cards',
-    description: '/portfolio page renders project case study cards with titles and links',
+    id: 'T1.25_portfolio_overview_work_index',
+    description: '/portfolio page renders the work index with project titles and case-study links',
     run: (baseDir = OUT_DIR) => {
       const html = loadRouteContent('/portfolio', baseDir);
       const links = extractLinks(html);
@@ -492,7 +489,7 @@ export const tier1Tests = [
 
   {
     id: 'T1.29_team_page_leadership',
-    description: '/team page renders leadership profiles ("The three heads") with roles and bios',
+    description: '/team page renders the three founders with their roles',
     run: (baseDir = OUT_DIR) => {
       const html = loadRouteContent('/team', baseDir);
       const lower = html.toLowerCase();

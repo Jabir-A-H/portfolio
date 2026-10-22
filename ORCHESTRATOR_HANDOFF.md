@@ -1,5 +1,7 @@
 # Orchestrator Final Handoff Report: Marketing Agency Site Skeleton
 
+> **Historical snapshot (2026-10-13).** This handoff predates the ADR-007 editorial reset. It remains useful for the original milestone history and gate method, but not for the current page composition, copy, or file inventory. Current state: [GATE_STATUS.md](GATE_STATUS.md), [PROJECT.md](PROJECT.md), [docs/ADR/007-editorial-reset.md](docs/ADR/007-editorial-reset.md).
+
 **Target**: Full Project Skeleton Implementation (`plan-01-core-skeleton.md`)  
 **Lead Orchestrator**: `orchestrator_1` (`2bc7dbf6-8c29-419d-97f4-8e7a26d99d46`)  
 **Parent / Recipient**: Sentinel (`60602c50-4a9f-47d3-9240-86776eba0f92`)  
