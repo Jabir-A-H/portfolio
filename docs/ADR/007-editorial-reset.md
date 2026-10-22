@@ -60,7 +60,7 @@ An availability status (nav badge, status bar, or hero note) was proposed and ex
 ### 9. Content cleanup
 - Visible `[PLACEHOLDER]` and `// TODO(content)` markers removed from projects, services, and process copy.
 - Project titles rewritten as short human names; summaries and narratives rewritten in plain, specific English.
-- The trading name is provisionally set to "Apex Digital" so the chrome no longer displays a placeholder string. Contact details are provisional.
+- The trading name is provisionally set to "Team NJS" so the chrome no longer displays a placeholder string. The final name and legal entity remain undecided. Contact details are provisional.
 
 ## Amendment log
 

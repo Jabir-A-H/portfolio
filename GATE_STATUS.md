@@ -94,3 +94,24 @@ Notes:
 - `tests/e2e/viewport.test.ts` remains excluded from the gate until Playwright is installed.
 
 Gate Result: **PASS**
+
+---
+
+## Gate — Dependency update + content Q2 (2026-10-22)
+| Check | Scope | Result |
+|---|---|---|
+| Dependencies | Next 16.4.2, React 19.3.1, eslint-config-next 16.4.2, lucide 1.61.0, postcss 8.5.31, @types/node 24.19.2 | Installed, lockfile updated |
+| ESLint | Native Next 16 flat config, `globalIgnores` | PASS, 0 errors |
+| `npm run typecheck` | TypeScript 5.9 strict | PASS |
+| `npm run clean && npm run build` | Next 16 with `--webpack` | PASS, 28 app routes, static export |
+| `npm run verify:routes` | 27 route files | PASS |
+| `npm run verify:brand` | Brand isolation | PASS, 48 files |
+| `npm run test:e2e` | 4-tier suite | PASS, 66/66 |
+| Content Q2 | A as positioning, B as supporting voice, C as hero statement; Team NJS capitalization | Applied in `content/site.ts` |
+
+Notes:
+- Next 16 Turbopack currently emits only the pages-router 404 for this static-export app; `--webpack` is required until `KI-011` is resolved.
+- Tailwind 4, TypeScript 7, and ESLint 10 are deferred as breaking migrations (`KI-012`).
+- React 19.3's hook lint rules required removing two `setState`-in-effect patterns; `ThemeToggle` is now CSS-driven instead of stateful.
+
+Gate Result: **PASS**

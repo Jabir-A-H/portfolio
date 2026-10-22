@@ -6,7 +6,7 @@
 ---
 
 ## Phase 0: Core Skeleton & Verification (Completed)
-- [x] Next.js 15 App Router project setup with TypeScript and Tailwind CSS
+- [x] Next.js App Router project setup with TypeScript and Tailwind CSS (now Next 16 with the webpack builder)
 - [x] Static export configuration (`output: 'export'`, `trailingSlash: true`, `images: { unoptimized: true }`)
 - [x] Centralized single source of truth (`content/site.ts`, `services.ts`, `projects.ts`, `team.ts`, `process.ts`)
 - [x] Responsive layout suite: Navbar with dark mode toggle, Footer, Container, Section primitives
@@ -47,11 +47,18 @@
 
 ---
 
-## Phase 2: Authentic Content & Case Studies
+## Phase 2: Authentic Content & Case Studies (In Progress)
+> Working log: [`docs/CONTENT_DECISIONS.md`](file:///d:/WebDev/portfolio/docs/CONTENT_DECISIONS.md). Every answer from the content grill is recorded there before it is written into `content/`.
+- [ ] Lock the brand name, legal entity, tagline, positioning, and studio description
+- [ ] Lock the real contact details, address, working hours, and social profiles
 - [ ] Populate authentic service deliverables, methodologies, and technical FAQs in [`content/services.ts`](file:///d:/WebDev/portfolio/content/services.ts)
-- [ ] Insert real past & active client projects with metric outcomes in [`content/projects.ts`](file:///d:/WebDev/portfolio/content/projects.ts)
+- [ ] Insert real past and active client projects with verified metric outcomes in [`content/projects.ts`](file:///d:/WebDev/portfolio/content/projects.ts)
+- [ ] Write the three founder bios and roles in [`content/team.ts`](file:///d:/WebDev/portfolio/content/team.ts)
+- [ ] Verify the six-step process and delivery standards in [`content/process.ts`](file:///d:/WebDev/portfolio/content/process.ts)
+- [ ] Replace or remove illustrative stats (`5+`, `120+`, `80+`, `15+`)
 - [ ] Connect verified client testimonials in [`content/site.ts`](file:///d:/WebDev/portfolio/content/site.ts) and flip `features.showTestimonials: true`
 - [ ] Add official corporate email address and verify DNS records (SPF, DKIM, DMARC)
+- [ ] Collect project covers, founder portraits, and studio photography into `public/images/`
 
 ---
 

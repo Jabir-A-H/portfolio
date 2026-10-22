@@ -65,7 +65,7 @@ export default function AboutPage() {
       <PageHeader
         label="Studio"
         title="A studio for the long run."
-        lede={siteConfig.studio.statement}
+        lede={siteConfig.description}
         meta="Dhaka, Bangladesh"
       />
 

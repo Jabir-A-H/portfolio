@@ -10,7 +10,7 @@
 
 ## 1. Executive Summary
 
-The complete, opaque-box E2E test suite for the Apex Digital site. It operates without external test framework dependencies, running natively on Node.js 24 with native ES modules. It evaluates the pre-rendered static export in `out/` as well as source contract integrity.
+The complete, opaque-box E2E test suite for the Team NJS site. It operates without external test framework dependencies, running natively on Node.js 24 with native ES modules. It evaluates the pre-rendered static export in `out/` as well as source contract integrity.
 
 - **Total Test Cases**: 66 tests
 - **Tier 1 (Feature Coverage)**: 31 tests

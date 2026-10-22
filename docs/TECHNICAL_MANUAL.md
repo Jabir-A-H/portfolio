@@ -1,14 +1,20 @@
 # Agency Marketing Portfolio: Technical Manual
 
-> **Status:** Active & Production Verified  
-> **Framework:** Next.js 15+ (App Router, Static Export) | TypeScript | Tailwind CSS v3.4  
-> **Last Verified:** 2026-10-22 (29 routes built, 27 route files verified, 66/66 E2E assertions, brand scan clean, typecheck and lint clean)
+> **Status:** Active. Content phase in progress.  
+> **Framework:** Next.js 16.4 (App Router, webpack builder, Static Export) | React 19.3 | TypeScript 5.9 | Tailwind CSS 3.4  
+> **Last Verified:** 2026-10-22 (28 app routes built, 27 route files verified, 66/66 E2E assertions, brand scan clean, typecheck and lint clean)
 
 ---
 
 ## 1. Architectural Architecture & Static Export
 
 The project is architected as a multi-page, static marketing website designed for ultra-fast load times, zero-server-maintenance deployment (e.g. Hostinger, Cloudflare Pages, GitHub Pages), and maximum security resilience.
+
+### Dependency policy (2026-10-22)
+- **Next.js 16.4.2** and **eslint-config-next 16.4.2** are installed. `build` and `dev` pass `--webpack` because Next 16 Turbopack currently emits only the pages-router 404 for this app; webpack generates all app routes and exports them. Tracked as `KI-011`.
+- **React 19.3.1**, **lucide-react 1.61.0**, **postcss 8.5.31**, **@types/node 24.19.2**, and **@types/react 19.3.0** are on their latest compatible releases.
+- **Tailwind CSS 4**, **TypeScript 7**, and **ESLint 10** are deliberately deferred. Each is a breaking migration: Tailwind 4 changes the PostCSS pipeline and config model, TypeScript 7 is a new compiler major, and ESLint 10 changes plugin compatibility. Do them in a dedicated upgrade pass, not during content work.
+- ESLint uses the native Next 16 flat config (`eslint-config-next/core-web-vitals` and `/typescript`) with `defineConfig` and `globalIgnores`; the legacy `.eslintrc.json` and `FlatCompat` bridge are gone.
 
 ### Key Configuration
 - **Static Export**: Defined in [`next.config.ts`](file:///d:/WebDev/portfolio/next.config.ts) with `output: 'export'`.
@@ -36,7 +42,7 @@ To enable friction-free rebranding and content updates without modifying React c
 
 ## 3. Route Tree & Pre-rendered Pages
 
-The Next.js App Router statically exports 29 total HTML/XML pages into `out/`:
+The Next.js App Router statically exports 28 total HTML/XML pages into `out/`:
 
 ```
 /                         -> out/index.html (five-movement editorial home page)
@@ -151,9 +157,8 @@ npm run typecheck
 # 2. Linting (ESLint 9 Next Core Web Vitals)
 npm run lint
 
-# 3. Production Static Export Build
-# If Next reports a webpack runtime or "no direct app page entry" error,
-# delete .next/ first; it is a stale cache, not a source failure.
+# 3. Production Static Export Build (clean cache first)
+npm run clean
 npm run build
 
 # 4. Route Pre-rendering Verification Gate
@@ -163,7 +168,7 @@ node scripts/verify-routes.mjs
 node scripts/verify-no-hardcoded-brand.mjs
 
 # 6. Master 4-Tier Opaque-Box E2E Runner (66 tests)
-node tests/e2e/runner.mjs
+npm run test:e2e
 
 # 7. Unified Pipeline
 npm run verify:all

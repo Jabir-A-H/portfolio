@@ -1,12 +1,12 @@
-# Apex Digital — studio portfolio
+# Team NJS — studio portfolio
 
-A statically exported marketing site for an independent digital studio. The design is an editorial document rather than a component catalogue: one type-led composition, deliberate negative space, and five movements on the home page. See [ADR-007](docs/ADR/007-editorial-reset.md) for the composition and [ADR-006](docs/ADR/006-visual-identity-pivot.md) for the design DNA.
+Team NJS is an independent studio in Dhaka designing and building web platforms, mobile products, and the systems behind them. This is its marketing site: a statically exported editorial document rather than a component catalogue, with one type-led composition, deliberate negative space, and five movements on the home page. See [ADR-007](docs/ADR/007-editorial-reset.md) for the composition and [ADR-006](docs/ADR/006-visual-identity-pivot.md) for the design DNA.
 
-> The brand name, contact addresses, and project metrics are provisional. See [KNOWN_ISSUES](docs/KNOWN_ISSUES.md) before treating any content as production truth.
+> “Team NJS” is a provisional trading name; the final brand name and legal entity are undecided. See [KNOWN_ISSUES](docs/KNOWN_ISSUES.md) before treating any content as production truth.
 
 ## Stack
 
-- Next.js 15 App Router, static export (`output: 'export'`, `trailingSlash: true`, `images: { unoptimized: true }`)
+- Next.js 16 App Router, static export (`output: 'export'`, `trailingSlash: true`, `images: { unoptimized: true }`)
 - TypeScript strict mode
 - Tailwind CSS 3.4 with a deliberately reduced scale: 2px micro-radius, hard offset shadows, one accent
 - `next/font/google`: Cormorant Garamond (display), Space Mono (metadata), Inter (body)
@@ -15,7 +15,7 @@ A statically exported marketing site for an independent digital studio. The desi
 
 ## Routes
 
-29 pages are exported:
+28 pages are exported:
 
 | Route | Output | Purpose |
 |---|---|---|
@@ -46,16 +46,20 @@ Full details in [docs/TECHNICAL_MANUAL.md](docs/TECHNICAL_MANUAL.md), [GLOSSARY.
 
 ```bash
 npm run dev            # local development
+npm run clean          # remove .next/ and out/
 npm run typecheck      # tsc --noEmit
 npm run lint           # eslint app components content
 npm run build          # static export into out/
+npm start              # serve out/ at http://127.0.0.1:3000
 npm run verify:routes  # 27 route files must exist
 npm run verify:brand   # no hardcoded brand strings in app/ or components/
-npm run verify:all     # typecheck, lint, build, route and brand gates
-node tests/e2e/runner.mjs   # 66 opaque-box assertions against out/
+npm run test:e2e       # 66 opaque-box assertions against out/
+npm run verify:all     # typecheck, lint, build, routes, brand, E2E
 ```
 
-On Windows, if `next build` fails with a webpack runtime or `no direct app page entry` invariant after editing, delete `.next/` and rebuild. This is a known Next 15 cache issue, not a source error.
+On Windows, if `next build` fails with a webpack runtime or `no direct app page entry` invariant after editing, run `npm run clean` and rebuild. This is a known Next cache issue, not a source error.
+
+The build and dev scripts pass `--webpack`. Next 16's Turbopack currently emits only the pages-router 404 for this static-export app, so webpack remains the stable builder until that is resolved.
 
 ## Content model
 

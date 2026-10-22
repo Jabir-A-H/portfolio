@@ -13,11 +13,13 @@
 | `KI-003` | Resolved | Geometry | All components use 2px micro-radius, hard offset shadows, and borderless-by-space composition per ADR-006. |
 | `KI-004` | Resolved | Hero / Layout | `Hero.tsx` was centered with a blurred accent aura, contradicting the "Bold Break" offset-axis rule | Rebuilt as an offset editorial spread with no aura; see ADR-007. |
 | `KI-005` | High | Imagery | No project covers, founder portraits, or studio photography exist; the site is intentionally typographic until they do | Add assets to `public/images/` and wire them into the work index and team page. Do not reintroduce fake gradient thumbnails. |
-| `KI-006` | Medium | Brand & Contact | Trading name ("Apex Digital"), legal entity, email (`hello@apexdigital.studio`), phone, and address are provisional | Replace in [`content/site.ts`](file:///d:/WebDev/portfolio/content/site.ts) before launch; the brand gate only forbids hardcoding them in components. |
+| `KI-006` | High | Brand & Contact | Trading name is “Team NJS” only as a working name; final brand, legal entity, email (`hello@teamnjs.example`), phone, and address are undecided | Record the decision in `docs/CONTENT_DECISIONS.md`, then replace in [`content/site.ts`](file:///d:/WebDev/portfolio/content/site.ts). The brand gate only forbids hardcoding them in components. |
 | `KI-007` | Low | Dead Files | `TrustBar`, `StatsStrip`, `TechStackStrip`, `Testimonials`, `ProcessPreview`, `ServicesOverview`, `FeaturedProjects`, `CTABanner` are no longer imported but remain on disk | Delete in a normal editor session; the agent sandbox denied file deletion. |
 | `KI-008` | Medium | Test Gate | `tests/e2e/viewport.test.ts` cannot run because `@playwright/test` is not installed; `tsconfig` excludes `tests` | Install Playwright and re-add a `test:viewport` script, or rely on the manual screenshot review. |
 | `KI-009` | Medium | Content Claims | Agency stats (5+, 120+, 80+, 15+) and project metrics are illustrative and unverified | Verify or remove before launch. Case-study metrics are shown on the home page and portfolio index. |
 | `KI-010` | Low | Motion | The cinematic reveal is wired into the home sections, but the parallax layer is not yet used | Add a subtle `Parallax` layer to the studio band or a hero depth element. Motion must remain optional and respect reduced-motion. |
+| `KI-011` | Medium | Build | Next 16 Turbopack emits only the pages-router 404 for this static-export app; `next build` with Turbopack produces no app routes | `build` and `dev` pass `--webpack`. Re-test Turbopack after the next Next patch; remove the flag only when all 28 app routes appear. |
+| `KI-012` | Low | Dependencies | Tailwind 4, TypeScript 7, and ESLint 10 are not installed | Deliberately deferred breaking migrations. Do them in a dedicated upgrade pass with the full gate; do not bundle them into content work. |
 
 ---
 

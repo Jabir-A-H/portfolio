@@ -119,22 +119,22 @@ export interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  // Provisional trading name. Replace with the registered brand when decided.
-  name: 'Apex Digital',
-  legalName: 'Apex Digital Studio Ltd.',
+  // Provisional trading name. Final brand name and legal entity are undecided.
+  name: 'Team NJS',
+  legalName: 'Team NJS',
   tagline: 'Independent digital studio, Dhaka',
   description:
-    'A digital engineering and design studio building web platforms, mobile products, and the systems behind them.',
-  url: 'https://apex-digital.placeholder.example',
+    'An independent studio in Dhaka designing and building web platforms, mobile products, and the systems behind them.',
+  url: 'https://teamnjs.example',
   locale: 'en',
 
   logo: {
-    text: 'Apex Digital',
+    text: 'Team NJS',
     placeholderUrl: '/logo/placeholder.svg',
   },
 
   hero: {
-    headline: 'We build digital systems that *outlast* their launch.',
+    headline: 'We build digital products that *outlast* their launch.',
     subheadline:
       'A small studio for teams who care how things are made. We design, engineer, and maintain the products your business runs on.',
     disciplines: ['Web platforms', 'Mobile products', 'Automation', 'Brand and motion'],
@@ -159,8 +159,8 @@ export const siteConfig: SiteConfig = {
   },
 
   contact: {
-    // Provisional studio address. Swap for the registered office before launch.
-    email: 'hello@apexdigital.studio',
+    // Provisional contact details. Replace before launch.
+    email: 'hello@teamnjs.example',
     phone: '+370 626 32643',
     // WhatsApp contact number (E.164 digits without +)
     whatsapp: '37062632643',

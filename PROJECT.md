@@ -1,18 +1,19 @@
-# Project: Apex Digital Studio Portfolio
+# Project: Team NJS Studio Portfolio
 
-> Living architecture and feature spec. Last reconciled 2026-10-22 against commit `95c45c4`.
+> Living architecture and feature spec. Last reconciled 2026-10-22 during the content phase.
 > Design rationale: [ADR-007](docs/ADR/007-editorial-reset.md). Operations: [TECHNICAL_MANUAL](docs/TECHNICAL_MANUAL.md).
 
 ## 1. What this is
 
-A multi-page marketing site for an independent digital studio. It is a pure static export: no server runtime, no database, no auth. The visual direction is editorial, not dashboard-like: type-led hierarchy, deliberate negative space, asymmetric composition, 2px micro-radius, hard offset shadows, and a single International Orange accent.
+Team NJS is an independent studio in Dhaka designing and building web platforms, mobile products, and the systems behind them. This is its marketing site: a pure static export with no server runtime, database, or auth. The visual direction is editorial, not dashboard-like: type-led hierarchy, deliberate negative space, asymmetric composition, 2px micro-radius, hard offset shadows, and a single International Orange accent.
 
-The content is provisionally branded. "Apex Digital", `hello@apexdigital.studio`, and the project metrics are placeholders until the real studio details are supplied.
+The content is provisionally branded. “Team NJS” is a working name; the final brand name, legal entity, contact details, and project metrics are undecided until supplied.
 
 ## 2. Architecture
 
-- **Framework:** Next.js 15 App Router, React 19, TypeScript strict.
+- **Framework:** Next.js 16 App Router (webpack builder), React 19.3, TypeScript 5.9 strict.
 - **Export:** `output: 'export'`, `trailingSlash: true`, `images: { unoptimized: true }`.
+- **Build note:** `next build --webpack` is intentional. Next 16 Turbopack currently drops the app routes in this static-export setup; webpack builds all routes. See `KI-011`.
 - **Dynamic routes:** `/services/[slug]` and `/portfolio/[slug]` declare `dynamicParams = false` and provide `generateStaticParams()`.
 - **Brand isolation:** no brand or contact literals in `app/` or `components/`; everything imports from `content/site.ts`. Enforced by `scripts/verify-no-hardcoded-brand.mjs`.
 - **Theming:** HSL variables in `styles/globals.css`, mapped in `tailwind.config.ts`, `.dark` class toggled by an inline anti-FOUC script and `ThemeToggle`.
@@ -136,7 +137,7 @@ interface ProjectItem {
 |---|---|---|
 | Types | `npm run typecheck` | exit 0 |
 | Lint | `npm run lint` | exit 0 |
-| Export | `npm run build` | 29 routes, `out/` written |
+| Export | `npm run build` | 28 app routes, `out/` written |
 | Route files | `npm run verify:routes` | 27/27 found |
 | Brand isolation | `npm run verify:brand` | 0 violations |
 | E2E | `node tests/e2e/runner.mjs` | 66/66 |
