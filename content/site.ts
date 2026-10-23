@@ -210,11 +210,10 @@ export const siteConfig: SiteConfig = {
         { title: 'Creative & Media', href: '/services#creative' },
       ],
       company: [
-        { title: 'About Us', href: '/about' },
-        { title: 'Leadership Team', href: '/team' },
-        { title: 'Our Process', href: '/process' },
-        { title: 'Case Studies', href: '/portfolio' },
-        { title: 'Contact', href: '/contact' },
+        { title: 'Studio Dossier', href: '/about' },
+        { title: 'Selected Work', href: '/portfolio' },
+        { title: 'Services Overview', href: '/services' },
+        { title: 'Start a Project', href: '/contact' },
       ],
       legal: [
         { title: 'Privacy Policy', href: '/privacy' },

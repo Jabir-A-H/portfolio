@@ -52,8 +52,6 @@ export const EXPECTED_CORE_ROUTES = [
   '/portfolio',
   '/portfolio/[slug]',
   '/about',
-  '/team',
-  '/process',
   '/contact',
   '/privacy',
   '/terms',

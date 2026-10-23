@@ -53,8 +53,6 @@ const REQUIRED_ROUTES = [
     candidates: [`portfolio/${slug}/index.html`, `portfolio/${slug}.html`],
   })),
   { name: 'About Page (/about)', candidates: ['about/index.html', 'about.html'] },
-  { name: 'Team Page (/team)', candidates: ['team/index.html', 'team.html'] },
-  { name: 'Process Page (/process)', candidates: ['process/index.html', 'process.html'] },
   { name: 'Contact Page (/contact)', candidates: ['contact/index.html', 'contact.html'] },
   { name: 'Privacy Policy (/privacy)', candidates: ['privacy/index.html', 'privacy.html'] },
   { name: 'Terms of Service (/terms)', candidates: ['terms/index.html', 'terms.html'] },

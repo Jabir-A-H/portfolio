@@ -97,7 +97,7 @@ export const tier2Tests = [
     id: 'T2.5_images_have_alt_and_responsive_classes',
     description: 'All pre-rendered <img> tags provide non-empty alt text and responsive sizing attributes',
     run: (baseDir = OUT_DIR) => {
-      const routes = ['/', '/services', '/portfolio', '/about', '/team'];
+      const routes = ['/', '/services', '/portfolio', '/about'];
       for (const route of routes) {
         const html = loadRouteContent(route, baseDir);
         const images = extractImages(html);
@@ -278,7 +278,7 @@ export const tier2Tests = [
     id: 'T2.14_empty_fields_handling',
     description: 'Pre-rendered HTML contains no literal "undefined", "null", or "[object Object]" DOM text',
     run: (baseDir = OUT_DIR) => {
-      const sampleRoutes = ['/', '/services', '/portfolio', '/about', '/team', '/process', '/contact'];
+      const sampleRoutes = ['/', '/services', '/portfolio', '/about', '/contact'];
       for (const route of sampleRoutes) {
         const html = loadRouteContent(route, baseDir);
         // Exclude script tags / JSON strings, inspect HTML body text
@@ -303,7 +303,7 @@ export const tier2Tests = [
     id: 'T2.15_no_visible_placeholder_markers',
     description: 'Pre-rendered pages contain no visible placeholder or TODO markers',
     run: (baseDir = OUT_DIR) => {
-      const sampleRoutes = ['/', '/services', '/portfolio', '/about', '/team', '/process', '/contact'];
+      const sampleRoutes = ['/', '/services', '/portfolio', '/about', '/contact'];
       for (const route of sampleRoutes) {
         const html = loadRouteContent(route, baseDir);
         assert(

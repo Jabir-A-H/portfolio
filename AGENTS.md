@@ -39,8 +39,8 @@ Build and maintain a high-performance, statically exportable, responsive multi-p
 - A change is incomplete until verified. Always run the quality pipeline in order:
   1. `npm run typecheck` — 0 TypeScript errors
   2. `npm run lint` — 0 ESLint warnings/errors
-  3. `npm run clean && npm run build` — Clean static build, 28 app routes in `out/`
-  4. `npm run verify:routes` — All 27 expected route files verified
+  3. `npm run clean && npm run build` — Clean static build, 26 app routes in `out/`
+  4. `npm run verify:routes` — All 25 expected route files verified
   5. `npm run verify:brand` — 0 hardcoded brand string leaks across monitored files
   6. `npm run test:e2e` — 66/66 opaque-box assertions pass across all 4 tiers
   7. `npm run verify:all` — Unified gate chaining all above steps

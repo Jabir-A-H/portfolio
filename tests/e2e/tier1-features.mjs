@@ -31,8 +31,6 @@ export const tier1Tests = [
         '/services',
         '/portfolio',
         '/about',
-        '/team',
-        '/process',
         '/contact',
         '/privacy',
         '/terms',
@@ -468,63 +466,50 @@ export const tier1Tests = [
 
   {
     id: 'T1.28_about_page_content',
-    description: '/about page renders company story, mission statement, and core values',
+    description: '/about page renders studio story, workspace narrative, and operational philosophy',
     run: (baseDir = OUT_DIR) => {
       const html = loadRouteContent('/about', baseDir);
       const lower = html.toLowerCase();
       assert(
-        lower.includes('story') || lower.includes('about us') || lower.includes('who we are'),
-        '/about page missing company story / about heading'
+        lower.includes('story') || lower.includes('about') || lower.includes('studio'),
+        '/about page missing studio story heading or narrative'
       );
       assert(
-        lower.includes('mission') || lower.includes('vision') || lower.includes('purpose'),
-        '/about page missing mission / vision statement'
-      );
-      assert(
-        lower.includes('values') || lower.includes('principles'),
-        '/about page missing core values'
+        lower.includes('dhaka') && (lower.includes('workspace') || lower.includes('founders')),
+        '/about page missing Dhaka studio workspace context'
       );
     },
   },
 
   {
-    id: 'T1.29_team_page_leadership',
-    description: '/team page renders the three founders with their roles',
+    id: 'T1.29_about_leadership_founders',
+    description: 'Studio dossier renders the three founders with their roles and leadership profiles',
     run: (baseDir = OUT_DIR) => {
-      const html = loadRouteContent('/team', baseDir);
+      const html = loadRouteContent('/about', baseDir);
       const lower = html.toLowerCase();
       assert(
-        lower.includes('team') || lower.includes('leadership'),
-        '/team page missing team / leadership heading'
+        lower.includes('leadership') || lower.includes('three founders') || lower.includes('founder'),
+        '/about page missing leadership section'
       );
-      // Plan 01 specifies "The three heads"
-      const headings = extractHeadings(html);
       assert(
-        headings.length >= 3,
-        'Team page should render headings for at least 3 team members / sections'
+        html.includes('Nasib Mohammad Arif') &&
+          html.includes('Abu Sayed Md Saad') &&
+          html.includes('Jabir Abdullah Haian'),
+        'About page must render profiles for all three founders'
       );
     },
   },
 
   {
-    id: 'T1.30_process_page_methodology',
-    description: '/process page renders detailed 5-6 step delivery methodology',
+    id: 'T1.30_services_delivery_methodology',
+    description: 'Services specifications incorporate detailed delivery methodology and process stages',
     run: (baseDir = OUT_DIR) => {
-      const html = loadRouteContent('/process', baseDir);
-      const lower = html.toLowerCase();
+      const sampleSlug = EXPECTED_SERVICE_SLUGS[0];
+      const detailHtml = loadRouteContent(`/services/${sampleSlug}`, baseDir);
+      const lower = detailHtml.toLowerCase();
       assert(
-        lower.includes('process') || lower.includes('how we work') || lower.includes('methodology'),
-        '/process page missing process / methodology heading'
-      );
-      // Check for step indicators (e.g. 1, 2, 3, 4, 5)
-      assert(
-        lower.includes('discovery') ||
-          lower.includes('planning') ||
-          lower.includes('step 1') ||
-          lower.includes('step 01') ||
-          lower.includes('design') ||
-          lower.includes('development'),
-        '/process page missing methodology steps'
+        lower.includes('process') || lower.includes('method') || lower.includes('deliver'),
+        `Service page /services/${sampleSlug} missing delivery process methodology`
       );
     },
   },

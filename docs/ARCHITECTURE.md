@@ -51,7 +51,7 @@ To prevent brand lock-in and enable seamless rebranding without touching UI comp
 
 ## 4. Route Tree & Static Pages
 
-Next.js App Router exports 28 pre-rendered static routes into `out/`:
+Next.js App Router exports 26 pre-rendered static routes into `out/`:
 
 ```
 /                         -> out/index.html (Editorial home: hero, work index, capabilities, statement, contact)
@@ -59,9 +59,7 @@ Next.js App Router exports 28 pre-rendered static routes into `out/`:
 /services/[slug]          -> out/services/*/index.html (9 dynamic service routes)
 /portfolio                -> out/portfolio/index.html (Filterable category work index)
 /portfolio/[slug]         -> out/portfolio/*/index.html (6 dynamic case study routes)
-/about                    -> out/about/index.html (Comprehensive 3-chapter Studio Dossier: Story with studio photo, Leadership with 3 founder portraits, Standards & Commitments with cross-link to /process)
-/team                     -> out/team/index.html (Founder portrait grid & authentic LinkedIn profiles, deep-linking to Studio Chapter 2)
-/process                  -> out/process/index.html (6-step delivery workflow & standards, deep-linking to Studio Chapter 3)
+/about                    -> out/about/index.html (Focused 3-part Studio Dossier: Origin Story with studio workspace photo, Leadership with 3 founder portraits/bios/LinkedIn, and Measured Studio Outcomes)
 /contact                  -> out/contact/index.html (Inquiry form with ?service= preselection & direct channels)
 /privacy, /terms          -> out/*/index.html (Legal policies with dynamic brand)
 /404                      -> out/404.html (Custom branded not-found error page)
@@ -98,8 +96,8 @@ The design identity is anchored by [ADR-006](file:///d:/WebDev/portfolio/docs/AD
 Quality is enforced via automated gates executed in order:
 1. `npm run typecheck` — 0 TypeScript errors.
 2. `npm run lint` — 0 ESLint warnings/errors.
-3. `npm run clean && npm run build` — Clean static build, 28 app routes in `out/`.
-4. `npm run verify:routes` — All 27 expected route files verified.
+3. `npm run clean && npm run build` — Clean static build, 26 app routes in `out/`.
+4. `npm run verify:routes` — All 25 expected route files verified.
 5. `npm run verify:brand` — 0 hardcoded brand string leaks across monitored files.
 6. `npm run test:e2e` — 66/66 opaque-box assertions pass across all 4 tiers.
 7. `npm run verify:all` — Unified runner chaining all above gates.

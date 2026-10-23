@@ -76,7 +76,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-background text-foreground antialiased overflow-x-hidden selection:bg-accent selection:text-accent-foreground">
+      <body className="min-h-screen flex flex-col bg-background text-foreground antialiased selection:bg-accent selection:text-accent-foreground">
         <Navbar />
         <main className="flex-1 w-full min-w-0">
           <MotionProvider>{children}</MotionProvider>

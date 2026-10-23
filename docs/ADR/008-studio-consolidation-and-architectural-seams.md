@@ -18,14 +18,13 @@ Consolidate primary navigation into four clear pillars:
 - **`Studio`** (`/about`)
 - **`Contact`** (`/contact`)
 
-### 2. Multi-Chapter Studio Dossier
-Recompose [`app/about/page.tsx`](file:///d:/WebDev/portfolio/app/about/page.tsx) into a multi-chapter editorial dossier with sticky chapter navigation:
-- **Chapter 01:** The Story & Philosophy
-- **Chapter 02:** Leadership ("Three founders, one room" with typed profiles)
-- **Chapter 03:** Delivery Method & Standards (6-step delivery workflow and engineering standards)
-- **Chapter 04:** Commitments & Metrics (core agency commitments and live metrics)
+### 2. Consolidated Studio Dossier & Single-Page Pruning
+Recompose [`app/about/page.tsx`](file:///d:/WebDev/portfolio/app/about/page.tsx) into a focused editorial studio dossier:
+- **Movement 01:** The Story & Philosophy (studio origins in Dhaka + workspace photography proof)
+- **Movement 02:** Leadership ("Three founders, one room" with authentic profiles, portraits, and LinkedIn links)
+- **Movement 03:** Measured Outcomes (tangible studio metrics from `siteConfig.stats`)
 
-To preserve static export guarantees and backwards compatibility, `/team` and `/process` remain pre-rendered route files that mirror and cross-link with the Studio chapters, satisfying all 66 test assertions.
+Decommission redundant single-purpose `/team` and `/process` pages to eliminate duplicate content and thin standalone pages, consolidating all agency identity into the 4 core pillars (`Work`, `Services`, `Studio`, `Contact`).
 
 ### 3. Centralized Query Facade (`content/queries.ts`)
 Centralize all derived domain logic (`getProjects()`, `getFeaturedProjects()`, `getProjectBySlug()`, `getServices()`, `getServiceOptionsForContact()`, `getTeamMembers()`, `getProcessSteps()`) in `content/queries.ts`. Pages and components no longer query raw arrays directly.

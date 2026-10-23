@@ -175,7 +175,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         <Container size="xl">
           <div className="grid grid-cols-12 gap-x-6 gap-y-4 pb-8">
             <p className="col-span-12 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground lg:col-span-2">
-              Method
+              Delivery Process
             </p>
             <h2 className="col-span-12 font-display text-display-md text-foreground lg:col-span-8">
               How the work runs.

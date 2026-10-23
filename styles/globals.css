@@ -63,7 +63,7 @@
   }
 
   html {
-    overflow-x: hidden;
+    overflow-x: clip; /* Modern horizontal clipping without creating a scroll container (replaces overflow-x: hidden to preserve sticky header) */
     width: 100%;
     max-width: 100vw;
     scroll-behavior: smooth;
@@ -71,7 +71,6 @@
   }
 
   body {
-    overflow-x: hidden;
     width: 100%;
     max-width: 100vw;
     min-height: 100vh;

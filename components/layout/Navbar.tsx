@@ -12,10 +12,39 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   React.useEffect(() => {
-    document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
+    document.documentElement.style.overflow = mobileMenuOpen ? 'hidden' : '';
     return () => {
-      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     };
+  }, [mobileMenuOpen]);
+
+  const [prevPathname, setPrevPathname] = React.useState(pathname);
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
+    setMobileMenuOpen(false);
+  }
+
+  // Dismiss on Escape key
+  React.useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
+
+  // Dismiss if viewport expands to desktop size
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024 && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, [mobileMenuOpen]);
 
   const navItems = siteConfig.nav.main.map((item) => ({
@@ -29,63 +58,70 @@ export function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur-sm">
-      <div className="mx-auto flex h-[72px] w-full max-w-sheet items-center justify-between px-gutter">
-        <Link
-          href="/"
-          className="flex items-baseline gap-2.5 focus-visible:outline-none"
-          aria-label={`${siteConfig.name} home`}
-        >
-          <span className="font-display text-[1.45rem] leading-none tracking-[-0.02em] text-foreground">
-            {siteConfig.name}
-          </span>
-          <span className="hidden font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground sm:inline">
-            Studio
-          </span>
-        </Link>
-
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
-          {navItems.map((item) => {
-            const isActive =
-              item.href === '/' ? pathname === '/' : pathname?.startsWith(item.href);
-
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`relative font-mono text-[10px] uppercase tracking-[0.14em] transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-accent after:transition-transform hover:text-foreground hover:after:scale-x-100 ${
-                  isActive ? 'text-foreground after:scale-x-100' : 'text-muted-foreground'
-                }`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        <div className="flex items-center gap-4">
+    <header className="sticky top-0 z-50 w-full border-b border-border">
+      <div className="w-full bg-background/90 backdrop-blur-sm">
+        <div className="mx-auto flex h-[72px] w-full max-w-sheet items-center justify-between px-gutter">
           <Link
-            href={quoteCta.href}
-            className="group hidden items-center gap-1.5 border-b border-foreground/30 pb-0.5 text-[13px] font-medium text-foreground transition-colors hover:border-accent hover:text-accent sm:inline-flex"
+            href="/"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-baseline gap-2.5 focus-visible:outline-none"
+            aria-label={`${siteConfig.name} home`}
           >
-            {quoteCta.label}
-            <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            <span className="font-display text-[1.45rem] leading-none tracking-[-0.02em] text-foreground">
+              {siteConfig.name}
+            </span>
+            <span className="hidden font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground sm:inline">
+              Studio
+            </span>
           </Link>
-          <ThemeToggle className="hidden sm:inline-flex" />
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-expanded={mobileMenuOpen}
-            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-            className="p-1 text-foreground lg:hidden"
-          >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+
+          <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
+            {navItems.map((item) => {
+              const isActive =
+                item.href === '/' ? pathname === '/' : pathname?.startsWith(item.href);
+
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`relative font-mono text-[10px] uppercase tracking-[0.14em] transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-accent after:transition-transform hover:text-foreground hover:after:scale-x-100 ${
+                    isActive ? 'text-foreground after:scale-x-100' : 'text-muted-foreground'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="flex items-center gap-4">
+            <Link
+              href={quoteCta.href}
+              className="group hidden items-center gap-1.5 border-b border-foreground/30 pb-0.5 text-[13px] font-medium text-foreground transition-colors hover:border-accent hover:text-accent sm:inline-flex"
+            >
+              {quoteCta.label}
+              <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </Link>
+            <ThemeToggle className="hidden sm:inline-flex" />
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation"
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              className="p-1 text-foreground lg:hidden"
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
       </div>
 
       {mobileMenuOpen && (
-        <div className="fixed inset-x-0 bottom-0 top-[72px] z-40 flex flex-col overflow-y-auto border-t border-border bg-background px-gutter pb-10 pt-8 lg:hidden">
+        <div
+          id="mobile-navigation"
+          className="fixed inset-x-0 top-[72px] z-40 flex h-[calc(100dvh-72px)] flex-col overflow-y-auto overscroll-contain bg-background px-gutter pb-10 pt-8 lg:hidden"
+        >
           <nav className="flex flex-col" aria-label="Mobile">
             {navItems.map((item, index) => {
               const isActive =
