@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { siteConfig } from '@/content/site';
-import { getTeamMembers, getProcessSteps } from '@/content/queries';
+import { getTeamMembers } from '@/content/queries';
 import { createPageMetadata } from '@/lib/metadata';
 import { Container } from '@/components/layout/Container';
 import { Section } from '@/components/layout/Section';
@@ -11,7 +12,7 @@ import { ContactBlock } from '@/components/sections/ContactBlock';
 
 export const metadata: Metadata = createPageMetadata({
   title: 'Studio',
-  description: `The dossier, leadership, delivery method, and core commitments of ${siteConfig.name}.`,
+  description: `The dossier, leadership, standards, and core commitments of ${siteConfig.name}.`,
   path: '/about',
 });
 
@@ -24,48 +25,12 @@ const commitments = [
   {
     title: 'No lock-in',
     detail:
-      'One content model, one design system, plain TypeScript. The code and the accounts stay yours.',
+      'Zero proprietary runtimes or single-vendor entrapments. Standard HTML, standard CSS, portable static output.',
   },
   {
-    title: 'Measured outcomes',
+    title: 'Plain contracts',
     detail:
-      'Every engagement starts with a number that matters and ends with evidence of whether we moved it.',
-  },
-];
-
-const values = [
-  {
-    title: 'Engineering rigor',
-    detail:
-      'Types, tests, and documentation are part of the work, not an afterthought. We build things that can be read six months later.',
-  },
-  {
-    title: 'Direct talk',
-    detail:
-      'You hear about a slip the day we know about it. No status theatre, no invented certainty.',
-  },
-  {
-    title: 'Care for the surface',
-    detail:
-      'Performance and usability are the same problem. A fast page that is confusing is still a bad page.',
-  },
-  {
-    title: 'Longevity',
-    detail:
-      'We would rather ship a smaller system that survives than a large one that has to be replaced next year.',
-  },
-];
-
-const standards = [
-  {
-    title: 'Type safety and tests',
-    detail:
-      'Strict TypeScript, no silent any, and an automated suite that runs on every change. If a regression gets through, the gate failed and the gate gets fixed.',
-  },
-  {
-    title: 'Speed as a requirement',
-    detail:
-      'A static export, compressed assets, and no render-blocking debt. We measure Lighthouse before handover, not after launch.',
+      'Fixed-price agreements with measurable deliverables and verifiable milestones. No open-ended retainers without scope.',
   },
   {
     title: 'Complete ownership',
@@ -74,9 +39,46 @@ const standards = [
   },
 ];
 
+const values = [
+  {
+    title: 'Evidence over claims',
+    detail:
+      'Every number we publish comes from a running system. If we say 99.98% uptime, there is a dashboard behind it.',
+  },
+  {
+    title: 'Code as documentation',
+    detail:
+      'Architecture that can be explained in five sentences or fewer. If an onboarding engineer cannot understand a module in ten minutes, it gets rewritten.',
+  },
+  {
+    title: 'Quiet interfaces',
+    detail:
+      'We build tools people use for hours a day. Motion is subtle, typography is legible, and high-density layouts show signal over noise.',
+  },
+  {
+    title: 'Delivery in the room',
+    detail:
+      'The three founders who scope your project are the same three who review every PR and answer emergency escalation calls.',
+  },
+];
+
+const standards = [
+  {
+    title: 'Zero Brand Leaks',
+    detail: 'Automated CI scanners verify all strings remain strictly decoupled from code.',
+  },
+  {
+    title: '100% Type Soundness',
+    detail: 'Zero TypeScript errors, strict mode enabled across every module without exceptions.',
+  },
+  {
+    title: 'Edge-Prerendered',
+    detail: 'Pre-rendered static HTML with instantaneous TTFB and zero client-side flicker.',
+  },
+];
+
 export default function AboutPage() {
   const teamMembers = getTeamMembers();
-  const processSteps = getProcessSteps();
 
   return (
     <div className="flex w-full flex-col">
@@ -106,16 +108,10 @@ export default function AboutPage() {
             02 Leadership
           </a>
           <a
-            href="#method"
-            className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground"
-          >
-            03 Method &amp; Standards
-          </a>
-          <a
             href="#commitments"
             className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground"
           >
-            04 Commitments &amp; Metrics
+            03 Commitments &amp; Standards
           </a>
         </Container>
       </div>
@@ -158,13 +154,13 @@ export default function AboutPage() {
                     The people
                     <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                   </a>
-                  <a
-                    href="#method"
+                  <Link
+                    href="/process"
                     className="group inline-flex items-center gap-2 border-b border-foreground/30 pb-1 text-[13px] transition-colors hover:border-accent hover:text-accent"
                   >
                     How we work
                     <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                  </a>
+                  </Link>
                 </div>
               </div>
 
@@ -187,6 +183,27 @@ export default function AboutPage() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            </div>
+
+            {/* Studio Workspace Environment Proof */}
+            <div className="mt-16 border-t border-border pt-12">
+              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[2px] border border-border bg-muted">
+                <Image
+                  src="/images/studio/workspace-dhaka.jpg"
+                  alt="Studio workspace in Dhaka, Bangladesh"
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="mt-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-baseline">
+                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+                  Studio Workspace &bull; Dhaka, Bangladesh
+                </p>
+                <p className="font-mono text-[11px] text-muted-foreground/80">
+                  Where client platforms, automations, and engineering systems are built.
+                </p>
               </div>
             </div>
           </Container>
@@ -276,25 +293,49 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="border-t border-border">
+            <div className="grid grid-cols-1 gap-8 border-t border-border pt-10 sm:grid-cols-2 lg:grid-cols-3">
               {teamMembers.map((member, index) => (
-                <div
-                  key={member.id}
-                  className="grid grid-cols-12 items-baseline gap-x-4 gap-y-3 border-b border-border py-8 sm:py-10"
-                >
-                  <span className="col-span-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground sm:col-span-1">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-
-                  <h3 className="col-span-10 font-display text-[2.1rem] leading-[1.02] text-foreground sm:col-span-7 sm:text-[3.1rem]">
+                <div key={member.id} className="flex flex-col space-y-4">
+                  {member.photoUrl && (
+                    <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2px] border border-border bg-muted">
+                      <Image
+                        src={member.photoUrl}
+                        alt={member.name}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-500 hover:scale-[1.02]"
+                      />
+                    </div>
+                  )}
+                  <div className="flex items-baseline justify-between">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+                      {String(index + 1).padStart(2, '0')} / {member.role || 'Co-founder'}
+                    </span>
+                  </div>
+                  <h3 className="font-display text-2xl text-foreground sm:text-[1.75rem]">
                     {member.name}
                   </h3>
-
-                  <p className="col-span-10 col-start-3 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground sm:col-span-2 sm:col-start-auto">
-                    {member.role || 'Co-founder'}
-                  </p>
-
-                  <span className="hidden sm:block sm:col-span-2" aria-hidden="true" />
+                  {member.bio && (
+                    <p className="text-[13px] leading-relaxed text-muted-foreground">
+                      {member.bio}
+                    </p>
+                  )}
+                  {member.socials && member.socials.length > 0 && (
+                    <div className="pt-1">
+                      {member.socials.map((social) => (
+                        <a
+                          key={social.url}
+                          href={social.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-foreground/80 transition-colors hover:text-accent"
+                        >
+                          <span>LinkedIn</span>
+                          <ArrowUpRight className="h-3 w-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -317,61 +358,37 @@ export default function AboutPage() {
       </section>
 
       {/* ==================================================================== */}
-      {/* CHAPTER 3: Delivery Method & Standards                               */}
+      {/* CHAPTER 3: Studio Commitments, Standards & Metrics                   */}
       {/* ==================================================================== */}
-      <section id="method" className="scroll-mt-32">
+      <section id="commitments" className="scroll-mt-32">
         <Section spacing="none" className="border-b border-border py-14 sm:py-20">
           <Container size="xl">
-            <div className="grid grid-cols-12 gap-x-6 gap-y-6 pb-10">
-              <div className="col-span-12 lg:col-span-8">
+            <div className="grid grid-cols-12 gap-x-6 gap-y-10">
+              <div className="col-span-12 lg:col-span-4">
                 <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
-                  Chapter 03 / Method &amp; Standards
+                  Chapter 03 / Commitments &amp; Metrics
                 </p>
                 <h2 className="mt-4 font-display text-display-md text-foreground">
-                  How we work.
+                  Measured outcomes.
                 </h2>
+                <p className="mt-4 max-w-[34ch] text-[15px] leading-[1.7] text-muted-foreground">
+                  Every metric reflects tangible production systems shipped and maintained across
+                  international markets.
+                </p>
               </div>
-              <p className="col-span-12 max-w-[42ch] text-[15px] leading-[1.7] text-muted-foreground lg:col-span-4 lg:justify-self-end">
-                Six steps, in the same order every time. Typical engagement runs 6 to 12 weeks.
-              </p>
-            </div>
 
-            <div className="border-t border-border">
-              {processSteps.map((step) => (
-                <div
-                  key={step.stepNumber}
-                  className="grid grid-cols-12 gap-x-6 gap-y-4 border-b border-border py-8 sm:py-10"
-                >
-                  <div className="col-span-12 sm:col-span-2">
-                    <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
-                      Step {String(step.stepNumber).padStart(2, '0')}
-                    </p>
-                    <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground/60">
-                      {step.timeline}
-                    </p>
-                  </div>
-
-                  <div className="col-span-12 sm:col-span-4">
-                    <h3 className="max-w-[18ch] font-display text-[1.8rem] leading-[1.05] text-foreground sm:text-[2rem]">
-                      {step.title}
-                    </h3>
-                  </div>
-
-                  <div className="col-span-12 sm:col-span-6">
-                    <p className="max-w-[58ch] text-[15px] leading-[1.75] text-muted-foreground">
-                      {step.detailedDescription}
-                    </p>
-                    <ul className="mt-5 flex flex-wrap gap-x-2 gap-y-1.5 font-mono text-[10px] uppercase tracking-[0.1em] text-muted-foreground/75">
-                      {step.deliverables.map((deliverable, index) => (
-                        <li key={deliverable}>
-                          {index > 0 && <span className="mr-2 text-border">/</span>}
-                          {deliverable}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+              <div className="col-span-12 lg:col-span-8">
+                <div className="grid grid-cols-2 gap-y-10 border-t border-border pt-8 md:grid-cols-4">
+                  {siteConfig.stats.map((stat) => (
+                    <div key={stat.label}>
+                      <p className="font-display text-4xl text-foreground sm:text-5xl">{stat.value}</p>
+                      <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+                        {stat.label}
+                      </p>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
 
             {/* Standards block */}
@@ -401,51 +418,18 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <div className="mt-10 flex justify-end">
+              {/* Seamless link to dedicated /process page */}
+              <div className="mt-12 flex flex-col items-start justify-between gap-6 border-t border-border/60 pt-8 sm:flex-row sm:items-center">
+                <p className="max-w-[56ch] text-[14px] leading-relaxed text-muted-foreground">
+                  Looking for our full 6-step engineering delivery methodology and deliverables breakdown?
+                </p>
                 <Link
                   href="/process"
                   className="group inline-flex items-center gap-2 border-b border-foreground/30 pb-1 font-mono text-[11px] uppercase tracking-[0.14em] text-foreground transition-colors hover:border-accent hover:text-accent"
                 >
-                  View standalone methodology page
+                  Explore delivery methodology
                   <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </Link>
-              </div>
-            </div>
-          </Container>
-        </Section>
-      </section>
-
-      {/* ==================================================================== */}
-      {/* CHAPTER 4: Studio Commitments & Measured Metrics                     */}
-      {/* ==================================================================== */}
-      <section id="commitments" className="scroll-mt-32">
-        <Section spacing="none" className="border-b border-border py-14 sm:py-20">
-          <Container size="xl">
-            <div className="grid grid-cols-12 gap-x-6 gap-y-10">
-              <div className="col-span-12 lg:col-span-4">
-                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
-                  Chapter 04 / Commitments &amp; Metrics
-                </p>
-                <h2 className="mt-4 font-display text-display-md text-foreground">
-                  Measured outcomes.
-                </h2>
-                <p className="mt-4 max-w-[34ch] text-[15px] leading-[1.7] text-muted-foreground">
-                  Every metric reflects tangible production systems shipped and maintained across
-                  international markets.
-                </p>
-              </div>
-
-              <div className="col-span-12 lg:col-span-8">
-                <div className="grid grid-cols-2 gap-y-10 border-t border-border pt-8 md:grid-cols-4">
-                  {siteConfig.stats.map((stat) => (
-                    <div key={stat.label}>
-                      <p className="font-display text-4xl text-foreground sm:text-5xl">{stat.value}</p>
-                      <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
-                        {stat.label}
-                      </p>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           </Container>

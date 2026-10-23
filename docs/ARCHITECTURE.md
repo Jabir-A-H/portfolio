@@ -34,7 +34,7 @@ To prevent brand lock-in and enable seamless rebranding without touching UI comp
 | [`content/queries.ts`](file:///d:/WebDev/portfolio/content/queries.ts) | `getProjects()`, `getServices()`, `getTeamMembers()`, `getProcessSteps()` | Unified, typed query facade centralizing content querying across the entire application. |
 | [`content/services.ts`](file:///d:/WebDev/portfolio/content/services.ts) | `services: ServiceItem[]`, `serviceGroups` | 9 services across 4 groups (Web & Software, Mobile & Games, Automation & Integration, Creative). |
 | [`content/projects.ts`](file:///d:/WebDev/portfolio/content/projects.ts) | `projects: ProjectItem[]` | Case study specifications (problem, solution, results, stack, metrics). |
-| [`content/team.ts`](file:///d:/WebDev/portfolio/content/team.ts) | `teamMembers: TeamMember[]` | Leadership profiles (Nasib Mohammad Arif, Abu Sayed Md Saad, Jabir Abdullah Haian). |
+| [`content/team.ts`](file:///d:/WebDev/portfolio/content/team.ts) | `teamMembers: TeamMember[]` | Leadership profiles (Nasib Mohammad Arif, Abu Sayed Md Saad, Jabir Abdullah Haian) with portrait assets, verified roles, skills, and LinkedIn links. |
 | [`content/process.ts`](file:///d:/WebDev/portfolio/content/process.ts) | `processSteps: ProcessStep[]` | 6-step agency delivery methodology and standards. |
 
 > **Brand Isolation Invariant:** Zero hardcoded brand names, legal entities, or contact strings in `app/`, `components/`, or `lib/`. Everything must be imported from `@/content/site`. Enforced automatically by `npm run verify:brand`.
@@ -59,8 +59,8 @@ Next.js App Router exports 28 pre-rendered static routes into `out/`:
 /services/[slug]          -> out/services/*/index.html (9 dynamic service routes)
 /portfolio                -> out/portfolio/index.html (Filterable category work index)
 /portfolio/[slug]         -> out/portfolio/*/index.html (6 dynamic case study routes)
-/about                    -> out/about/index.html (Comprehensive 4-chapter Studio Dossier: Story, Leadership, Method, Commitments)
-/team                     -> out/team/index.html (Founder profiles & avatar initials, deep-linking to Studio Chapter 2)
+/about                    -> out/about/index.html (Comprehensive 3-chapter Studio Dossier: Story with studio photo, Leadership with 3 founder portraits, Standards & Commitments with cross-link to /process)
+/team                     -> out/team/index.html (Founder portrait grid & authentic LinkedIn profiles, deep-linking to Studio Chapter 2)
 /process                  -> out/process/index.html (6-step delivery workflow & standards, deep-linking to Studio Chapter 3)
 /contact                  -> out/contact/index.html (Inquiry form with ?service= preselection & direct channels)
 /privacy, /terms          -> out/*/index.html (Legal policies with dynamic brand)

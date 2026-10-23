@@ -10,7 +10,7 @@
 | ID | Severity | Component | Summary | Workaround / Status |
 |---|---|---|---|---|
 | `KI-001` | Low | Contact Form | `NEXT_PUBLIC_FORM_ENDPOINT` is unconfigured locally | Form operates in simulated preview mode with instant feedback. Set in `.env.local` for live submissions. |
-| `KI-005` | High | Imagery | No project covers, founder portraits, or studio photography exist; the site is intentionally typographic until they do | Add assets to `public/images/` per [`docs/VISUAL_AND_FEATURE_PLAN.md`](VISUAL_AND_FEATURE_PLAN.md). Do not reintroduce fake gradient thumbnails. |
+| `KI-005` | Medium | Imagery | Founder portraits and studio workspace photography are live in `public/images/`; 6 project covers and 12 macro crops remain pending | Add project case study assets to `public/images/projects/` per [`docs/VISUAL_AND_FEATURE_PLAN.md`](VISUAL_AND_FEATURE_PLAN.md). Do not reintroduce fake gradient thumbnails. |
 | `KI-006` | High | Brand & Contact | Trading name is “Team NJS” only as a working name; final brand, legal entity, email (`hello@teamnjs.example`), phone, and address are undecided | Record the decision in [`docs/CONTENT_DECISIONS.md`](CONTENT_DECISIONS.md), then replace in [`content/site.ts`](file:///d:/WebDev/portfolio/content/site.ts). |
 | `KI-008` | Medium | Test Gate | `tests/e2e/viewport.test.ts` cannot run because `@playwright/test` is not installed; `tsconfig` excludes `tests` | Install Playwright and re-add a `test:viewport` script, or rely on manual screenshot reviews. |
 | `KI-009` | Medium | Content Claims | Agency stats (5+, 120+, 80+, 15+) and project metrics are illustrative and unverified | Verify or replace before launch per [`docs/CONTENT_DECISIONS.md`](CONTENT_DECISIONS.md). |

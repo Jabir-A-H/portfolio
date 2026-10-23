@@ -86,9 +86,13 @@ public/
 ## 📍 3. Placement & Wireframe Blueprint
 
 ### 3.1 Studio Page (`/about`) & Team (`/team`)
+* **Chapter 01 (Story & Philosophy):**
+  * Features the authentic `images/studio/workspace-dhaka.jpg` landscape photo (16:9 1920 × 1080) demonstrating the real studio workspace environment in Dhaka, Bangladesh.
 * **Chapter 02 (Leadership - "Three founders, one room"):**
-  * Replace empty portrait placeholders with 4:5 duotone photos beside founder names and bios.
+  * Displays 4:5 duotone photos (`images/team/*.jpg`) beside founder names, verified roles, skills, and authentic LinkedIn links.
   * Hairline 2px border radius, subtle hover scale (`scale-[1.01]`), crisp captions.
+* **Team Page (`/team`):**
+  * 3-column founder portrait cards matching the Studio dossier.
 
 ### 3.2 Home Page (`/`)
 * **Movement 02 (Work Index):**

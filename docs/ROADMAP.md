@@ -25,9 +25,9 @@
 - [ ] **4.2 Resolve Q3 Primary Buyer Persona**:
   - Lock target customer profile to tune copy across capability offerings and hero statement.
 - [ ] **4.3 Photo Inventory Intake ([`KI-005`](file:///d:/WebDev/portfolio/docs/KNOWN_ISSUES.md#L15))**:
-  - Add 3 founder editorial duotone portraits into `public/images/team/` (`nasib.jpg`, `saad.jpg`, `haian.jpg`).
-  - Add 1 studio workspace ambient photograph into `public/images/studio/workspace-dhaka.jpg`.
-  - Add 6 authentic 16:9 case study covers and 12 macro interface crops into `public/images/projects/[slug]/`.
+  - [x] Add 3 founder portraits into `public/images/team/` (`nasib-mohammad-arif.jpg`, `abu-sayed-md-saad.jpg`, `jabir-abdullah-haian.jpg`) with standardized 4:5 800×1000 crops and authentic LinkedIn bios/roles in [`content/team.ts`](file:///d:/WebDev/portfolio/content/team.ts).
+  - [x] Add 1 studio workspace ambient photograph into `public/images/studio/workspace-dhaka.jpg` (from authentic office photo).
+  - [ ] Add 6 authentic 16:9 case study covers and 12 macro interface crops into `public/images/projects/[slug]/`.
 - [ ] **4.4 Vector Branding & Social Assets**:
   - Drop SVG vector logos into `public/logo/` (`logo-light.svg`, `logo-dark.svg`).
   - Generate customized high-contrast OpenGraph preview (`public/images/og-image.png`) and favicon suite.

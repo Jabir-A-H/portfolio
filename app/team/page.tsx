@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { getTeamMembers } from '@/content/queries';
 import { siteConfig } from '@/content/site';
@@ -51,36 +52,79 @@ export default function TeamPage() {
 
       <Section spacing="none" className="border-b border-border py-14 sm:py-20">
         <Container size="xl">
-          <div className="border-t border-border">
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {teamMembers.map((member, index) => (
-              <div
+              <article
                 key={member.id}
-                className="grid grid-cols-12 items-baseline gap-x-4 gap-y-3 border-b border-border py-8 sm:py-10"
+                className="group flex flex-col justify-between border border-border bg-card/40 p-6 transition-colors hover:border-foreground/30"
               >
-                <span className="col-span-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground sm:col-span-1">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
+                <div>
+                  {member.photoUrl && (
+                    <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2px] border border-border bg-muted">
+                      <Image
+                        src={member.photoUrl}
+                        alt={member.name}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                      />
+                    </div>
+                  )}
 
-                <h2 className="col-span-10 font-display text-[2.1rem] leading-[1.02] text-foreground sm:col-span-7 sm:text-[3.1rem]">
-                  {member.name}
-                </h2>
+                  <div className="mt-6 flex items-baseline justify-between gap-4">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent">
+                      {member.role || 'Co-founder'}
+                    </span>
+                  </div>
 
-                <p className="col-span-10 col-start-3 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground sm:col-span-2 sm:col-start-auto">
-                  {member.role || 'Co-founder'}
-                </p>
+                  <h2 className="mt-3 font-display text-2xl text-foreground sm:text-[1.85rem]">
+                    {member.name}
+                  </h2>
 
-                {member.bio ? (
-                  <p className="col-span-10 col-start-3 max-w-[34ch] text-[13px] leading-relaxed text-muted-foreground sm:col-span-2 sm:col-start-auto">
-                    {member.bio}
-                  </p>
-                ) : (
-                  <span className="hidden sm:block sm:col-span-2" aria-hidden="true" />
+                  {member.bio && (
+                    <p className="mt-4 text-[14px] leading-relaxed text-muted-foreground">
+                      {member.bio}
+                    </p>
+                  )}
+
+                  {member.skills && member.skills.length > 0 && (
+                    <div className="mt-6 flex flex-wrap gap-1.5 border-t border-border/60 pt-4">
+                      {member.skills.map((skill) => (
+                        <span
+                          key={skill}
+                          className="rounded-[2px] border border-border bg-muted/30 px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider text-muted-foreground/80"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {member.socials && member.socials.length > 0 && (
+                  <div className="mt-6 border-t border-border pt-4">
+                    {member.socials.map((social) => (
+                      <a
+                        key={social.url}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group/link inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-foreground/80 transition-colors hover:text-accent"
+                      >
+                        <span>LinkedIn Profile</span>
+                        <ArrowUpRight className="h-3 w-3 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
+                      </a>
+                    ))}
+                  </div>
                 )}
-              </div>
+              </article>
             ))}
           </div>
 
-          <div className="mt-12 grid grid-cols-12 gap-x-6 gap-y-6">
+          <div className="mt-16 grid grid-cols-12 gap-x-6 gap-y-6 border-t border-border pt-12">
             <p className="col-span-12 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground lg:col-span-2">
               How we run
             </p>

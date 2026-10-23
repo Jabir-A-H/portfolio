@@ -18,11 +18,11 @@ Working log for the authentic-content build. Every answer from the content grill
 | Social profiles | TBD | `content/site.ts` | Open |
 | Services | TBD | `content/services.ts` | Open |
 | Projects / case studies | TBD | `content/projects.ts` | Open |
-| Founder bios | TBD | `content/team.ts` | Open |
-| Process | TBD | `content/process.ts` | Open |
+| Founder bios | Authentic roles, bios, and skills scraped from verified LinkedIn profiles for Nasib Mohammad Arif, Abu Sayed Md Saad, and Jabir Abdullah Haian. | `content/team.ts` | Applied |
+| Process | 6-step agency delivery methodology and standards verified on `/process`. | `content/process.ts`, `app/process/page.tsx` | Applied |
 | Metrics | TBD | `content/site.ts` | Open |
 | Testimonials | TBD | `content/site.ts` | Open |
-| Imagery | TBD | `public/images/` | Open |
+| Imagery | 3 founder portraits (4:5 800×1000 in `public/images/team/`) and 1 studio workspace photo (16:9 1920×1080 in `public/images/studio/workspace-dhaka.jpg`). Case study covers remain open. | `public/images/` | Partially Applied |
 
 ## Question queue
 
