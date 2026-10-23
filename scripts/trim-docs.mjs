@@ -19,10 +19,11 @@ const archiveDir = path.join(docsDir, 'archive');
 // Token & Line Budget Thresholds (to prevent AI context bloat)
 const BUDGETS = {
   'AGENTS.md': { maxLines: 150, maxBytes: 8000 },
-  'GEMINI.md': { maxLines: 30, maxBytes: 1500 },
-  'docs/TECHNICAL_MANUAL.md': { maxLines: 250, maxBytes: 15000 },
+  'README.md': { maxLines: 200, maxBytes: 10000 },
+  'docs/ARCHITECTURE.md': { maxLines: 250, maxBytes: 15000 },
   'docs/ROADMAP.md': { maxLines: 150, maxBytes: 8000 },
   'docs/KNOWN_ISSUES.md': { maxLines: 100, maxBytes: 6000 },
+  'docs/VISUAL_AND_FEATURE_PLAN.md': { maxLines: 250, maxBytes: 15000 },
 };
 
 const args = process.argv.slice(2);

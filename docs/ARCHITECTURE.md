@@ -30,17 +30,26 @@ To prevent brand lock-in and enable seamless rebranding without touching UI comp
 
 | Content File | Primary Export | Responsibility |
 |---|---|---|
-| [`content/site.ts`](file:///d:/WebDev/portfolio/content/site.ts) | `siteConfig: SiteConfig` | Brand name, legal entity, tagline, contact emails, phone, WhatsApp, address, socials, main/footer navigation. |
+| [`content/site.ts`](file:///d:/WebDev/portfolio/content/site.ts) | `siteConfig: SiteConfig` | Brand name, legal entity, tagline, contact emails, phone, WhatsApp, address, socials, 4-pillar navigation (`Work`, `Services`, `Studio`, `Contact`). |
+| [`content/queries.ts`](file:///d:/WebDev/portfolio/content/queries.ts) | `getProjects()`, `getServices()`, `getTeamMembers()`, `getProcessSteps()` | Unified, typed query facade centralizing content querying across the entire application. |
 | [`content/services.ts`](file:///d:/WebDev/portfolio/content/services.ts) | `services: ServiceItem[]`, `serviceGroups` | 9 services across 4 groups (Web & Software, Mobile & Games, Automation & Integration, Creative). |
 | [`content/projects.ts`](file:///d:/WebDev/portfolio/content/projects.ts) | `projects: ProjectItem[]` | Case study specifications (problem, solution, results, stack, metrics). |
 | [`content/team.ts`](file:///d:/WebDev/portfolio/content/team.ts) | `teamMembers: TeamMember[]` | Leadership profiles (Nasib Mohammad Arif, Abu Sayed Md Saad, Jabir Abdullah Haian). |
 | [`content/process.ts`](file:///d:/WebDev/portfolio/content/process.ts) | `processSteps: ProcessStep[]` | 6-step agency delivery methodology and standards. |
 
-> **Brand Isolation Invariant:** Zero hardcoded brand names, legal entities, or contact strings in `app/` or `components/`. Everything must be imported from `@/content/site`. Enforced automatically by `npm run verify:brand`.
+> **Brand Isolation Invariant:** Zero hardcoded brand names, legal entities, or contact strings in `app/`, `components/`, or `lib/`. Everything must be imported from `@/content/site`. Enforced automatically by `npm run verify:brand`.
 
 ---
 
-## 3. Route Tree & Static Pages
+## 3. Core Architectural Modules (`lib/` & Components)
+
+- **Metadata Factory ([`lib/metadata.ts`](file:///d:/WebDev/portfolio/lib/metadata.ts))**: `createPageMetadata({ title, description, path, ogType, image })` standardizes title formatting (with absolute unwrapping), OpenGraph tags, Twitter summary large image cards, and canonical links across all routes.
+- **Contact Intake Decoupling ([`lib/contact.ts`](file:///d:/WebDev/portfolio/lib/contact.ts))**: Isolates schema validation (`validateContactForm`), option constants (`BUDGET_OPTIONS`, `TIMELINE_OPTIONS`), WhatsApp link generation (`formatWhatsAppUrl`), and simulated/network submission (`submitInquiry`). Form search params are read inside an isolated `<Suspense>` boundary to preserve full static export generation.
+- **Unified Project Row ([`components/portfolio/ProjectRow.tsx`](file:///d:/WebDev/portfolio/components/portfolio/ProjectRow.tsx))**: Encapsulates project row presentation (category short-label, title, clientType, completedDate, headline metric, arrow link, hover transitions, and responsive mobile layout) across both `WorkIndex` and `PortfolioFilterGrid`.
+
+---
+
+## 4. Route Tree & Static Pages
 
 Next.js App Router exports 28 pre-rendered static routes into `out/`:
 
@@ -50,10 +59,10 @@ Next.js App Router exports 28 pre-rendered static routes into `out/`:
 /services/[slug]          -> out/services/*/index.html (9 dynamic service routes)
 /portfolio                -> out/portfolio/index.html (Filterable category work index)
 /portfolio/[slug]         -> out/portfolio/*/index.html (6 dynamic case study routes)
-/about                    -> out/about/index.html (Studio story, commitments, core values)
-/team                     -> out/team/index.html (Founder profiles & avatar initials)
-/process                  -> out/process/index.html (6-step delivery workflow)
-/contact                  -> out/contact/index.html (Inquiry form & direct channels)
+/about                    -> out/about/index.html (Comprehensive 4-chapter Studio Dossier: Story, Leadership, Method, Commitments)
+/team                     -> out/team/index.html (Founder profiles & avatar initials, deep-linking to Studio Chapter 2)
+/process                  -> out/process/index.html (6-step delivery workflow & standards, deep-linking to Studio Chapter 3)
+/contact                  -> out/contact/index.html (Inquiry form with ?service= preselection & direct channels)
 /privacy, /terms          -> out/*/index.html (Legal policies with dynamic brand)
 /404                      -> out/404.html (Custom branded not-found error page)
 /sitemap.xml, /robots.txt -> out/ (Dynamic XML sitemap & search crawler directives)
@@ -61,7 +70,7 @@ Next.js App Router exports 28 pre-rendered static routes into `out/`:
 
 ---
 
-## 4. Design System & Visual Guidelines
+## 5. Design System & Visual Guidelines
 
 The design identity is anchored by [ADR-006](file:///d:/WebDev/portfolio/docs/ADR/006-visual-identity-pivot.md) (DNA) and [ADR-007](file:///d:/WebDev/portfolio/docs/ADR/007-editorial-reset.md) (Composition). Visual guidelines evolve with ongoing design reviews.
 
@@ -79,11 +88,12 @@ The design identity is anchored by [ADR-006](file:///d:/WebDev/portfolio/docs/AD
 ### Composition & Layout
 - **The Gallerist Spacing:** Deliberate negative space, fluid `py-section` / `py-section-lg` rhythm, and intentional silence rather than crowded grid boxes.
 - **Shared Interior Spreads:** Interior pages open with `PageHeader` (mono label, serif headline, right lede) and close with `ContactBlock`.
+- **Visual Assets & Interactive Innovations:** Governed by [`docs/VISUAL_AND_FEATURE_PLAN.md`](VISUAL_AND_FEATURE_PLAN.md) (monograph-quality photo inventory, gallery cursor hover reveals, blueprint inspection grid, live studio clock, and print-to-PDF dossier).
 - **Explicitly Banned:** Availability status indicators (proposed and explicitly rejected).
 
 ---
 
-## 5. Verification Pipeline
+## 6. Verification Pipeline
 
 Quality is enforced via automated gates executed in order:
 1. `npm run typecheck` — 0 TypeScript errors.

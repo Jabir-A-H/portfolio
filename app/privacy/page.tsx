@@ -2,19 +2,15 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Mail, MapPin } from 'lucide-react';
 import { siteConfig } from '@/content/site';
+import { createPageMetadata } from '@/lib/metadata';
 import { Container } from '@/components/layout/Container';
 import { Section } from '@/components/layout/Section';
 
-export const metadata: Metadata = {
-  title: `Privacy Policy | ${siteConfig.name}`,
+export const metadata: Metadata = createPageMetadata({
+  title: 'Privacy Policy',
   description: `Privacy policy and data protection governance for ${siteConfig.name} and ${siteConfig.legalName}.`,
-  openGraph: {
-    title: `Privacy Policy | ${siteConfig.name}`,
-    description: `Privacy policy and data protection governance for ${siteConfig.name} and ${siteConfig.legalName}.`,
-    url: `${siteConfig.url}/privacy`,
-    type: 'website',
-  },
-};
+  path: '/privacy',
+});
 
 export default function PrivacyPolicyPage() {
   return (

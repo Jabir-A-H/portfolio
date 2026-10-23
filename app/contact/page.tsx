@@ -1,28 +1,22 @@
 import type { Metadata } from 'next';
 import { ArrowUpRight } from 'lucide-react';
 import { siteConfig } from '@/content/site';
+import { createPageMetadata } from '@/lib/metadata';
+import { formatWhatsAppUrl } from '@/lib/contact';
 import { Container } from '@/components/layout/Container';
 import { Section } from '@/components/layout/Section';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { ContactForm } from '@/components/forms/ContactForm';
 
-export const metadata: Metadata = {
-  title: `Contact | ${siteConfig.name}`,
+export const metadata: Metadata = createPageMetadata({
+  title: 'Contact',
   description: `Start a project with ${siteConfig.name}.`,
-  openGraph: {
-    title: `Contact | ${siteConfig.name}`,
-    description: `Start a project with ${siteConfig.name}.`,
-    url: `${siteConfig.url}/contact`,
-    type: 'website',
-  },
-};
+  path: '/contact',
+});
 
 export default function ContactPage() {
-  const cleanWhatsAppDigits = (siteConfig.contact.whatsapp || '').replace(/[^0-9]/g, '');
   const cleanPhoneDigits = (siteConfig.contact.phone || '').replace(/[^0-9+]/g, '');
-  const whatsappUrl = `https://wa.me/${cleanWhatsAppDigits}?text=${encodeURIComponent(
-    `Hello ${siteConfig.name}, I would like to discuss a project.`
-  )}`;
+  const whatsappUrl = formatWhatsAppUrl(`Hello ${siteConfig.name}, I would like to discuss a project.`);
   const mailtoUrl = `mailto:${siteConfig.contact.email}?subject=${encodeURIComponent(
     `Project inquiry - ${siteConfig.name}`
   )}`;

@@ -1,12 +1,14 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-import { serviceGroups, services } from '@/content/services';
+import { getServiceGroups, getServices } from '@/content/queries';
 import { Container } from '@/components/layout/Container';
 import { Section } from '@/components/layout/Section';
 import { Reveal } from '@/components/motion';
 
 export function Capabilities() {
+  const serviceGroups = getServiceGroups();
+  const services = getServices();
   return (
     <Section
       spacing="none"

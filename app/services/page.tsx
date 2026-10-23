@@ -1,24 +1,22 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-import { serviceGroups, services } from '@/content/services';
+import { getServiceGroups, getServices } from '@/content/queries';
 import { siteConfig } from '@/content/site';
+import { createPageMetadata } from '@/lib/metadata';
 import { Container } from '@/components/layout/Container';
 import { Section } from '@/components/layout/Section';
 import { ContactBlock } from '@/components/sections/ContactBlock';
 
-export const metadata: Metadata = {
-  title: `Services | ${siteConfig.name}`,
+export const metadata: Metadata = createPageMetadata({
+  title: 'Services',
   description: `Nine services across web, mobile, automation, and brand systems, delivered by ${siteConfig.name}.`,
-  openGraph: {
-    title: `Services | ${siteConfig.name}`,
-    description: `Nine services across web, mobile, automation, and brand systems, delivered by ${siteConfig.name}.`,
-    url: `${siteConfig.url}/services`,
-    type: 'website',
-  },
-};
+  path: '/services',
+});
 
 export default function ServicesPage() {
+  const serviceGroups = getServiceGroups();
+  const services = getServices();
   return (
     <div className="flex w-full flex-col">
       <Section spacing="none" className="border-b border-border pb-8 pt-16 sm:pb-10 sm:pt-20">

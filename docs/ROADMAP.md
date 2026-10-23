@@ -1,76 +1,69 @@
 # Agency Marketing Portfolio: Project Roadmap
 
-> **Status:** Phase 0 Complete (100% Core Skeleton Verified)  
-> **Target Release:** Hostinger Static Production Deployment
+> **Status:** Phase 0, 1, 1.5, 2, and 3 Completed (Full Static Pipeline, Editorial Studio, & Architectural Seams Verified)  
+> **Target Release:** Hostinger Static Production Deployment  
+> **Creative & Feature Blueprint:** [`docs/VISUAL_AND_FEATURE_PLAN.md`](VISUAL_AND_FEATURE_PLAN.md)  
+> **Content Decision Log:** [`docs/CONTENT_DECISIONS.md`](CONTENT_DECISIONS.md)  
 
 ---
 
-## Phase 0: Core Skeleton & Verification (Completed)
-- [x] Next.js App Router project setup with TypeScript and Tailwind CSS (now Next 16 with the webpack builder)
-- [x] Static export configuration (`output: 'export'`, `trailingSlash: true`, `images: { unoptimized: true }`)
-- [x] Centralized single source of truth (`content/site.ts`, `services.ts`, `projects.ts`, `team.ts`, `process.ts`)
-- [x] Responsive layout suite: Navbar with dark mode toggle, Footer, Container, Section primitives
-- [x] Core static routes: `/`, `/services`, `/portfolio`, `/about`, `/team`, `/process`, `/contact`, `/privacy`, `/terms`, `/404`
-- [x] Dynamic static routes: all 9 `/services/[slug]` and 6 `/portfolio/[slug]` case study templates
-- [x] Interactive contact inquiry form with anti-spam honeypot, field validation, and direct WhatsApp action
-- [x] Automated quality & test gates: 66/66 E2E tests, zero hardcoded brand strings scanner, route verification
-- [x] Team profiles updated with 3 founders (Nasib Mohammad Arif, Abu Sayed Md Saad, Jabir Abdullah Haian) and WhatsApp contact (`+370 626 32643`)
+## ✅ Completed Milestones (Phases 0 – 3)
+
+- [x] **Phase 0: Core Skeleton & Verification:** Next 16 static export (`output: 'export'`), centralized content models, responsive layout suite, 28 exported routes, 66/66 E2E tests passing.
+- [x] **Phase 1 & 1.5: Brand Identity & De-AI Editorial Reset ([ADR-006](ADR/006-visual-identity-pivot.md), [ADR-007](ADR/007-editorial-reset.md)):** High-End Architect persona, Cormorant Garamond + Space Mono + Inter typography trio, 2px micro-radius, hard offset shadows, five-movement editorial home page, flat UI primitives, and deletion of 12 orphan components.
+- [x] **Phase 2: CI/CD & LiteSpeed Caching ([DEPLOYMENT.md](DEPLOYMENT.md)):** GitHub Actions quality CI (`ci.yml`), automated FTPS deploy (`deploy.yml`), and LiteSpeed cache-busting `.htaccess` with immutable static asset caching.
+- [x] **Phase 3: Architectural Deepening & Studio Consolidation ([ADR-008](ADR/008-studio-consolidation-and-architectural-seams.md)):** 4-pillar main navigation (`Work`, `Services`, `Studio`, `Contact`), multi-chapter Studio dossier in `/about`, domain query seam (`content/queries.ts`), unified `<ProjectRow />`, metadata factory (`lib/metadata.ts`), decoupled intake (`lib/contact.ts`) with `?service=slug` preselection, and zero brand leaks across 39 monitored files.
 
 ---
 
-## Phase 1: Brand Identity & Visual Assets
-- [x] Lock visual identity to the "High-End Architect" persona — Warm Gallery / Cold Studio, International Orange, 2px micro-radius, hard offset shadows, The Gallerist spacing ([`ADR-006`](file:///d:/WebDev/portfolio/docs/ADR/006-visual-identity-pivot.md)), recomposed as an editorial document under [`ADR-007`](file:///d:/WebDev/portfolio/docs/ADR/007-editorial-reset.md)
-- [x] Install the Technical Hybrid typography trio (Cormorant Garamond + Space Mono + Inter) via `next/font`, with fluid display scale and technical label scale
-- [x] Establish fluid compositional rhythm tokens (`py-section`, `py-section-lg`, `px-gutter`) in Section/Container primitives
-- [ ] Finalize official agency brand name, legal entity name, and tagline in [`content/site.ts`](file:///d:/WebDev/portfolio/content/site.ts)
-- [ ] Drop SVG vector logos into [`public/logo/`](file:///d:/WebDev/portfolio/public/logo) (dark & light variants)
-- [ ] Add real founder portraits into `public/images/team/` and link in [`content/team.ts`](file:///d:/WebDev/portfolio/content/team.ts)
-- [ ] Generate real Open Graph preview images (`og-image.png`) and custom favicon set
+## ⏳ Phase 4: Authentic Content, Visual Assets & Proof (IN PROGRESS)
+> Complete asset breakdown and wireframe guidelines: [`docs/VISUAL_AND_FEATURE_PLAN.md`](VISUAL_AND_FEATURE_PLAN.md)  
+> Active question log: [`docs/CONTENT_DECISIONS.md`](CONTENT_DECISIONS.md)
+
+- [ ] **4.1 Finalize Brand & Legal Entity ([`KI-006`](file:///d:/WebDev/portfolio/docs/KNOWN_ISSUES.md#L16))**:
+  - Replace provisional "Team NJS" working name with final agency brand name, legal entity, and official corporate email in [`content/site.ts`](file:///d:/WebDev/portfolio/content/site.ts).
+- [ ] **4.2 Resolve Q3 Primary Buyer Persona**:
+  - Lock target customer profile to tune copy across capability offerings and hero statement.
+- [ ] **4.3 Photo Inventory Intake ([`KI-005`](file:///d:/WebDev/portfolio/docs/KNOWN_ISSUES.md#L15))**:
+  - Add 3 founder editorial duotone portraits into `public/images/team/` (`nasib.jpg`, `saad.jpg`, `haian.jpg`).
+  - Add 1 studio workspace ambient photograph into `public/images/studio/workspace-dhaka.jpg`.
+  - Add 6 authentic 16:9 case study covers and 12 macro interface crops into `public/images/projects/[slug]/`.
+- [ ] **4.4 Vector Branding & Social Assets**:
+  - Drop SVG vector logos into `public/logo/` (`logo-light.svg`, `logo-dark.svg`).
+  - Generate customized high-contrast OpenGraph preview (`public/images/og-image.png`) and favicon suite.
+- [ ] **4.5 Authentic Case Study Metrics & Proof ([`KI-009`](file:///d:/WebDev/portfolio/docs/KNOWN_ISSUES.md#L19))**:
+  - Verify and replace illustrative stats (`5+`, `120+`, `80+`, `15+`) with defensible figures.
+- [ ] **4.6 Service Taxonomy Refinement**:
+  - Reframe low-ticket gig categories ("Graphics Design", "Video Editing") into "Brand Systems & Interactive Media" to align with high-ticket engineering positioning.
 
 ---
 
-## Phase 1.5: De-AI Visual Refactor (Completed via ADR-007)
-- [x] **Editorial recomposition**: home page reduced from nine stacked marketing sections to five movements (Hero, Work index, Capabilities, Studio statement, Contact) — see [`ADR-007`](file:///d:/WebDev/portfolio/docs/ADR/007-editorial-reset.md)
-- [x] **Remove the template grammar**: no centered badge + headline + subtitle formula, no card grids, no icon tiles, no checkmark lists, no gradients, no boxed CTAs
-- [x] **Geometry conformance**: 2px micro-radius, hard offset shadows, borderless-by-space, parallax depth; default radius/shadow scales removed from `tailwind.config.ts`
-- [x] **UI primitives reset**: flat Card, typographic Badge, flat Button, rule Fields (Input/Select/Textarea)
-- [x] **Interior page consistency**: shared `PageHeader` on About, Services, Portfolio, Process, Team, Contact, and both detail templates; shared `ContactBlock` at page ends
-- [x] **Work index**: projects presented as rows with sector, year, and one metric; fake thumbnails removed; portfolio filter converted from pills to text tabs
-- [x] **Copy cleanup**: visible `[PLACEHOLDER]` / `// TODO(content)` markers removed from projects, services, process, team roles set; studio and project copy rewritten in plain English
-- [x] **Typography corrections**: display scale widened; mono metadata raised to a 10px floor; body sizes set by role
-- [x] **Mobile work rows**: ordinal, category, title, sector, and metric reflow without narrow-column wrapping
-- [x] **Docs reconciliation**: README, ARCHITECTURE, ROADMAP, KNOWN_ISSUES, and ADRs describe the shipped composition; historical reports are archived
-- [ ] **Real imagery**: project covers, founder portraits, and a studio image set; the typographic index is a holding pattern until these exist
-- [ ] **Verified brand/contact**: final name, legal entity, domain, email, phone, and address in [`content/site.ts`](file:///d:/WebDev/portfolio/content/site.ts)
-- [x] **Remove legacy components**: deleted 8 unused section components (`TrustBar`, `StatsStrip`, etc.) and dead motion/UI primitives
-- [ ] **Viewport CI gate**: install `@playwright/test`, then re-enable `tests/e2e/viewport.test.ts` (currently excluded from `tsc`)
+## ⏳ Phase 5: Interactive Quirks, Motion & Studio Features (UPCOMING)
+> Detailed specifications: [`docs/VISUAL_AND_FEATURE_PLAN.md`](VISUAL_AND_FEATURE_PLAN.md)
+
+- [ ] **5.1 The "Gallery Hover" (Cursor-Driven Thumbnail Reveal)**:
+  - Add floating, spring-damped project preview on row hover for desktop viewports in `WorkIndex` and `PortfolioFilterGrid`.
+- [ ] **5.2 Live Studio Clock & Global Status**:
+  - Add discrete real-time monospace chip (`DHAKA [TIME] GMT+6 · STUDIO OPEN`) to header/footer for international timezone assurance.
+- [ ] **5.3 Executive Dossier Print Stylesheet (`@media print`)**:
+  - Implement print-to-PDF formatting stripping navigation/chrome for boardroom executive presentations on `/about` and `/portfolio/[slug]`.
+- [ ] **5.4 Metric Split-Flap / Scramble Typography**:
+  - Implement 350ms mechanical character roll on key metrics (`74%`, `€12M+`, `180 hrs`) when scrolling into view.
+- [ ] **5.5 Blueprint Inspection Mode (`[GRID]` / `⌘+G`)**:
+  - Add architectural layout grid overlay with 12-column lines, token tags, and margin callouts.
+- [ ] **5.6 Silent Looping WebM Micro-Videos**:
+  - Embed 5s 60fps silent interaction clips in complex case studies (e.g. mobile workout sync and logistics event stream).
+- [ ] **5.7 Interactive Scoping Terminal**:
+  - 3-step terminal brief estimator on `/contact` that pre-formats client briefs directly into the inquiry form.
 
 ---
 
-## Phase 2: Authentic Content & Case Studies (In Progress)
-> Working log: [`docs/CONTENT_DECISIONS.md`](file:///d:/WebDev/portfolio/docs/CONTENT_DECISIONS.md). Every answer from the content grill is recorded there before it is written into `content/`.
-- [ ] Lock the brand name, legal entity, tagline, positioning, and studio description
-- [ ] Lock the real contact details, address, working hours, and social profiles
-- [ ] Populate authentic service deliverables, methodologies, and technical FAQs in [`content/services.ts`](file:///d:/WebDev/portfolio/content/services.ts)
-- [ ] Insert real past and active client projects with verified metric outcomes in [`content/projects.ts`](file:///d:/WebDev/portfolio/content/projects.ts)
-- [ ] Write the three founder bios and roles in [`content/team.ts`](file:///d:/WebDev/portfolio/content/team.ts)
-- [ ] Verify the six-step process and delivery standards in [`content/process.ts`](file:///d:/WebDev/portfolio/content/process.ts)
-- [ ] Replace or remove illustrative stats (`5+`, `120+`, `80+`, `15+`)
-- [ ] Connect verified client testimonials in [`content/site.ts`](file:///d:/WebDev/portfolio/content/site.ts) and flip `features.showTestimonials: true`
-- [ ] Add official corporate email address and verify DNS records (SPF, DKIM, DMARC)
-- [ ] Collect project covers, founder portraits, and studio photography into `public/images/`
-
----
-
-## Phase 3: Deployment Pipeline & Forms Integration
-- [ ] Configure `NEXT_PUBLIC_FORM_ENDPOINT` in production environment (Web3Forms or Formspree)
-- [ ] Verify Hostinger hosting plan and `public_html` static upload directory
-- [ ] Create GitHub Actions CI/CD workflow (`.github/workflows/deploy.yml`) to automatically build and upload `out/` via SFTP on push to `main`
-- [ ] Enable SSL certificate and enforce HTTPS redirection on Hostinger
-
----
-
-## Phase 4: Localization & Extensions (Future)
-- [ ] Bangla localization (`/bn/*`) with i18n routing structure
-- [ ] Downloadable Company Profile PDF generation or static asset delivery
-- [ ] Client portal / project tracking integration
+## ⏳ Phase 6: Production Launch & Future Extensions
+- [ ] **Forms Production Cutover ([`KI-001`](file:///d:/WebDev/portfolio/docs/KNOWN_ISSUES.md#L11))**:
+  - Configure `NEXT_PUBLIC_FORM_ENDPOINT` in production environment (Web3Forms or Formspree).
+- [ ] **Domain & DNS Cutover**:
+  - Verify Hostinger DNS, SSL certificate, SPF/DKIM/DMARC records.
+- [ ] **Viewport CI Gate ([`KI-008`](file:///d:/WebDev/portfolio/docs/KNOWN_ISSUES.md#L18))**:
+  - Install `@playwright/test` and wire `tests/e2e/viewport.test.ts` into CI pipeline.
+- [ ] **Bangla Localization (`/bn/*`)**:
+  - Internationalized routing structure for domestic Bangladeshi enterprise market.

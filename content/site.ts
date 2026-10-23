@@ -118,10 +118,12 @@ export interface SiteConfig {
   };
 }
 
+const BRAND_NAME = 'Team NJS';
+
 export const siteConfig: SiteConfig = {
   // Provisional trading name. Final brand name and legal entity are undecided.
-  name: 'Team NJS',
-  legalName: 'Team NJS',
+  name: BRAND_NAME,
+  legalName: BRAND_NAME,
   tagline: 'Independent digital studio, Dhaka',
   description:
     'An independent studio in Dhaka designing and building web platforms, mobile products, and the systems behind them.',
@@ -152,7 +154,7 @@ export const siteConfig: SiteConfig = {
     statement:
       'We take on a small number of projects each year, and stay with them long after launch.',
     body: [
-      'Apex is an independent studio working across design and engineering. We are small on purpose: the people you meet are the people who make the work.',
+      `${BRAND_NAME} is an independent studio working across design and engineering. We are small on purpose: the people you meet are the people who make the work.`,
       'Most of our clients arrive with something that has outgrown its first version. We rebuild the foundation, then keep improving it.',
     ],
     cta: { title: 'About the studio', href: '/about' },
@@ -190,11 +192,9 @@ export const siteConfig: SiteConfig = {
 
   nav: {
     main: [
+      { title: 'Work', href: '/portfolio' },
       { title: 'Services', href: '/services' },
-      { title: 'Portfolio', href: '/portfolio' },
-      { title: 'About', href: '/about' },
-      { title: 'Team', href: '/team' },
-      { title: 'Process', href: '/process' },
+      { title: 'Studio', href: '/about' },
       { title: 'Contact', href: '/contact' },
     ],
     cta: {

@@ -1,13 +1,14 @@
 import type { MetadataRoute } from 'next';
 import { siteConfig } from '@/content/site';
-import { services } from '@/content/services';
-import { projects } from '@/content/projects';
+import { getServices, getProjects } from '@/content/queries';
 
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url.replace(/\/$/, '');
   const now = new Date();
+  const services = getServices();
+  const projects = getProjects();
 
   // Static core routes
   const staticRoutes: MetadataRoute.Sitemap = [

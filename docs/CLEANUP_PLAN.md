@@ -1,7 +1,7 @@
 # Clean Code Transformation & Living Roadmap
 
 **Project:** Team NJS Portfolio (`D:\WebDev\portfolio`)  
-**Status:** Phases 1 & 2 Completed (Commit `c53b9e1`). Phase 3 (Architectural Deepening) & Phase 4 (Content) Open.  
+**Status:** Phases 1, 2, and 3 (Architectural Deepening & 4-Pillar Studio Consolidation) Completed. Phase 4 (Content) & Phase 5 (Visual Polish) Open.  
 **Last Updated:** 2026-10-23  
 
 ---
@@ -10,17 +10,17 @@
 
 ```mermaid
 flowchart TD
-  subgraph Done["Completed (Commit c53b9e1)"]
+  subgraph Done["Completed"]
     D1["Phase 1: Workspace Declutter\n(Archived Oct 13 docs, cleaned DSH logs, merged ARCHITECTURE.md)"]
     D2["Phase 2: Dead Surface Deletion\n(Deleted 12 orphan modules: 8 sections, 2 motion, 2 UI)"]
     D3["Infra: CI/CD & Hostinger\n(GitHub Actions deploy + LiteSpeed cache-busting .htaccess)"]
     D4["Principles: AGENTS.md Rewrite\n(Collaborative alternatives, living design direction)"]
+    D5["Phase 3: Architectural Deepening & Studio Consolidation\n(4-Pillar Nav, content/queries, unified ProjectRow, metadata factory, contact intake)"]
   end
 
   subgraph Next["Upcoming & In Progress"]
-    N1["Phase 3: Architectural Deepening\n(Content queries, unified ProjectRow, metadata factory, contact intake)"]
-    N2["Phase 4: Content Finalization\n(Q3 Buyer Profile, authentic case study metrics, legal entity)"]
-    N3["Phase 5: Visual Review & Polish\n(Direct UI inspection, shadow softening, micro-radius calibration)"]
+    N1["Phase 4: Content Finalization\n(Q3 Buyer Profile, authentic case study metrics, legal entity)"]
+    N2["Phase 5: Visual Review & Polish\n(Direct UI inspection, shadow softening, micro-radius calibration)"]
   end
 
   Done --> Next
@@ -70,25 +70,24 @@ flowchart TD
 
 ---
 
-### ⏳ Phase 3: Architectural Deepening (Upcoming / Open Decision)
-*Apply Principle 4: Formulate competing alternatives and evaluate trade-offs before implementation.*
-
-- [ ] **3.1 Deepen Content Query Seam (`content/queries.ts`):**  
-  - *Problem:* Interior pages and sections repeatedly perform manual `.filter()` and `.map()` calls on raw data arrays.
-  - *Solution:* Centralize derived views (`getServiceGroupsWithServices()`, `getFeaturedProjects()`, `getServiceOptions()`).
-- [ ] **3.2 Unify `<ProjectRow />`:**  
-  - *Problem:* `components/sections/WorkIndex.tsx` and `components/portfolio/PortfolioFilterGrid.tsx` duplicate row grammar, responsive layouts, and `shortCategory` logic.
-  - *Solution:* Extract a single, deep `<ProjectRow />` component shared by Home and Portfolio.
-- [ ] **3.3 Centralize Page Metadata Factory (`lib/metadata.ts`):**  
-  - *Problem:* 11 route files hand-craft repetitive Next.js `<Metadata>` objects with identical site suffixes, URLs, and OpenGraph defaults.
-  - *Solution:* Create a unified `createPageMetadata({ title, description, path, ogType })` helper.
-- [ ] **3.4 Decouple Contact Intake:**  
-  - *Problem:* `components/forms/ContactForm.tsx` mixes validation schema, submission status, form feedback, and DOM layout in 390 lines.
-  - *Solution:* Separate pure validation/payload rules into a standalone testable module (`lib/contact.ts`).
+### ✅ Phase 3: Architectural Deepening & Studio Consolidation (COMPLETED)
+- [x] **3.1 Deepen Content Query Seam (`content/queries.ts`):**  
+  Centralized all domain queries (`getProjects()`, `getFeaturedProjects()`, `getServices()`, `getServiceOptionsForContact()`, `getTeamMembers()`, `getProcessSteps()`). Re-exports all core domain types.
+- [x] **3.2 Unify `<ProjectRow />`:**  
+  Created `components/portfolio/ProjectRow.tsx` encapsulating project row grammar, category short-label, title, client type, date, headline metric, arrow link, hover transitions, and responsive mobile layout. Adopted in both `WorkIndex.tsx` and `PortfolioFilterGrid.tsx`.
+- [x] **3.3 Centralize Page Metadata Factory (`lib/metadata.ts`):**  
+  Created `createPageMetadata({ title, description, path, ogType, image })` helper. Standardized across all 11 route files with canonical URLs and OpenGraph tags.
+- [x] **3.4 Decouple Contact Intake (`lib/contact.ts`):**  
+  Extracted pure validation, options, submission handler, and WhatsApp URL generation. Added URL search param pre-selection (`?service=slug`) with Next.js static export compatibility via `<React.Suspense>`.
+- [x] **3.5 4-Pillar Navigation & Studio Dossier Consolidation:**  
+  Consolidated main navbar to `Work`, `Services`, `Studio`, `Contact`. Enriched `/about` into a 4-chapter Studio dossier (Story, Leadership, Delivery Method, Commitments). Preserved `/team` and `/process` for full backwards compatibility and 100% test pass.
+- [x] **3.6 Hardened Brand String Gate & Bug Fix:**  
+  Fixed hardcoded "Apex" string leaks in `app/about/page.tsx` and `content/site.ts`. Expanded `scripts/verify-no-hardcoded-brand.mjs` to monitor `lib/` as well.
 
 ---
 
 ### ⏳ Phase 4: Content & Identity Finalization (Upcoming)
+*Creative Blueprint: [`docs/VISUAL_AND_FEATURE_PLAN.md`](VISUAL_AND_FEATURE_PLAN.md)*  
 - [ ] **4.1 Settle Brand & Legal Identity (KI-006):**  
   - Transition provisional "Team NJS" working name to final agency brand name, legal entity, official email, and phone.
 - [ ] **4.2 Resolve Q3 Primary Buyer Persona (`docs/CONTENT_DECISIONS.md`):**  
@@ -96,14 +95,25 @@ flowchart TD
 - [ ] **4.3 Authentic Case Study Metrics & Copy (KI-009):**  
   - Replace illustrative statistics (`5+`, `120+`, `80+`, `15+`) and sample case study metrics with real, defensible agency work.
 - [ ] **4.4 Genuine Imagery & Portraits (KI-005):**  
-  - Replace typographic holding cards with authentic project cover photography and founder portraits in `public/images/`.
+  - Ingest 3 founder duotone portraits, 1 studio ambient photo, 6 case study covers, and 12 macro interface crops per `docs/VISUAL_AND_FEATURE_PLAN.md`.
+- [ ] **4.5 Service Taxonomy Realignment:**  
+  - Reframe low-ticket categories ("Graphics Design", "Video Editing") to "Brand Systems & Interactive Media".
 
 ---
 
-### ⏳ Phase 5: Visual Polish & Direct UI Review (Upcoming)
-- [ ] **5.1 Shadow & Depth Review:**  
+### ⏳ Phase 5: Visual Polish, Interactive Quirks & Innovations (Upcoming)
+*Interactive Specifications: [`docs/VISUAL_AND_FEATURE_PLAN.md`](VISUAL_AND_FEATURE_PLAN.md)*  
+- [ ] **5.1 The "Gallery Hover" Cursor Reveal:**  
+  - Implement spring-damped floating project preview following cursor on `WorkIndex` and `PortfolioFilterGrid` desktop rows.
+- [ ] **5.2 Live Studio Clock & Global Status Chip:**  
+  - Monospace real-time chip (`DHAKA [TIME] GMT+6 · STUDIO OPEN`) in header/footer.
+- [ ] **5.3 Executive Dossier Print Stylesheet (`@media print`):**  
+  - Clean 2-page boardroom proposal export on `/about` and case studies via `Ctrl+P`/`Cmd+P`.
+- [ ] **5.4 Split-Flap Metric Scramble:**  
+  - Rapid mechanical character roll on key metrics (`74%`, `€12M+`, `180 hrs`) on in-view trigger.
+- [ ] **5.5 Blueprint Inspection Grid Mode (`[GRID]` / `⌘+G`):**  
+  - Interactive overlay visualizing 12-column lines, baseline rhythm, and token annotations.
+- [ ] **5.6 Shadow & Depth Calibration:**  
   - Re-evaluate hard offset shadows (`shadow-hard-*`) across light and dark modes per user directive; experiment with softer, subtle elevation where appropriate.
-- [ ] **5.2 Micro-Radius & Border Tuning:**  
-  - Confirm or refine the 2px border radius and hairline borders during live visual inspection.
-- [ ] **5.3 Mobile Experience Sweep:**  
+- [ ] **5.7 Mobile Experience Sweep:**  
   - Review responsive typography scaling, line wraps, and touch tap targets across mobile viewports (360px–414px).

@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowUpRight, ChevronRight } from 'lucide-react';
-import { getAllProjects, getProjectBySlug } from '@/content/projects';
-import { siteConfig } from '@/content/site';
+import { getAllProjects, getProjectBySlug } from '@/content/queries';
+import { createPageMetadata } from '@/lib/metadata';
 import { Container } from '@/components/layout/Container';
 import { Section } from '@/components/layout/Section';
 import { PageHeader } from '@/components/layout/PageHeader';
@@ -27,19 +27,19 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
   const project = getProjectBySlug(slug);
 
   if (!project) {
-    return { title: `Case study not found | ${siteConfig.name}` };
+    return createPageMetadata({
+      title: 'Case study not found',
+      description: 'The requested case study could not be found.',
+      path: `/portfolio/${slug}`,
+    });
   }
 
-  return {
-    title: `${project.title} | Case Study | ${siteConfig.name}`,
+  return createPageMetadata({
+    title: `${project.title} | Case Study`,
     description: project.summary,
-    openGraph: {
-      title: `${project.title} | ${siteConfig.name}`,
-      description: project.summary,
-      url: `${siteConfig.url}/portfolio/${project.slug}`,
-      type: 'article',
-    },
-  };
+    path: `/portfolio/${project.slug}`,
+    ogType: 'article',
+  });
 }
 
 export default async function CaseStudyDetailPage({ params }: CaseStudyPageProps) {

@@ -1,21 +1,17 @@
 import type { Metadata } from 'next';
-import { getAllProjects, getProjectCategories } from '@/content/projects';
+import { getAllProjects, getProjectCategories } from '@/content/queries';
 import { siteConfig } from '@/content/site';
+import { createPageMetadata } from '@/lib/metadata';
 import { Container } from '@/components/layout/Container';
 import { Section } from '@/components/layout/Section';
 import { PortfolioFilterGrid } from '@/components/portfolio/PortfolioFilterGrid';
 import { ContactBlock } from '@/components/sections/ContactBlock';
 
-export const metadata: Metadata = {
-  title: `Case Studies & Portfolio | ${siteConfig.name}`,
+export const metadata: Metadata = createPageMetadata({
+  title: 'Case Studies & Portfolio',
   description: `Selected client work across web platforms, mobile products, automation, and brand systems by ${siteConfig.name}.`,
-  openGraph: {
-    title: `Case Studies & Portfolio | ${siteConfig.name}`,
-    description: `Selected client work across web platforms, mobile products, automation, and brand systems by ${siteConfig.name}.`,
-    url: `${siteConfig.url}/portfolio`,
-    type: 'website',
-  },
-};
+  path: '/portfolio',
+});
 
 export default function PortfolioPage() {
   const allProjects = getAllProjects();

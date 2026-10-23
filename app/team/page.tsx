@@ -1,27 +1,49 @@
 import type { Metadata } from 'next';
-import { teamMembers } from '@/content/team';
+import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
+import { getTeamMembers } from '@/content/queries';
 import { siteConfig } from '@/content/site';
+import { createPageMetadata } from '@/lib/metadata';
 import { Container } from '@/components/layout/Container';
 import { Section } from '@/components/layout/Section';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { ContactBlock } from '@/components/sections/ContactBlock';
 
-export const metadata: Metadata = {
-  title: `Team | ${siteConfig.name}`,
+export const metadata: Metadata = createPageMetadata({
+  title: 'Leadership Team',
   description: `The founders of ${siteConfig.name}: Nasib Mohammad Arif, Abu Sayed Md Saad, and Jabir Abdullah Haian.`,
-  openGraph: {
-    title: `Team | ${siteConfig.name}`,
-    description: `The founders of ${siteConfig.name}.`,
-    url: `${siteConfig.url}/team`,
-    type: 'website',
-  },
-};
+  path: '/team',
+});
 
 export default function TeamPage() {
+  const teamMembers = getTeamMembers();
+
   return (
     <div className="flex w-full flex-col">
+      <div className="border-b border-border bg-background">
+        <Container
+          size="xl"
+          className="flex items-center justify-between py-3 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground"
+        >
+          <div className="flex items-center gap-2">
+            <Link href="/about" className="transition-colors hover:text-foreground">
+              Studio Dossier
+            </Link>
+            <span>/</span>
+            <span className="text-foreground">Leadership</span>
+          </div>
+          <Link
+            href="/about#leadership"
+            className="group inline-flex items-center gap-1 transition-colors hover:text-accent"
+          >
+            Studio Chapter 02
+            <ArrowUpRight className="h-3 w-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </Link>
+        </Container>
+      </div>
+
       <PageHeader
-        label="People"
+        label="People &amp; Leadership"
         title="Three founders, one room."
         lede="No account layer, no handover to a junior team. The people who scope the work are the people who make it."
         meta="Dhaka, Bangladesh"
@@ -44,7 +66,7 @@ export default function TeamPage() {
                 </h2>
 
                 <p className="col-span-10 col-start-3 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground sm:col-span-2 sm:col-start-auto">
-                  {member.role}
+                  {member.role || 'Co-founder'}
                 </p>
 
                 {member.bio ? (

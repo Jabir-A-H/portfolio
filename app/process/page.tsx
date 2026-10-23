@@ -1,21 +1,19 @@
 import type { Metadata } from 'next';
-import { processSteps } from '@/content/process';
+import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
+import { getProcessSteps } from '@/content/queries';
 import { siteConfig } from '@/content/site';
+import { createPageMetadata } from '@/lib/metadata';
 import { Container } from '@/components/layout/Container';
 import { Section } from '@/components/layout/Section';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { ContactBlock } from '@/components/sections/ContactBlock';
 
-export const metadata: Metadata = {
-  title: `Process | ${siteConfig.name}`,
+export const metadata: Metadata = createPageMetadata({
+  title: 'Methodology & Process',
   description: `The six-step method ${siteConfig.name} uses to take a product from discovery to maintenance.`,
-  openGraph: {
-    title: `Process | ${siteConfig.name}`,
-    description: `The six-step method ${siteConfig.name} uses to take a product from discovery to maintenance.`,
-    url: `${siteConfig.url}/process`,
-    type: 'website',
-  },
-};
+  path: '/process',
+});
 
 const standards = [
   {
@@ -36,10 +34,34 @@ const standards = [
 ];
 
 export default function ProcessPage() {
+  const processSteps = getProcessSteps();
+
   return (
     <div className="flex w-full flex-col">
+      <div className="border-b border-border bg-background">
+        <Container
+          size="xl"
+          className="flex items-center justify-between py-3 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground"
+        >
+          <div className="flex items-center gap-2">
+            <Link href="/about" className="transition-colors hover:text-foreground">
+              Studio Dossier
+            </Link>
+            <span>/</span>
+            <span className="text-foreground">Methodology</span>
+          </div>
+          <Link
+            href="/about#method"
+            className="group inline-flex items-center gap-1 transition-colors hover:text-accent"
+          >
+            Studio Chapter 03
+            <ArrowUpRight className="h-3 w-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </Link>
+        </Container>
+      </div>
+
       <PageHeader
-        label="Method"
+        label="Method &amp; Delivery"
         title="How we work."
         lede="Six steps, in the same order every time. The scope changes; the sequence does not."
         meta="Typical engagement: 6 to 12 weeks"

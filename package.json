@@ -13,7 +13,7 @@
     "build": "next build --webpack",
     "clean": "node scripts/clean.mjs",
     "start": "node scripts/serve-out.mjs",
-    "lint": "eslint app components content",
+    "lint": "eslint app components content lib",
     "typecheck": "tsc --noEmit",
     "test:e2e": "node tests/e2e/runner.mjs",
     "verify:routes": "node scripts/verify-routes.mjs",

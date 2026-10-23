@@ -17,11 +17,13 @@ const rootDir = path.resolve(__dirname, '..');
 const SCAN_DIRS = [
   path.join(rootDir, 'app'),
   path.join(rootDir, 'components'),
+  path.join(rootDir, 'lib'),
 ];
 
 // Target brand identifiers that must NOT appear hardcoded in UI or routes
 const FORBIDDEN_STRINGS = [
   'Apex Digital',
+  'Apex is an independent',
   'hello@example.com',
   '+880 1700-000000',
   '8801700000000',

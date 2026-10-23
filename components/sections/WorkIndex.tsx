@@ -1,17 +1,11 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-import { getFeaturedProjects } from '@/content/projects';
+import { getFeaturedProjects } from '@/content/queries';
 import { Container } from '@/components/layout/Container';
 import { Section } from '@/components/layout/Section';
 import { Reveal } from '@/components/motion';
-
-const shortCategory: Record<string, string> = {
-  'Web & Software': 'Web',
-  'Mobile & Games': 'Mobile',
-  'Automation & Integration': 'Automation',
-  Creative: 'Creative',
-};
+import { ProjectRow } from '@/components/portfolio/ProjectRow';
 
 export function WorkIndex() {
   const featured = getFeaturedProjects();
@@ -36,55 +30,16 @@ export function WorkIndex() {
 
         <Reveal delay={0.08}>
           <div>
-          {featured.map((project, index) => {
-            const headlineResult = project.results?.[0];
-            const label = shortCategory[project.category] ?? project.category;
-
-            return (
-              <Link
+            {featured.map((project, index) => (
+              <ProjectRow
                 key={project.id}
-                href={`/portfolio/${project.slug}`}
-                className="group block py-10 transition-colors sm:py-14"
-              >
-                <div className="grid grid-cols-12 items-start gap-x-4 gap-y-2">
-                  <div className="col-span-12 mb-1 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground sm:hidden">
-                    <span>
-                      {String(index + 1).padStart(2, '0')}
-                      <span className="ml-3 text-muted-foreground/70">{label}</span>
-                    </span>
-                    <ArrowUpRight className="h-4 w-4 text-foreground/50" />
-                  </div>
-
-                  <span className="col-span-2 hidden font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground sm:block">
-                    {String(index + 1).padStart(2, '0')}
-                    <span className="mt-1.5 block text-muted-foreground/70">{label}</span>
-                  </span>
-
-                  <h3 className="col-span-12 font-display text-[1.9rem] leading-[1.02] text-foreground transition-colors group-hover:text-accent sm:col-span-6 sm:text-[2.6rem]">
-                    {project.title}
-                  </h3>
-
-                  <div className="col-span-12 flex flex-col gap-1 sm:col-span-3 sm:mt-1">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
-                      {project.clientType}
-                    </span>
-                    {headlineResult && (
-                      <span className="text-[13px] leading-snug text-foreground/80">
-                        <span className="font-mono text-[11px] text-accent">
-                          {headlineResult.metric}
-                        </span>{' '}
-                        {headlineResult.label}
-                      </span>
-                    )}
-                  </div>
-
-                  <span className="hidden justify-end text-foreground/50 transition-colors group-hover:text-accent sm:col-span-1 sm:flex">
-                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                  </span>
-                </div>
-              </Link>
-            );
-          })}
+                project={project}
+                index={index}
+                variant="compact"
+                headingTag="h3"
+                showCompletedDate={false}
+              />
+            ))}
           </div>
         </Reveal>
 

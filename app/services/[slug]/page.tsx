@@ -2,8 +2,9 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowUpRight, ChevronRight } from 'lucide-react';
-import { services, getServiceBySlug } from '@/content/services';
+import { getServices, getServiceBySlug } from '@/content/queries';
 import { siteConfig } from '@/content/site';
+import { createPageMetadata } from '@/lib/metadata';
 import { Container } from '@/components/layout/Container';
 import { Section } from '@/components/layout/Section';
 import { PageHeader } from '@/components/layout/PageHeader';
@@ -12,7 +13,7 @@ import { ContactBlock } from '@/components/sections/ContactBlock';
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return services.map((service) => ({
+  return getServices().map((service) => ({
     slug: service.slug,
   }));
 }
@@ -26,19 +27,18 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
   const service = getServiceBySlug(slug);
 
   if (!service) {
-    return { title: `Service not found | ${siteConfig.name}` };
+    return createPageMetadata({
+      title: 'Service not found',
+      description: 'The requested service could not be found.',
+      path: `/services/${slug}`,
+    });
   }
 
-  return {
-    title: `${service.title} | Services | ${siteConfig.name}`,
+  return createPageMetadata({
+    title: `${service.title} | Services`,
     description: service.shortDescription,
-    openGraph: {
-      title: `${service.title} | ${siteConfig.name}`,
-      description: service.shortDescription,
-      url: `${siteConfig.url}/services/${service.slug}`,
-      type: 'website',
-    },
-  };
+    path: `/services/${service.slug}`,
+  });
 }
 
 export default async function ServiceDetailPage({ params }: ServicePageProps) {
@@ -107,7 +107,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               </p>
               <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">
                 <Link
-                  href="/contact"
+                  href={`/contact?service=${service.slug}`}
                   className="group inline-flex items-center gap-2 border-b border-foreground/30 pb-1 text-[13px] transition-colors hover:border-accent hover:text-accent"
                 >
                   Discuss this service

@@ -1,21 +1,17 @@
 import type { Metadata } from 'next';
 import { siteConfig } from '@/content/site';
+import { createPageMetadata } from '@/lib/metadata';
 import { Hero } from '@/components/sections/Hero';
 import { WorkIndex } from '@/components/sections/WorkIndex';
 import { Capabilities } from '@/components/sections/Capabilities';
 import { StudioStatement } from '@/components/sections/StudioStatement';
 import { ContactBlock } from '@/components/sections/ContactBlock';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: `${siteConfig.name} — ${siteConfig.tagline}`,
   description: siteConfig.description,
-  openGraph: {
-    title: `${siteConfig.name} — ${siteConfig.tagline}`,
-    description: siteConfig.description,
-    url: siteConfig.url,
-    type: 'website',
-  },
-};
+  path: '/',
+});
 
 export default function HomePage() {
   const organizationJsonLd = {

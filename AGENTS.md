@@ -13,19 +13,20 @@ Build and maintain a high-performance, statically exportable, responsive multi-p
 - Documentation must accurately reflect reality. When architecture, routes, or content models change, update the relevant docs before concluding work.
 - Hierarchy of truth:
   1. [`docs/ARCHITECTURE.md`](file:///d:/WebDev/portfolio/docs/ARCHITECTURE.md) (Canonical system architecture, tokens, routes, and design reference)
-  2. [`docs/CONTENT_DECISIONS.md`](file:///d:/WebDev/portfolio/docs/CONTENT_DECISIONS.md) (Live content choices: brand name, positioning, copy)
-  3. [`docs/KNOWN_ISSUES.md`](file:///d:/WebDev/portfolio/docs/KNOWN_ISSUES.md) (Active bug tracking & technical workarounds)
-  4. [`docs/ROADMAP.md`](file:///d:/WebDev/portfolio/docs/ROADMAP.md) (Milestones and next steps)
+  2. [`docs/VISUAL_AND_FEATURE_PLAN.md`](file:///d:/WebDev/portfolio/docs/VISUAL_AND_FEATURE_PLAN.md) (Asset inventory, media guidelines, and interactive quirks)
+  3. [`docs/CONTENT_DECISIONS.md`](file:///d:/WebDev/portfolio/docs/CONTENT_DECISIONS.md) (Live content choices: brand name, positioning, copy)
+  4. [`docs/KNOWN_ISSUES.md`](file:///d:/WebDev/portfolio/docs/KNOWN_ISSUES.md) (Active bug tracking & technical workarounds)
+  5. [`docs/ROADMAP.md`](file:///d:/WebDev/portfolio/docs/ROADMAP.md) (Milestones and next steps)
 - Delete dead weight immediately: orphaned components, unused assets, and unimported dependencies.
 
 ### 🏛️ Principle 2: Content Centralization (Zero Brand Lock-in)
-- **Zero hardcoded brand, legal, or contact strings** in `app/` or `components/`. Everything flows from [`content/site.ts`](file:///d:/WebDev/portfolio/content/site.ts) and sister modules in [`content/`](file:///d:/WebDev/portfolio/content).
+- **Zero hardcoded brand, legal, or contact strings** in `app/`, `components/`, or `lib/`. Everything flows from [`content/site.ts`](file:///d:/WebDev/portfolio/content/site.ts) and sister modules in [`content/`](file:///d:/WebDev/portfolio/content).
 - Enforced automatically by `scripts/verify-no-hardcoded-brand.mjs` (`npm run verify:brand`).
 
 ### ⚡ Principle 3: Static Export & Technical Invariants
 - **Static Export**: Configured for `output: 'export'`, `trailingSlash: true`, and `images: { unoptimized: true }`.
 - **Dynamic Routes**: `/services/[slug]` and `/portfolio/[slug]` must declare `dynamicParams = false` and provide `generateStaticParams()`.
-- **Client Isolation**: `'use client'` is reserved strictly for interactive leaf components (`ContactForm`, `PortfolioFilterGrid`, `ThemeToggle`). Layouts and section wrappers remain pure Server Components.
+- **Client Isolation**: `'use client'` is reserved strictly for interactive leaf components (`ContactForm`, `PortfolioFilterGrid`, `ThemeToggle`). Layouts, page wrappers, and section containers remain pure Server Components. Dynamic client state (such as `useSearchParams`) must be isolated in `<React.Suspense>` boundaries.
 - **Visual Direction**: Living design guidelines are documented in [`docs/ARCHITECTURE.md`](file:///d:/WebDev/portfolio/docs/ARCHITECTURE.md) and ADRs, and evolve with direct UI review. Avoid generic SaaS cliché templates. Do not add an availability indicator (explicitly rejected).
 
 ### 🔍 Principle 4: Collaborative Planning & Competing Alternatives

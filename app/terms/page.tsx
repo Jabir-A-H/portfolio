@@ -2,19 +2,15 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Mail, MapPin } from 'lucide-react';
 import { siteConfig } from '@/content/site';
+import { createPageMetadata } from '@/lib/metadata';
 import { Container } from '@/components/layout/Container';
 import { Section } from '@/components/layout/Section';
 
-export const metadata: Metadata = {
-  title: `Terms of Service | ${siteConfig.name}`,
+export const metadata: Metadata = createPageMetadata({
+  title: 'Terms of Service',
   description: `Terms and conditions governing the use of ${siteConfig.name} digital services, proposals, and website.`,
-  openGraph: {
-    title: `Terms of Service | ${siteConfig.name}`,
-    description: `Terms and conditions governing the use of ${siteConfig.name} digital services, proposals, and website.`,
-    url: `${siteConfig.url}/terms`,
-    type: 'website',
-  },
-};
+  path: '/terms',
+});
 
 export default function TermsOfServicePage() {
   return (
