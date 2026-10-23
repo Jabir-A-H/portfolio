@@ -38,13 +38,15 @@
 
 ---
 
-## ⏳ Phase 5: Interactive Quirks, Motion & Studio Features (UPCOMING)
+## ⏳ Phase 5: Interactive Quirks, Motion & Studio Features (IN PROGRESS)
 > Detailed specifications: [`docs/VISUAL_AND_FEATURE_PLAN.md`](VISUAL_AND_FEATURE_PLAN.md)
 
-- [ ] **5.1 The "Gallery Hover" (Cursor-Driven Thumbnail Reveal)**:
-  - Add floating, spring-damped project preview on row hover for desktop viewports in `WorkIndex` and `PortfolioFilterGrid`.
-- [ ] **5.2 Live Studio Clock & Global Status**:
-  - Add discrete real-time monospace chip (`DHAKA [TIME] GMT+6 · STUDIO OPEN`) to header/footer for international timezone assurance.
+- [x] **5.1 The "Traveling Viewfinder" Gallery Glider ([`InteractiveWorkGallery`](file:///d:/WebDev/portfolio/components/portfolio/InteractiveWorkGallery.tsx) & [`GalleryViewfinder`](file:///d:/WebDev/portfolio/components/portfolio/GalleryViewfinder.tsx))**:
+  - Implemented tethered magnetic viewfinder docking in row negative space across `WorkIndex` and `PortfolioFilterGrid`.
+  - Driven by Framer Motion `layoutId="gallery-viewfinder"` spring glider between rows, with nested scroll-linked continuous micro-parallax drift (`useScroll` + `useTransform`).
+  - Full mobile viewport parity driven by `IntersectionObserver` focal band detection; instant magnetic snap on desktop hover.
+- [ ] **5.2 Live Studio Clock & Global Status (EXCLUDED)**:
+  - *Explicitly rejected per user directive to avoid template clichés.*
 - [ ] **5.3 Executive Dossier Print Stylesheet (`@media print`)**:
   - Implement print-to-PDF formatting stripping navigation/chrome for boardroom executive presentations on `/about` and `/portfolio/[slug]`.
 - [ ] **5.4 Metric Split-Flap / Scramble Typography**:

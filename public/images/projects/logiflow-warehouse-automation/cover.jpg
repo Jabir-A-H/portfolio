@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="640" height="400">
+  <defs>
+    <!-- Background grid pattern -->
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#222429" stroke-width="0.75"/>
+    </pattern>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.6"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Deep architectural dark canvas -->
+  <rect width="640" height="400" fill="#0d0e11"/>
+  <!-- Precision grid lines -->
+  <rect width="640" height="400" fill="url(#grid)"/>
+  <!-- Subtle vignette -->
+  <rect width="640" height="400" fill="url(#vignette)"/>
+
+  <!-- Border frame with 2px micro-radius feel -->
+  <rect x="12" y="12" width="616" height="376" fill="none" stroke="#27272a" stroke-width="1"/>
+
+  <!-- Corner registration crosshairs -->
+  <g stroke="#f97316" stroke-width="1">
+    <line x1="20" y1="28" x2="36" y2="28"/>
+    <line x1="28" y1="20" x2="28" y2="36"/>
+    
+    <line x1="604" y1="28" x2="620" y2="28"/>
+    <line x1="612" y1="20" x2="612" y2="36"/>
+
+    <line x1="20" y1="372" x2="36" y2="372"/>
+    <line x1="28" y1="364" x2="28" y2="380"/>
+
+    <line x1="604" y1="372" x2="620" y2="372"/>
+    <line x1="612" y1="364" x2="612" y2="380"/>
+  </g>
+
+  <!-- Top Metadata Bar -->
+  <text x="48" y="44" font-family="monospace" font-size="11" letter-spacing="0.14em" fill="#f97316" font-weight="bold">AUTO-03</text>
+  <text x="120" y="44" font-family="monospace" font-size="10" letter-spacing="0.12em" fill="#71717a">// AUTOMATION & INTEGRATION</text>
+  <text x="592" y="44" font-family="monospace" font-size="10" letter-spacing="0.12em" fill="#a1a1aa" text-anchor="end">ASPECT 16:10</text>
+
+  <!-- Interactive Diagram Zone -->
+  <g transform="translate(0, 20)">
+    
+      <!-- Automation Pipeline Nodes -->
+      <circle cx="200" cy="160" r="24" fill="#18181b" stroke="#3f3f46" stroke-width="1.5"/>
+      <text x="200" y="164" font-family="monospace" font-size="10" fill="#a1a1aa" text-anchor="middle">IN</text>
+      <path d="M 224 160 L 296 160" stroke="#f97316" stroke-width="2"/>
+      <polygon points="296,156 304,160 296,164" fill="#f97316"/>
+      <rect x="304" y="136" width="64" height="48" rx="2" fill="#18181b" stroke="#f97316" stroke-width="1.5"/>
+      <text x="336" y="165" font-family="monospace" font-size="11" fill="#f97316" text-anchor="middle">QUEUE</text>
+      <path d="M 368 160 L 440 160" stroke="#3f3f46" stroke-width="1.5" stroke-dasharray="4 4"/>
+      <circle cx="440" cy="160" r="24" fill="#18181b" stroke="#3f3f46" stroke-width="1.5"/>
+      <text x="440" y="164" font-family="monospace" font-size="10" fill="#a1a1aa" text-anchor="middle">OUT</text>
+    
+  </g>
+
+  <!-- Bottom Details Bar -->
+  <line x1="24" y1="344" x2="616" y2="344" stroke="#222429" stroke-width="1"/>
+  <text x="48" y="366" font-family="sans-serif" font-size="14" font-weight="600" fill="#fafafa">LogiFlow Robotics</text>
+  <text x="592" y="366" font-family="monospace" font-size="11" letter-spacing="0.1em" fill="#f97316" text-anchor="end">180 hrs / mo Saved</text>
+</svg>

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import type { ProjectItem } from '@/content/queries';
-import { ProjectRow } from '@/components/portfolio/ProjectRow';
+import { InteractiveWorkGallery } from '@/components/portfolio/InteractiveWorkGallery';
 
 interface PortfolioFilterGridProps {
   projects: ProjectItem[];
@@ -65,18 +65,13 @@ export function PortfolioFilterGrid({ projects, categories }: PortfolioFilterGri
       </div>
 
       {filteredProjects.length > 0 ? (
-        <div>
-          {filteredProjects.map((project, index) => (
-            <ProjectRow
-              key={project.id}
-              project={project}
-              index={index}
-              variant="detailed"
-              headingTag="h2"
-              showCompletedDate={true}
-            />
-          ))}
-        </div>
+        <InteractiveWorkGallery
+          key={activeCategory}
+          projects={filteredProjects}
+          variant="detailed"
+          headingTag="h2"
+          showCompletedDate={true}
+        />
       ) : (
         <div className="py-20 text-center">
           <p className="font-display text-3xl text-foreground">Nothing filed under {activeCategory}.</p>

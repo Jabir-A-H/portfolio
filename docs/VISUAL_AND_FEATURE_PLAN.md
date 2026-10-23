@@ -138,9 +138,13 @@ graph TD
   Utility --> Shipped
 ```
 
-### 4.1 The "Gallery Hover" (Cursor-Driven Thumbnail Reveal)
-* **Behavior:** When hovering project rows in [`WorkIndex`](file:///d:/WebDev/portfolio/components/sections/WorkIndex.tsx) or [`PortfolioFilterGrid`](file:///d:/WebDev/portfolio/components/portfolio/PortfolioFilterGrid.tsx), a 280×175px floating thumbnail smoothly fades in and follows the mouse cursor with gentle spring physics.
-* **Benefit:** Delivers rich visual gratification without cluttering the clean editorial layout. Respects mobile by disabling on touch screens.
+### 4.1 The "Traveling Viewfinder" Gallery Glider (Shipped)
+* **Architecture:** Implemented in [`components/portfolio/InteractiveWorkGallery.tsx`](file:///d:/WebDev/portfolio/components/portfolio/InteractiveWorkGallery.tsx) and [`components/portfolio/GalleryViewfinder.tsx`](file:///d:/WebDev/portfolio/components/portfolio/GalleryViewfinder.tsx).
+* **Behavior:** Rather than an awkward cursor-following tooltip that obscures text and fails on mobile, a traveling architectural viewfinder frame docks into the row's negative space:
+  * **Macro Glide:** Framer Motion `layoutId="gallery-viewfinder"` smoothly glides the frame vertically down the right runway between rows when crossing boundaries or on hover.
+  * **Continuous Micro-Parallax:** Inside the active row's height, `useScroll({ target: rowRef })` gently drifts the preview image (-18px to +18px) with natural scroll travel.
+  * **Cross-Platform Parity:** Driven natively by `IntersectionObserver` focal band tracking on mobile devices; instant magnetic snap on desktop pointer hover.
+* **Benefit:** Zero text occlusion, authentic physical inertia, and equal visual delight across mobile and desktop.
 
 ### 4.2 Blueprint Inspection Mode (`[GRID]` / `⌘+G`)
 * **Behavior:** A discrete toggle button in the footer (and `⌘+G` keyboard shortcut) overlays an architectural blueprint grid across the site:

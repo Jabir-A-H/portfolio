@@ -46,6 +46,7 @@ To prevent brand lock-in and enable seamless rebranding without touching UI comp
 - **Metadata Factory ([`lib/metadata.ts`](file:///d:/WebDev/portfolio/lib/metadata.ts))**: `createPageMetadata({ title, description, path, ogType, image })` standardizes title formatting (with absolute unwrapping), OpenGraph tags, Twitter summary large image cards, and canonical links across all routes.
 - **Contact Intake Decoupling ([`lib/contact.ts`](file:///d:/WebDev/portfolio/lib/contact.ts))**: Isolates schema validation (`validateContactForm`), option constants (`BUDGET_OPTIONS`, `TIMELINE_OPTIONS`), WhatsApp link generation (`formatWhatsAppUrl`), and simulated/network submission (`submitInquiry`). Form search params are read inside an isolated `<Suspense>` boundary to preserve full static export generation.
 - **Unified Project Row ([`components/portfolio/ProjectRow.tsx`](file:///d:/WebDev/portfolio/components/portfolio/ProjectRow.tsx))**: Encapsulates project row presentation (category short-label, title, clientType, completedDate, headline metric, arrow link, hover transitions, and responsive mobile layout) across both `WorkIndex` and `PortfolioFilterGrid`.
+- **Tethered Traveling Viewfinder ([`components/portfolio/InteractiveWorkGallery.tsx`](file:///d:/WebDev/portfolio/components/portfolio/InteractiveWorkGallery.tsx) & [`components/portfolio/GalleryViewfinder.tsx`](file:///d:/WebDev/portfolio/components/portfolio/GalleryViewfinder.tsx))**: Interactive companion frame docking in row negative space. Orchestrated via Framer Motion `layoutId="gallery-viewfinder"` spring glides between project rows, nested scroll-linked micro-parallax drift (`useScroll`), and `IntersectionObserver` focal band tracking for mobile viewport parity.
 
 ---
 
@@ -86,8 +87,8 @@ The design identity is anchored by [ADR-006](file:///d:/WebDev/portfolio/docs/AD
 ### Composition & Layout
 - **The Gallerist Spacing:** Deliberate negative space, fluid `py-section` / `py-section-lg` rhythm, and intentional silence rather than crowded grid boxes.
 - **Shared Interior Spreads:** Interior pages open with `PageHeader` (mono label, serif headline, right lede) and close with `ContactBlock`.
-- **Visual Assets & Interactive Innovations:** Governed by [`docs/VISUAL_AND_FEATURE_PLAN.md`](VISUAL_AND_FEATURE_PLAN.md) (monograph-quality photo inventory, gallery cursor hover reveals, blueprint inspection grid, live studio clock, and print-to-PDF dossier).
-- **Explicitly Banned:** Availability status indicators (proposed and explicitly rejected).
+- **Visual Assets & Interactive Innovations:** Governed by [`docs/VISUAL_AND_FEATURE_PLAN.md`](VISUAL_AND_FEATURE_PLAN.md) (monograph-quality photo inventory, traveling gallery viewfinder gliders, blueprint inspection grid, and print-to-PDF dossier).
+- **Explicitly Banned:** Availability status indicators and live studio clock chips (explicitly rejected).
 
 ---
 

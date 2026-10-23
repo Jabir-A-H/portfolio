@@ -5,7 +5,7 @@ import { getFeaturedProjects } from '@/content/queries';
 import { Container } from '@/components/layout/Container';
 import { Section } from '@/components/layout/Section';
 import { Reveal } from '@/components/motion';
-import { ProjectRow } from '@/components/portfolio/ProjectRow';
+import { InteractiveWorkGallery } from '@/components/portfolio/InteractiveWorkGallery';
 
 export function WorkIndex() {
   const featured = getFeaturedProjects();
@@ -29,18 +29,12 @@ export function WorkIndex() {
         </Reveal>
 
         <Reveal delay={0.08}>
-          <div>
-            {featured.map((project, index) => (
-              <ProjectRow
-                key={project.id}
-                project={project}
-                index={index}
-                variant="compact"
-                headingTag="h3"
-                showCompletedDate={false}
-              />
-            ))}
-          </div>
+          <InteractiveWorkGallery
+            projects={featured}
+            variant="compact"
+            headingTag="h3"
+            showCompletedDate={false}
+          />
         </Reveal>
 
         <div className="mt-6 flex justify-end">
